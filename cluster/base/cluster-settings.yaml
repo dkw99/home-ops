@@ -5,8 +5,8 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  ROUTER_IP: 192.168.16.1
-  BGP_PEER_ASN: 64512
+  ROUTER_IP: "192.168.16.1"
+  BGP_PEER_ASN: "64512"
   BGP_MY_ASN: 64512
   TRAEFIK_INGRESS_ADDR: 10.44.0.2
   K8S_LB_CIDR: 10.44.0.0/24
