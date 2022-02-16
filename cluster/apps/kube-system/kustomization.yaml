@@ -5,3 +5,5 @@ resources:
   - metrics-server
   - reflector
   - reloader
+  - nfs-client-provisioner
+  - node-feature-discovery

@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://metallb.github.io/metallb
       chart: metallb
       version: 0.11.0
       sourceRef:
@@ -16,8 +17,29 @@ spec:
         namespace: flux-system
   values:
     configInline:
+      peers:
+        - peer-address: ${ROUTER_IP}
+          peer-asn: ${BGP_PEER_ASN}
+          my-asn: ${BGP_PEER_ASN}
       address-pools:
-        - name: default
-          protocol: layer2
+        - name: bgp
+          protocol: bgp
           addresses:
-            - "${METALLB_LB_RANGE}"
+            - ${K8S_LB_CIDR}
+          avoid-buggy-ips: true
+    # prometheusRule:
+    #   enabled: true
+    # prometheus:
+    #   enabled: true
+    #   serviceMonitor:
+    #     enabled: true
+    #   prometheusRule:
+    #     enabled: true
+    controller:
+      image:
+        repository: quay.io/metallb/controller
+        tag: v0.10.1
+    speaker:
+      image:
+        repository: quay.io/metallb/speaker
+        tag: v0.10.1

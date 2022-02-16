@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - influxdb
+  # - grafana
+  # - kube-prometheus-stack
+  # - loki
+  # - node-problem-detector
+  # - snmp-exporter
+  # - thanos
+  # - vector
+  # - uptimerobot-prometheus
+  # - blackbox-exporter
+  # - gotify
+  # - unifi-poller
+  # - uptimerobot-prometheus

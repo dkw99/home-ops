@@ -1,0 +1,85 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  interval: 10m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: sonarr
+      version: 16.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/sonarr
+      tag: v3.0.6.1342
+    env:
+      TZ: ${TIMEZONE}
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          # nginx.ingress.kubernetes.io/auth-url: https://auth.${DOMAIN}/oauth2/auth
+          # nginx.ingress.kubernetes.io/auth-signin: https://auth.${DOMAIN}/oauth2/start
+          hajimari.io/enable: "true"
+          hajimari.io/icon: television-classic
+        hosts:
+          - host: sonarr.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - sonarr.${SECRET_DOMAIN}
+            secretName: sonarr-tls
+      api:
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+        hosts:
+          - host: sonarr.${SECRET_DOMAIN}
+            paths:
+              - path: /api
+                pathType: Prefix
+        tls:
+          - hosts:
+              - sonarr.${SECRET_DOMAIN}
+            secretName: sonarr-tls
+    # metrics:
+    #   enabled: true
+    #   prometheusRule:
+    #     enabled: true
+    #     exporter:
+    #       image:
+    #         repository: ghcr.io/onedr0p/exportarr
+    #         tag: v0.6.2
+    #       env:
+    #         additionalMetrics: true
+    persistence:
+      config:
+        enabled: true
+        existingClaim: sonarr-config
+      media:
+        enabled: true
+        existingClaim: nfs-media-pvc
+        mountPath: /media
+      downloads:
+        enabled: true
+        existingClaim: nfs-media-downloads-pvc
+        mountPath: /downloads
+    resources:
+      requests:
+        cpu: 200m
+        memory: 800Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
