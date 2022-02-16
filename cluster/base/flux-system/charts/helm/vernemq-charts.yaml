@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: rook-ceph-charts
+  name: vernemq-charts
   namespace: flux-system
 spec:
   interval: 15m
-  url: https://charts.rook.io/release
+  url: https://vernemq.github.io/docker-vernemq
   timeout: 3m
