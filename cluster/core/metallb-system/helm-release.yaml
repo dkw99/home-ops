@@ -35,11 +35,11 @@ spec:
     #     enabled: true
     #   prometheusRule:
     #     enabled: true
-    controller:
-      image:
-        repository: quay.io/metallb/controller
-        tag: v0.10.1
-    speaker:
-      image:
-        repository: quay.io/metallb/speaker
-        tag: v0.10.1
+    # controller:
+    #   image:
+    #     repository: quay.io/metallb/controller
+    #     tag: v0.10.1
+    # speaker:
+    #   image:
+    #     repository: quay.io/metallb/speaker
+    #     tag: v0.10.1
