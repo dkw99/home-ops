@@ -9,7 +9,7 @@ spec:
     type: FileStore
     fileStore:
       claimName: k10-backups
-      path: home
+      path: home-automation
     credential:
       secretType: ""
       secret:
