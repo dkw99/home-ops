@@ -3,6 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - k10-backups-pvc.yaml
-  - home-automation.yaml
-  - media.yaml
-  - k10-disaster-recovery.yaml
+  # - home-automation.yaml
+  # - media.yaml
+  # - k10-disaster-recovery.yaml
