@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - secret.sops.yaml
   - media.yaml
-  - k10-disaster-recovery.yaml
+  # - k10-disaster-recovery.yaml
   # - pod-spec-override.yaml
-  - home-automation.yaml
+  # - home-automation.yaml
