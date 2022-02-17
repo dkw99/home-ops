@@ -5,5 +5,5 @@ resources:
   - secret.sops.yaml
   - media.yaml
   - k10-disaster-recovery.yaml
-  - pod-spec-override.yaml
-  # - home-automation.yaml
+  # - pod-spec-override.yaml
+  - home-automation.yaml
