@@ -25,6 +25,8 @@ spec:
         matchNames:
           - default
           - networking
+          - home-automation
+          - db
       name: "you"
       customApps:
         - name: Some External Cluster Service
