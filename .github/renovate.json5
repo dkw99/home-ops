@@ -1,9 +1,11 @@
 {
   "enabled": true,
+  "timezone": "Sydney/Australia",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
   "suppressNotifications": ["prIgnoreNotification"],
+  "commitBody": "Signed-off-by: dkw99 <dkw99@users.noreply.github.com>",
   "rebaseWhen": "conflicted",
   // set up ignored deps
   "ignoreDeps": [
