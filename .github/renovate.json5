@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "timezone": "Sydney/Australia",
+  "timezone": "Australia/Sydney",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
