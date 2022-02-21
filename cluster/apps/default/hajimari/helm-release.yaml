@@ -19,6 +19,9 @@ spec:
     image:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.2.0
+    env:
+    # -- Set the container timezone
+      TZ: ${TIMEZONE}
     hajimari:
       defaultEnable: false
       namespaceSelector:
@@ -29,7 +32,6 @@ spec:
           - db
           - media
           - kasten-io
-
       name: "House of the Wisesalmon"
       customApps:
         - name: Synology
