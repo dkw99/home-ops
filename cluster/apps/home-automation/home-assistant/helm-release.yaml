@@ -21,6 +21,9 @@ spec:
       tag: 2022.2.9
     env:
       TZ: ${TIMEZONE}
+    envFrom:
+      - secretRef:
+        name: home-assistant
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
     service:
