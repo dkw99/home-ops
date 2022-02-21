@@ -23,7 +23,7 @@ spec:
       persistence:
         enabled: true
         existingClaim: mariadb
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
+    # metrics:
+    #   enabled: true
+    #   serviceMonitor:
+    #     enabled: true

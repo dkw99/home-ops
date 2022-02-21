@@ -23,6 +23,7 @@ spec:
       enabled: true
       hostname: phpmyadmin.${SECRET_DOMAIN}
       pathType: Prefix
+      ingressClassNAme: "nginx"
       annotations:
         external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
         cert-manager.io/cluster-issuer: letsencrypt-production
@@ -32,7 +33,7 @@ spec:
         hajimari.io/icon: database-cog
         hajimari.io/appName: phpMyAdmin
       tls: true
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
+    # metrics:
+    #   enabled: true
+    #   serviceMonitor:
+    #     enabled: true
