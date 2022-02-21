@@ -8,3 +8,7 @@ creation_rules:
     encrypted_regex: "^(data|stringData)$"
     age: >-
       age1lmp488pwp74xx3ljg0gumh2nlz2ml3s4yxnner5094fr59pvdulqtgywe2
+  - path_regex: cluster/.*\.sops\.ya?ml
+    unencrypted_regex: "^(kind)$" 
+    age: >-
+      age1lmp488pwp74xx3ljg0gumh2nlz2ml3s4yxnner5094fr59pvdulqtgywe2

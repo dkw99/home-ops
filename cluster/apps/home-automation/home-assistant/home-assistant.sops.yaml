@@ -1,0 +1,37 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant
+    namespace: home-assistant
+stringData:
+    HASS_DARKSKY_API_KEY: ""
+    HASS_ECOBEE_API_KEY: ""
+    HASS_ELEVATION: ENC[AES256_GCM,data:HDdy,iv:pyHePglKKnRQJ/IVVfqIC7PdNMgwgdJZ/ROmRukXlaY=,tag:0DcBGOJtbbTKml+ex7PxCw==,type:str]
+    HASS_GOOGLE_PROJECT_ID: ""
+    HASS_GOOGLE_SECURE_DEVICES_PIN: ""
+    HASS_LATITUDE: ENC[AES256_GCM,data:jN57YFadGv1BnyY=,iv:IBmfG5ZNkTXpg3MueKcSaMlx/3fhpX4vU4NxHwBXQas=,tag:9u6xLy9/7MghakTg6UDEQw==,type:str]
+    HASS_LONGITUDE: ENC[AES256_GCM,data:VkJGiQrRZdkrEM0=,iv:iVDbGVCTKYVnlq+Ago76jQx80YMJh0e/YF21stkX2Po=,tag:voy8Y6lx4v/xnKTTBr8uHQ==,type:str]
+    HASS_MQTT_PASSWORD: ENC[AES256_GCM,data:p9wqf/ubPjyq4SHRLKxS5HcF//vgbOc=,iv:SBLiRjYhfuGsISGWlO4BB4O1cwvjlRwm2LhqMcbhPzc=,tag:xmdfmS0hb1aHyaOabmqcUQ==,type:str]
+    HASS_MQTT_USERNAME: ENC[AES256_GCM,data:QfL4tXGDrF/tICADj3bOaxPBWnS4bn8=,iv:aqEmiudy7Y9X39FkR0ufkEwL1PW/vGDs85W1v9kxp5s=,tag:SRTmRijIumseAHvrFJ/+KQ==,type:str]
+    HASS_POSTGRESQL_CONNECTION_STRING: ""
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1lmp488pwp74xx3ljg0gumh2nlz2ml3s4yxnner5094fr59pvdulqtgywe2
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5Sm5WKzFCSi9yNlNJNTFQ
+            Nnl4TGV0dnMvV2dzYTdDZUR3QjQrMWtsNGwwCktpWEdWUlN1TXJrellFZXN1TXhU
+            ZkkzelRpdlJOZDhncEFYYXJONC9Jb0kKLS0tIEc3b1FUQ3VqRGdRVG05bGdocFFT
+            VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
+            4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-02-21T04:15:37Z"
+    mac: ENC[AES256_GCM,data:CGxGfuNzCRtOxUyTMqGfVKkjO0NnPxBKzH+w2Wc8YN/k4v1exUbjUCcTg/gK4OOwRxEl9qbQzKqj9/kdLQk8MiTfNubKc8KZYoL+xSlWbTXMFPBxIH7ZBl1VM2uIPnaBDvxxisL5UhtoFpdIuhLBiXJ4x0KRPp5M7b1wj4CzOdM=,iv:8neQDoBKtCe4fmGu+xFT5cXqxYo4AMS7/zJ629OHEiY=,tag:Kt8q4uKIsLOIg3FY1G18Pg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

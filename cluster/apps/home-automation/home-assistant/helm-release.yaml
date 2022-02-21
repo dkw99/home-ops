@@ -44,7 +44,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: home-assistant
         hosts:
-          - host: hass.${SECRET_DOMAIN}
+          - host: &host hass.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
@@ -56,6 +56,8 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "home-assistant"
     addons:
       codeserver:
         enabled: true
@@ -86,7 +88,7 @@ spec:
             # nginx.ingress.kubernetes.io/auth-url: https://auth.${SECRET_DOMAIN}/oauth2/auth
             # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
           hosts:
-            - host: hass-config.${SECRET_DOMAIN}
+            - host: &hosthass-config.${SECRET_DOMAIN}
               paths:
                 - path: /
                   pathType: Prefix
