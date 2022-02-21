@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: radarr
   namespace: media
 spec:
   interval: 10m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: sonarr
+      chart: radarr
       version: 16.0.1
       sourceRef:
         kind: HelmRepository
@@ -18,8 +18,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.6.1342
+      repository: ghcr.io/k8s-at-home/radarr
+      tag: v3.2.2.5080
     env:
       TZ: ${TIMEZONE}
     ingress:
@@ -32,29 +32,29 @@ spec:
           # nginx.ingress.kubernetes.io/auth-url: https://auth.${DOMAIN}/oauth2/auth
           # nginx.ingress.kubernetes.io/auth-signin: https://auth.${DOMAIN}/oauth2/start
           hajimari.io/enable: "true"
-          hajimari.io/icon: television-classic
+          hajimari.io/icon: filmstrip
         hosts:
-          - host: sonarr.${SECRET_DOMAIN}
+          - host: radarr.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - sonarr.${SECRET_DOMAIN}
-            secretName: sonarr-tls
+              - radarr.${SECRET_DOMAIN}
+            secretName: radarr-tls
       api:
         enabled: true
         annotations:
           external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
         hosts:
-          - host: sonarr.${SECRET_DOMAIN}
+          - host: radarr.${SECRET_DOMAIN}
             paths:
               - path: /api
                 pathType: Prefix
         tls:
           - hosts:
-              - sonarr.${SECRET_DOMAIN}
-            secretName: sonarr-tls
+              - radarr.${SECRET_DOMAIN}
+            secretName: radarr-tls
     # metrics:
     #   enabled: true
     #   prometheusRule:
@@ -68,7 +68,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config
+        existingClaim: radarr-config
       media:
         enabled: true
         existingClaim: nfs-media-pvc
