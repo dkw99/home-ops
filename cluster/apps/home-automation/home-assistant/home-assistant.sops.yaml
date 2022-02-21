@@ -10,13 +10,13 @@ stringData:
     HASS_ELEVATION: ENC[AES256_GCM,data:HDdy,iv:pyHePglKKnRQJ/IVVfqIC7PdNMgwgdJZ/ROmRukXlaY=,tag:0DcBGOJtbbTKml+ex7PxCw==,type:str]
     HASS_GOOGLE_PROJECT_ID: ""
     HASS_GOOGLE_SECURE_DEVICES_PIN: ""
-    HASS_LATITUDE: ENC[AES256_GCM,data:jN57YFadGv1BnyY=,iv:IBmfG5ZNkTXpg3MueKcSaMlx/3fhpX4vU4NxHwBXQas=,tag:9u6xLy9/7MghakTg6UDEQw==,type:str]
-    HASS_LONGITUDE: ENC[AES256_GCM,data:VkJGiQrRZdkrEM0=,iv:iVDbGVCTKYVnlq+Ago76jQx80YMJh0e/YF21stkX2Po=,tag:voy8Y6lx4v/xnKTTBr8uHQ==,type:str]
+    HASS_LATITUDE: ENC[AES256_GCM,data:U+1+fj1kMisvkA==,iv:PtJUzzbqcw93pMQbkWDj29eDFOo0KRxV75e2KnyRxdM=,tag:CxZiXybJCSlSKSkdBRPApg==,type:str]
+    HASS_LONGITUDE: ENC[AES256_GCM,data:p0dw8kM4xbQSlQ==,iv:e+YoK7gIk5PizGfRfMW8ZDIACpHD2nR7xHjUwYGp52M=,tag:PxCa5XdgCupewwNL1zriJQ==,type:str]
     HASS_MQTT_PASSWORD: ENC[AES256_GCM,data:p9wqf/ubPjyq4SHRLKxS5HcF//vgbOc=,iv:SBLiRjYhfuGsISGWlO4BB4O1cwvjlRwm2LhqMcbhPzc=,tag:xmdfmS0hb1aHyaOabmqcUQ==,type:str]
     HASS_MQTT_USERNAME: ENC[AES256_GCM,data:QfL4tXGDrF/tICADj3bOaxPBWnS4bn8=,iv:aqEmiudy7Y9X39FkR0ufkEwL1PW/vGDs85W1v9kxp5s=,tag:SRTmRijIumseAHvrFJ/+KQ==,type:str]
     HASS_POSTGRESQL_CONNECTION_STRING: ""
     HASS_SERVER: ENC[AES256_GCM,data:mFXDAOiN2h77Eba8vSVMsgkcaQjT,iv:OkweAJxQ05DsTOu78gK964BeTQGjz40OqMZyke8p75I=,tag:BKFGk1gSrX2qRw712VbEiQ==,type:str]
-    HASS_TOKEN: ENC[AES256_GCM,data:5dcM6PEg/2iV/TFApQ==,iv:iDoQ1HfCgPRaBSbeMAmRro2m71bQgdJgDPCEtQmPX/w=,tag:CsfnRe0zQh7jCbpNV0n7lA==,type:str]
+    HASS_TOKEN: ENC[AES256_GCM,data:MWGoiaWzU6vGKPsV12dT5ySOjk6yDy3ShZsLbqBbuF+LpYvKLT5ChoEftv0r17wUMYoO2Q4o5VvsQ2/tack2FVH52Yc0uhyTl17o9eBMPf1HnkAb1B8rpJ3Jc23m4WvpIniYPoCQ89uDXNQQiF5p6RrljcyMzrAUJpNR52tjAWYiX60dKQttiCFdgEdglKYRKNVxjdA9n5R7GVx7ZI+s/Xm6DQdwtUkzqwrcpGn7jtreTQ5ZtfeS,iv:iBnw2WF9yzIilnLJPe4g7gzJuQwIf2IwTWSl2HOyPZs=,tag:/EX3vdQXJucQ4Po418QGDA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -32,8 +32,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-02-21T05:13:29Z"
-    mac: ENC[AES256_GCM,data:eW5oPtT1iD6SNwwVezCN3T28/dvPBOnz9DFnZm2Q8wal5vhXTTjOdDMCL1dTUpTvV4etdSoNFc0M3THBQkVo6Q3eA5sLTYP5oXS8gMvFW/3raIReqIlvmbv3KKE0lqMNRXKsi+v7LaqxBULrW0M/WI2xjZqmH6dX9jWmM1P4ews=,iv:v5jQTsG/+dpVIFLeqTZUIxzWmayiC3sy+WC9sQ20b2A=,tag:oisR+eTy0PZPL6TLBcO0Nw==,type:str]
+    lastmodified: "2022-02-21T05:44:09Z"
+    mac: ENC[AES256_GCM,data:kuZCuQL/WwrJ38AdnAZpXtJdWoAOpyJbbKJ+YaXQVeGT2GYYcbwXdffxFX3ZjL7tJ0uzf4N3rpYK382rluSMww45Upvg1boO5zoeZbzi1o7HhANh9P5DQ15O+yq/fdaWUrdehSmuVwfhPQUULC3vrzrNJJcQ/nI32pL8mDC/Ono=,iv:wpsh8wSrQHlx9fuc0qty10rEPvFwryBWyO4iSz+up2E=,tag:Pnz9DKD550Oj/uDp7gLBGQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
