@@ -24,6 +24,8 @@ stringData:
     HASS_SABNZBD_API_KEY: ENC[AES256_GCM,data:87g0Xqmsg163sn+Nj4NUFjSagzUCB/4WbXOZAspp/Kk=,iv:AYR3YBXqr8fSfaHKgs7cn4ANRnlPzIW1tDDUNlw45QM=,tag:GBaW+OLZAnHkRCtpEaHAww==,type:str]
     HASS_OPNSENSE_API_USERNAME: ENC[AES256_GCM,data:jphQ5sA5N+Q1MwDZayhQ0BB0jKJp79tClglSQyFQUGgMdtIQBHu24aqg+MAP6GAibcmgCiVl1cQXJI/FtAFFpMVdslDbwCaDKajI59HBpu0=,iv:KM7Q18EW4YQ+D7ssX7NYoqrn2rkyPl2L+EWhoAb6f0A=,tag:Kh8cDYfXNCoxAjnoo6BweA==,type:str]
     HASS_OPNSENSE_API_PASSWORD: ENC[AES256_GCM,data:06vGv75daUEy4qd/HdUW2nSsxtvq/t1ifdmgmxiB6AqClDBT/euKXsN9cXSW6yEl3xOetl4jEDirhMrgM2sLFbVH3dgPlnaMCHHADZsnDiQ=,iv:QvJru1iX/qZsj+smIP7tyIENdldOqcTl2KJqB193fZI=,tag:9Y58akN61QtsiY48KxySPg==,type:str]
+    HASS_TUYA_ACCESS_CLIENT_ID: ENC[AES256_GCM,data:nxuFg8htHATrbpZSGu++XC8Lt0U=,iv:3Cr9Lduq4jXh6Cm+pZsEpDZm312/SgSUrhvqPRzlVHk=,tag:Lt2vIqGhMwAiSvXOrj2HAQ==,type:str]
+    HASS_TUYA_ACCESS_CKIENT_SECRET: ENC[AES256_GCM,data:gSfHdb1nH7Lpxyx+4y0EPejT1PO7JII6dIfx/b6cx7M=,iv:e1HV/4AXbednQEKzkxnMeCYTaINS5f/hsubb3BQh91Q=,tag:0ZVW2ikUlS+81zQ9GWA0Ow==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -39,8 +41,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-02-21T12:16:12Z"
-    mac: ENC[AES256_GCM,data:tedE/qpX0KhMTiRkJLoENsftjhXqGSbEyGkMVRR2mY76+RC3utCUAl1+/FRu4ECuzhabGpoLEbA2mnddciMtKXJsQEpX++oikfftUo3qI5l5r9RLAutXIYZxuPJwhbKnCeZq1KrfW1b8Cr/6J5TUBe6q+qwyBG6OhZViS7N2TOY=,iv:PoLrbvWgzFzFg5jtmt4G6d1MI9A3odClV04d/7dScnE=,tag:JalQEg6W+2/aEe+7XQwVwg==,type:str]
+    lastmodified: "2022-02-21T13:28:18Z"
+    mac: ENC[AES256_GCM,data:xPnfOVKcQ9qzdGg0dsI3JoHRF4TXkTk+2mBATzHfGWw5Wd8saZWkB4ilLIMkle0tYQZOvv1U5W0jzUVj2j8TGNTRGcn8tQxqHLcCH8sd3Wp5IzurVSVQvxCUndq6Xcw5HXd6bLiSonjVG9N/0hMeGOHI1rw1LFqwZ8fUuq3RiRk=,iv:lOaVDltY6047+zzpYLoPnwjzZhAE4fDZHDIzU1/x24A=,tag:IFp43t7k4NQX6t7OxYKMAA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
