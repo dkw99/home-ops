@@ -15,6 +15,8 @@ stringData:
     HASS_MQTT_PASSWORD: ENC[AES256_GCM,data:p9wqf/ubPjyq4SHRLKxS5HcF//vgbOc=,iv:SBLiRjYhfuGsISGWlO4BB4O1cwvjlRwm2LhqMcbhPzc=,tag:xmdfmS0hb1aHyaOabmqcUQ==,type:str]
     HASS_MQTT_USERNAME: ENC[AES256_GCM,data:QfL4tXGDrF/tICADj3bOaxPBWnS4bn8=,iv:aqEmiudy7Y9X39FkR0ufkEwL1PW/vGDs85W1v9kxp5s=,tag:SRTmRijIumseAHvrFJ/+KQ==,type:str]
     HASS_POSTGRESQL_CONNECTION_STRING: ""
+    HASS_SERVER: ENC[AES256_GCM,data:mFXDAOiN2h77Eba8vSVMsgkcaQjT,iv:OkweAJxQ05DsTOu78gK964BeTQGjz40OqMZyke8p75I=,tag:BKFGk1gSrX2qRw712VbEiQ==,type:str]
+    HASS_TOKEN: ENC[AES256_GCM,data:5dcM6PEg/2iV/TFApQ==,iv:iDoQ1HfCgPRaBSbeMAmRro2m71bQgdJgDPCEtQmPX/w=,tag:CsfnRe0zQh7jCbpNV0n7lA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -30,8 +32,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-02-21T04:43:52Z"
-    mac: ENC[AES256_GCM,data:/ijMHWWgL/tu5SYbcDr+6UPDrYKWA5a9V4NqkmuOCj32HU9lKbZ41tmGD5rAMnhev+3vY5cLKyyPX/6eBJODsvK8qoIUZSFy39s0OOBn2uAhYISNfHorKEXPjWLXeGCtWyi87jufBIQugVRrOZZhRPNDa7oy1yzFyygFVjYga40=,iv:+/r9FI/mkux+AX4NQClXNJzIbLVzA6JTlnp1FVUtrQA=,tag:gTf0h7vENMpWcj1f7Jvqeg==,type:str]
+    lastmodified: "2022-02-21T05:13:29Z"
+    mac: ENC[AES256_GCM,data:eW5oPtT1iD6SNwwVezCN3T28/dvPBOnz9DFnZm2Q8wal5vhXTTjOdDMCL1dTUpTvV4etdSoNFc0M3THBQkVo6Q3eA5sLTYP5oXS8gMvFW/3raIReqIlvmbv3KKE0lqMNRXKsi+v7LaqxBULrW0M/WI2xjZqmH6dX9jWmM1P4ews=,iv:v5jQTsG/+dpVIFLeqTZUIxzWmayiC3sy+WC9sQ20b2A=,tag:oisR+eTy0PZPL6TLBcO0Nw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
