@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: home-assistant
-    namespace: home-assistant
+    namespace: home-automation
 stringData:
     HASS_DARKSKY_API_KEY: ""
     HASS_ECOBEE_API_KEY: ""
@@ -30,8 +30,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-02-21T04:15:37Z"
-    mac: ENC[AES256_GCM,data:CGxGfuNzCRtOxUyTMqGfVKkjO0NnPxBKzH+w2Wc8YN/k4v1exUbjUCcTg/gK4OOwRxEl9qbQzKqj9/kdLQk8MiTfNubKc8KZYoL+xSlWbTXMFPBxIH7ZBl1VM2uIPnaBDvxxisL5UhtoFpdIuhLBiXJ4x0KRPp5M7b1wj4CzOdM=,iv:8neQDoBKtCe4fmGu+xFT5cXqxYo4AMS7/zJ629OHEiY=,tag:Kt8q4uKIsLOIg3FY1G18Pg==,type:str]
+    lastmodified: "2022-02-21T04:43:52Z"
+    mac: ENC[AES256_GCM,data:/ijMHWWgL/tu5SYbcDr+6UPDrYKWA5a9V4NqkmuOCj32HU9lKbZ41tmGD5rAMnhev+3vY5cLKyyPX/6eBJODsvK8qoIUZSFy39s0OOBn2uAhYISNfHorKEXPjWLXeGCtWyi87jufBIQugVRrOZZhRPNDa7oy1yzFyygFVjYga40=,iv:+/r9FI/mkux+AX4NQClXNJzIbLVzA6JTlnp1FVUtrQA=,tag:gTf0h7vENMpWcj1f7Jvqeg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
