@@ -77,7 +77,7 @@ spec:
           - /config/.vscode
         env:
           HASS_SERVER: http://localhost:8123
-          HASS_TOKEN: ${HASS_TOKEN}
+          HASS_TOKEN: ${HASS_CONFIG_ACCESS_TOKEN}
         git:
           deployKeySecret: home-assistant-code-server
         ingress:
