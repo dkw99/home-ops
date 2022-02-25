@@ -29,7 +29,7 @@ stringData:
     HASS_CONFIG_ACCESS_TOKEN: ENC[AES256_GCM,data:hvzoCjmi5mJKV4Ma6TIUwNy4kGLIeADPsanKv7XoZWY/CkeSwqaXXuQb9RF9fPrYsAh/OsbZOBXDXlJDSflJnXbsJLZYkEcHBybCF4R6nPeGmm2RmX1aZsmkyEOyFp5vLDp4+Ck9YIZAgdUwTBlcy2mo+BWf3lIcDax9vpQBnTgcxtHdh9HYbMfR0dfuzMckQFhn+qHOZZ4nV1XEWw21LHQeAPAcryrClCFl2uuAHL2NMU3q2ZZu,iv:/cXHr3igWFPEb0LY16xzLI4DZT5UhwsV5Wvnv5FDIQ0=,tag:yI3hq98uoryMmB8YT2GItw==,type:str]
     TUYA_BED1_FAN_KEY: ENC[AES256_GCM,data:9a/Wkyh1gNZmqAJNVUTaOQ==,iv:qGuHTUKd2BYlzCbc3cHPdXo4DQtrzKSpU0he3r79YzM=,tag:Aec6rkcL3jmpM70sjUwCDA==,type:str]
     TUYA_BED1_FAN_ID: ENC[AES256_GCM,data:3CEwM8aGHjP+bNv+/7cre0LAxQ0=,iv:4pKKXU0uvfjHDX7Isxj7vGTBrN8+eyOLDFHsY/CJyM8=,tag:IfTWuDHnlpFLRLd9b8z6ww==,type:str]
-    TUYA_BED1_IP: ENC[AES256_GCM,data:KE4kL5lq7d1sKLFkPQ==,iv:c9L56HYx1ioeNyuYHUvO+d85K1GthhFI7KNK8vIVqPQ=,tag:8oKDVUEYszN4+XtL1yiddQ==,type:str]
+    TUYA_BED1_FAN_IP: ENC[AES256_GCM,data:5ejQd3d9gyGEs4xARA==,iv:0OPKUdjzMLbvjVfWc65t4Dm6jfATZJkStXRilezwsS4=,tag:dPt8UShcu0NAVkzf1Nukuw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -45,8 +45,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-02-25T04:58:16Z"
-    mac: ENC[AES256_GCM,data:qtxn0ry4QzvxWhKTOu5cd6w2uS/3y1zpNiQ89q6moAwJS41GEjZ41qr+5hIzacZ+rxDcSmg+GxBEKRKhVN8SvizmTf+6HvYTSbsa4oL2Ria++B8wpp+gh1Fd4aHLo3tM8DgGENfF/dHBOWCnS0RQq+0pmYoU/ASFxGAbZvK1Fug=,iv:Qh31Q4D4hAEaK7nfPY5npJOwY2sEVGYiDoBVi0HOcDc=,tag:eksY6Bcxc0tPOS8owVqgiQ==,type:str]
+    lastmodified: "2022-02-25T05:02:01Z"
+    mac: ENC[AES256_GCM,data:flHSDzgacV2jEarI6zBXSZFzm6Abtuec4rt+MNPd8nIqLu21Dd28E98guMU6kn2LXYmIadQW/0Bof4mLi9uLVPek56RNp4iJD5V9w5XphMd9TJbBnPlqg2oFgb+yEjq/zshMhIp1biSKyKBjQMP47oBESBByn2k0WUhp4zy14Kc=,iv:HeN8fnLjEhV/42rZLU/proCZISgGoKXbWU23dmsq++c=,tag:Emj8Uk2t2BlA92JQnZp8Sw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
