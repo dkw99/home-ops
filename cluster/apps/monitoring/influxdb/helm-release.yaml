@@ -22,6 +22,8 @@ spec:
       tag: "1.8.10"
     service:
       type: LoadBalancer
+      loadBalancerIP: ${INFLUXDB_IP}
+
     persistence:
       enabled: true
       size: 50Gi
