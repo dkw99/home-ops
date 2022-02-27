@@ -30,6 +30,9 @@ spec:
       main:
         type: ClusterIP
         loadBalancerIP: ${HASS_IP}
+        ports:
+          http:
+            port: 8123
     probes:
       liveness:
         enabled: false
