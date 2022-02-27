@@ -26,10 +26,10 @@ spec:
           name: home-assistant
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
-    # service:
-    #   main:
-    #     type: ClusterIP
-    #     # loadBalancerIP: ${HASS_IP}
+    service:
+      main:
+        type: ClusterIP
+        loadBalancerIP: ${HASS_IP}
     probes:
       liveness:
         enabled: false
