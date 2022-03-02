@@ -74,7 +74,8 @@ spec:
     # Any extra volume mounts to define for the containers
     extraVolumeMounts:
       - name: google-service-account
-        mountPath: "/config/SERVICE_ACCOUNT.JSON"
+        mountPath: "/config"
+        subPath: "SERVICE_ACCOUNT.JSON"
     addons:
       codeserver:
         enabled: true
