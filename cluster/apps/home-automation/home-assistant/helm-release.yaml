@@ -67,8 +67,10 @@ spec:
     extraVolumes:
       - name: google-service-account
         secret:
+          items:
+            - key: SERVICE_ACCOUNT
+              path: SERVICE_ACCOUNT
           secretName: home-assistant-google-service-account
-
     # Any extra volume mounts to define for the containers
     extraVolumeMounts:
       - name: google-service-account
