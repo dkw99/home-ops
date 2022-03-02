@@ -62,20 +62,25 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config
-    podAnnotations:
-      secret.reloader.stakater.com/reload: "home-assistant"
-    extraVolumes:
-      - name: google-service-account
-        secret:
-          items:
-            - key: SERVICE_ACCOUNT
-              path: SERVICE_ACCOUNT
-          secretName: home-assistant-google-service-account
-    # Any extra volume mounts to define for the containers
-    extraVolumeMounts:
-      - name: google-service-account
-        mountPath: "/config"
+      service_account:
+        enabled: "true"
+        mountPath: "/config/SERVICE_ACCOUNT.JSON"
         subPath: "SERVICE_ACCOUNT.JSON"
+        type: "secret"
+        name: google-service-account
+
+    # extraVolumes:
+    #   - name: google-service-account
+    #     secret:
+    #       items:
+    #         - key: SERVICE_ACCOUNT
+    #           path: SERVICE_ACCOUNT
+    #       secretName: home-assistant-google-service-account
+    # # Any extra volume mounts to define for the containers
+    # extraVolumeMounts:
+    #   - name: google-service-account
+    #     mountPath: "/config"
+    #     subPath: "SERVICE_ACCOUNT.JSON"
     addons:
       codeserver:
         enabled: true
