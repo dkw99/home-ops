@@ -19,7 +19,7 @@ jobs:
     outputs:
       files: "${{ steps.extract.outputs.files }}"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -29,7 +29,7 @@ jobs:
               - '**'
       - id: extract
         run: |
-          filtered=$(grep -zl 'kind: HelmRelease.*registryUrl=' ${{ steps.filter.outputs.changed_files }} \
+          filtered=$(grep -zl "kind: HelmRelease.*registryUrl=" ${{ steps.filter.outputs.changed_files }} \
             | jq -nR '[inputs | select(length>0)]')
           echo ::set-output name=files::${filtered}
   helm-release-diff:
@@ -48,11 +48,11 @@ jobs:
           setup-tools: |
             helmv3
             yq
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ env.conf_live_branch }}
           path: live
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: pr
       - id: diff
