@@ -15,14 +15,6 @@ spec:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
-      # volumeMounts:
-      #   - name: ga-service-account
-      #     mountPath: "/config/SERVICE_ACCOUNT.JSON"
-      #     readOnly: true
-      # volumes:
-      # - name: ga-service-account
-      #   secret:
-      #     secretName: home-assistant-ga-key
   values:
     image:
       repository: homeassistant/home-assistant
@@ -72,6 +64,15 @@ spec:
         existingClaim: home-assistant-config
     podAnnotations:
       secret.reloader.stakater.com/reload: "home-assistant"
+    extraVolumes:
+      - name: google-service-account
+        secret:
+          secretName: home-assistant-google-service-account
+
+    # Any extra volume mounts to define for the containers
+    extraVolumeMounts:
+      - name: google-service-account
+        mountPath: "/config/SERVICE_ACCOUNT.JSON"
     addons:
       codeserver:
         enabled: true
