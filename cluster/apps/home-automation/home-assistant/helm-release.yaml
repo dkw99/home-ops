@@ -63,12 +63,12 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config
-      service_account:
-        enabled: "true"
-        mountPath: "/config/SERVICE_ACCOUNT.JSON"
-        subPath: "SERVICE_ACCOUNT.JSON"
-        type: "secret"
-        name: google-service-account
+      # service_account:
+      #   enabled: "true"
+      #   mountPath: "/config/SERVICE_ACCOUNT.JSON"
+      #   subPath: "SERVICE_ACCOUNT.JSON"
+      #   type: "secret"
+      #   name: google-service-account
     # extraVolumes:
     #   - name: google-service-account
     #     secret:
