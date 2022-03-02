@@ -15,6 +15,14 @@ spec:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
+    volumeMounts:
+      - name: ga-service-account
+        mountPath: "/config/SERVICE_ACCOUNT.JSON"
+        readOnly: true
+    volumes:
+      - name: ga-service-account
+        secret:
+          secretName: home-assistant-ga-key
   values:
     image:
       repository: homeassistant/home-assistant
