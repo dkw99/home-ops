@@ -49,6 +49,7 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/enable: "true"
           hajimari.io/icon: home-assistant
+          ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
         hosts:
           - host: hass.${SECRET_DOMAIN}
             paths:
@@ -68,7 +69,6 @@ spec:
         subPath: "SERVICE_ACCOUNT.JSON"
         type: "secret"
         name: google-service-account
-
     # extraVolumes:
     #   - name: google-service-account
     #     secret:
