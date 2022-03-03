@@ -79,7 +79,6 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          kubernetes.io/ingress.class: nginx
           hajimari.io/enable: "true"
           hajimari.io/icon: quality-medium
           cert-manager.io/cluster-issuer: "letsencrypt-production"
