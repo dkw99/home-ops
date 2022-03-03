@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: pgadmin4
+  name: pgadmin
   namespace: db
 spec:
   interval: 10m
