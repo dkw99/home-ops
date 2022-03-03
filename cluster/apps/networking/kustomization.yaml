@@ -6,3 +6,4 @@ resources:
   # - traefik
   - ingress-nginx
   - wildcard-certificate
+  - opnsense
