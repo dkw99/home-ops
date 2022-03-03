@@ -1,0 +1,32 @@
+---
+version: "3"
+
+tasks:
+  update-deps:
+    - task: update-deps:ansible
+    - task: update-deps:pre-commit
+
+  update-deps:ansible:
+    desc: install/upgrade ansible deps
+    dir: provision/ansible
+    cmds:
+      - "ansible-galaxy install -r requirements.yml --roles-path ~/.ansible/roles --force"
+      - "ansible-galaxy collection install -r requirements.yml --collections-path ~/.ansible/collections --force"
+
+  update-deps:pre-commit:
+    desc: install/upgrade pre-commit deps
+    cmds:
+      - pre-commit autoupdate
+      - pre-commit install --install-hooks
+
+  pre-commit:
+    desc: Run pre-commit
+    cmds:
+      - pre-commit run --all-files
+
+  kubeconfig:
+    desc: Remotely fetch kubeconfig from Kubernetes
+    cmds:
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.PROJECT_DIR}}/provision/kubeconfig"
+      - sed -i '' 's/127.0.0.1/{{.K3S_PRIMARY_MASTER_NODE_ADDR}}/g' "{{.PROJECT_DIR}}/provision/kubeconfig"
+      - chmod go-r "{{.PROJECT_DIR}}/provision/kubeconfig"
