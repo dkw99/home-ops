@@ -50,10 +50,9 @@ spec:
         enabled: false
         serviceMonitor:
           enabled: false
-          # namespace: networking
-          # namespace: kube-system
-          # namespaceSelector:
-          #   any: true
+          namespace: networking
+          namespaceSelector:
+            any: true
         prometheusRule:
           enabled: false
       extraArgs:
