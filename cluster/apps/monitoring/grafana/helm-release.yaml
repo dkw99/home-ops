@@ -76,6 +76,17 @@ spec:
             type: loki
             access: proxy
             url: http://loki:3100
+          - name: InfluxDB_v1
+            type: influxdb
+            access: proxy
+            database: enphase
+            user: ${INFLUX_HA_USER_USERNAME}
+            url: http://influxdb:8086
+            jsonData:
+              httpMode: GET
+            secureJsonData:
+              password: ${INFLUX_HA_USER_PASSWORD}
+
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/7845
