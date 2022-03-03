@@ -5,5 +5,15 @@ tasks:
   sync:
     desc: Sync flux-system with the Git Repository
     cmds:
-      - flux reconcile source git flux-system
+      - flux --kubeconfig ./provision/kubeconfig reconcile source git flux-system
+    silent: true
+  getK:
+    desc: Sync flux-system with the Git Repository
+    cmds:
+      - flux --kubeconfig ./provision/kubeconfig get kustomizations -A
+    silent: true
+  getH:
+    desc: Sync flux-system with the Git Repository
+    cmds:
+      - flux --kubeconfig ./provision/kubeconfig get helmrelease -A
     silent: true

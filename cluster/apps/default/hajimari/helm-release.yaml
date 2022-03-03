@@ -20,7 +20,7 @@ spec:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.2.0
     env:
-    # -- Set the container timezone
+      # -- Set the container timezone
       TZ: ${TIMEZONE}
     hajimari:
       defaultEnable: false
