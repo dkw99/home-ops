@@ -23,7 +23,7 @@ spec:
       enabled: true
       hostname: phpmyadmin.${SECRET_DOMAIN}
       pathType: Prefix
-      ingressClassNAme: "nginx"
+      ingressClassName: "nginx"
       annotations:
         external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
         cert-manager.io/cluster-issuer: letsencrypt-production
