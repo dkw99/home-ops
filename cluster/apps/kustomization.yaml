@@ -6,8 +6,8 @@ resources:
   - kube-system
   - networking
   - monitoring
-  - kasten-io
   - system-upgrade
   - db
   - home-automation
   - media
+  # - kasten-io
