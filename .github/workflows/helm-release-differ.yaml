@@ -12,7 +12,6 @@ env:
   DEFAULT_BRANCH: main
   GIT_AUTHOR: "dkw99 <dkw99@users.noreply.github.com"
   conf_ignore_known_labels_containing_versions: true
-  GITHUB_TOKEN: ${{ secrets.RENOVATE_SECRET }}
 
 jobs:
   detect-file-changes:

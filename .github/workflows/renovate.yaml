@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN}}
           fetch-depth: 1
 
       - name: Install yq
@@ -26,7 +26,7 @@ jobs:
       - name: Create pull request for HelmRelease annotations
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: helm-release-annotations
           title: "[renovate] create helmrelease annotations [ci-skip]"
           signoff: true
