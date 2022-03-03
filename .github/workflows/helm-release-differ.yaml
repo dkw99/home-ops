@@ -38,6 +38,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: Generate Token
       #   uses: tibdex/github-app-token@v1
       #   id: generate-token
@@ -71,6 +73,8 @@ jobs:
           body-includes: "${{ matrix.file }}"
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           comment-id: "${{ steps.find-comment.outputs.comment-id }}"
