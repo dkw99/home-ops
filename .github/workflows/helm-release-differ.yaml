@@ -13,7 +13,8 @@ env:
   DEFAULT_BRANCH: main
   GIT_AUTHOR: "dkw99 <dkw99@users.noreply.github.com"
   conf_ignore_known_labels_containing_versions: true
-  GITHUB_TOKEN: ${{ github.token }}
+  GITHUB_TOKEN: ${{ secrets.RENOVATE_SECRET }}
+
 jobs:
   detect-file-changes:
     name: Detect File Changes
@@ -73,7 +74,7 @@ jobs:
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ env.GITHUB_TOKEN }}
           comment-id: "${{ steps.find-comment.outputs.comment-id }}"
           issue-number: "${{ github.event.pull_request.number }}"
           body: "${{ steps.diff.outputs.diff }}"
