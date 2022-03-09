@@ -10,3 +10,4 @@ resources:
   - db
   - home-automation
   - media
+  - flux-system
