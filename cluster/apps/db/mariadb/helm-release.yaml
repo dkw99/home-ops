@@ -18,7 +18,7 @@ spec:
   values:
     clusterDomain: ${CLUSTER_DOMAIN}
     auth:
-      rootPassword: ${MARIADB_ROOT_PASSWORD}
+      rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
     primary:
       persistence:
         enabled: true

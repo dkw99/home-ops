@@ -12,7 +12,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: ${SYNOLOGY_IP}
+    server: ${SECRET_SYNOLOGY_IP}
     path: "/volume1/Media"
   mountOptions:
     - nfsvers=3

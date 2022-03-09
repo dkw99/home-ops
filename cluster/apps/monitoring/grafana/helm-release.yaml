@@ -80,12 +80,12 @@ spec:
             type: influxdb
             access: proxy
             database: enphase
-            user: ${INFLUX_HA_USER_USERNAME}
+            user: ${SECRET_INFLUX_HA_USER_USERNAME}
             url: http://influxdb:8086
             jsonData:
               httpMode: GET
             secureJsonData:
-              password: ${INFLUX_HA_USER_PASSWORD}
+              password: ${SECRET_INFLUX_HA_USER_PASSWORD}
 
     dashboards:
       default:
