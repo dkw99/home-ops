@@ -5,11 +5,11 @@ resources:
   - influxdb
   - grafana
   - kube-prometheus-stack
-  # - loki
+  - loki
   # - node-problem-detector
   # - snmp-exporter
   - thanos
-  # - vector
+  - vector
   # - uptimerobot-prometheus
   # - blackbox-exporter
   # - gotify
