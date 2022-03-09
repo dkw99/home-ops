@@ -33,6 +33,8 @@ spec:
         ports:
           http:
             port: 8123
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "home-assistant"
     probes:
       liveness:
         enabled: false
