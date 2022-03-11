@@ -30,9 +30,9 @@ spec:
     global:
       persistence:
         storageClass: pve110-dynamic-nfs
-    auth:
-      k10AdminUsers:
-        - ${SECRET_EMAIL_ADDRESS}
+    # auth:
+    #   k10AdminUsers:
+    #     - ${SECRET_EMAIL_ADDRESS}
       # oidcAuth:
         # enabled: true
         # providerURL: https://dex.${SECRET_DOMAIN}
