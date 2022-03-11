@@ -326,3 +326,4 @@ Many people have shared their awesome repositories over at [awesome-home-kuberne
 ## 🤝 Thanks
 
 Big shout out to all the authors and contributors to the projects that we are using in this repository.
+Inspiration from [Diaoul] https://github.com/Diaoul/home-ops, [onedr0p] https://github.com/onedr0p/home-ops and [billimek] https://github.com/billimek/k8s-gitops

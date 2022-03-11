@@ -1,0 +1,33 @@
+{
+  "ansible.ansibleLint.arguments": "-c .github/lint/.ansible-lint",
+  "discord.enabled": true,
+  "files.associations": {
+    "*.json5": "jsonc",
+    "**/ansible/**/*.yml": "ansible",
+    "**/ansible/**/*.sops.yml": "yaml",
+    "**/ansible/**/inventory/**/*.yml": "yaml",
+    "**/terraform/**/*.tf": "terraform"
+  },
+  "material-icon-theme.folders.associations": {
+    ".taskfiles": "utils",
+    "hack": "scripts"
+  },
+  "prettier.configPath": ".github/lint/.prettierrc.yaml",
+  "prettier.ignorePath": ".github/lint/.prettierignore",
+  "yaml.schemas": {
+    "Kubernetes": "cluster/*.yaml",
+    "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json": [
+      "file:///Users/michelle/Documents/HomeLab-Mac/home-ops/cluster/apps/media/storage/.decrypted~nfs-synology-media-pv.yaml",
+      "file:///Users/michelle/Documents/HomeLab-Mac/home-ops/cluster/apps/media/storage/nfs-synology-downloads-pv.yaml"
+    ]
+  },
+  // "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.hover.delay": 1500,
+  "explorer.autoReveal": false,
+  "sops.beta": true,
+  "sops.configPath": "./.sops.yaml",
+  "sops.creationEnabled": true
+}
