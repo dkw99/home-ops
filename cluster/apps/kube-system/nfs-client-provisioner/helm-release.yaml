@@ -21,7 +21,7 @@ spec:
       repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
       tag: v4.0.2
     nfs:
-      server: "${PVE1_NFS_IP}"
+      server: "${SECRET_PVE1_NFS_IP}"
       path: "/zfspool/filestore/kubedata/dynamic"
     storageClass:
       create: true
