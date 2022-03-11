@@ -30,6 +30,9 @@ spec:
     global:
       persistence:
         storageClass: pve110-dynamic-nfs
+    auth:
+      tokenAuth:
+        enabled: true
     # auth:
     #   k10AdminUsers:
     #     - ${SECRET_EMAIL_ADDRESS}
@@ -58,7 +61,7 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-production
       urlPath: k10
       hosts:
-        - k10.${SECRET_DOMAIN}
+        - &host k10.${SECRET_DOMAIN}
       tls:
         enabled: true
         secretName: k10-tls
