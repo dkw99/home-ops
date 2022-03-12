@@ -65,5 +65,5 @@ spec:
       tls:
         enabled: true
         secretName: k10-tls
-    cacertconfigmap:
-      name: custom-ca-bundle-store
+    # cacertconfigmap:
+    #   name: custom-ca-bundle-store
