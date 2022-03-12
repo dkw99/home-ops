@@ -16,10 +16,6 @@
   "prettier.ignorePath": ".github/lint/.prettierignore",
   "yaml.schemas": {
     "Kubernetes": "cluster/*.yaml",
-    "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json": [
-      "file:///Users/michelle/Documents/HomeLab-Mac/home-ops/cluster/apps/media/storage/.decrypted~nfs-synology-media-pv.yaml",
-      "file:///Users/michelle/Documents/HomeLab-Mac/home-ops/cluster/apps/media/storage/nfs-synology-downloads-pv.yaml"
-    ]
   },
   // "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
