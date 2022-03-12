@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-synology-k10-pv
+  namespace: kasten-io
+spec:
+  storageClassName: synology-k10-nfs
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: ${SECRET_SYNOLOGY_IP}
+    path: "/volume1/K10"
+  mountOptions:
+    - nfsvers=3
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
+#
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-synology-k10-pvc
+  namespace: kasten-io
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: synology-k10-nfs
+  resources:
+    requests:
+      storage: 1Mi

@@ -8,6 +8,7 @@ resources:
   - loki
   - thanos
   - vector
+  - kasten-io
   # - node-problem-detector
   # - snmp-exporter
   # - uptimerobot-prometheus
