@@ -119,7 +119,7 @@ spec:
           labels:
             hostname: opnsense
     podMonitor:
-      enabled: true
+      enabled: false
     service:
       enabled: true
       type: LoadBalancer

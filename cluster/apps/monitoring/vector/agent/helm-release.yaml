@@ -54,7 +54,7 @@ spec:
     service:
       enabled: false
     podMonitor:
-      enabled: true
+      enabled: false
     securityContext:
       privileged: true
     tolerations:
