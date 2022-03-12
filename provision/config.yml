@@ -1,0 +1,29 @@
+---
+
+cluster-init: true
+cluster-cidr: 10.42.0.0/16
+disable:
+  - traefik
+  - servicelb
+  - metrics-server
+disable-cloud-controller: true
+disable-network-policy: true
+docker: false
+etcd-expose-metrics: true
+flannel-backend: "host-gw"
+kube-apiserver-arg:
+  - anonymous-auth=true
+kube-controller-manager-arg:
+  - bind-address=0.0.0.0
+kube-proxy-arg:
+  - metrics-bind-address=0.0.0.0
+kube-scheduler-arg:
+  - bind-address=0.0.0.0
+kubelet-arg:
+  - feature-gates=GracefulNodeShutdown=true
+  - feature-gates=MixedProtocolLBService=true
+node-ip: 192.168.16.100
+service-cidr: 10.43.0.0/16
+tls-san:
+  - 192.168.16.100
+write-kubeconfig-mode: '644'
