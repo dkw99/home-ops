@@ -6,10 +6,10 @@ resources:
   - grafana
   - kube-prometheus-stack
   - loki
+  - thanos
+  - vector
   # - node-problem-detector
   # - snmp-exporter
-  # - thanos
-  - vector
   # - uptimerobot-prometheus
   # - blackbox-exporter
   # - gotify
