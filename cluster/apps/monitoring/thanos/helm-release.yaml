@@ -39,8 +39,8 @@ spec:
         bucket: thanos
         endpoint: nas.home.lan:9000
         insecure: true
-        access_key: ${THANOS_MINIO_ACCESS_KEY}
-        secret_key: ${THANOS_MINIO_SECRET_KEY}
+        access_key: ${SECRET_THANOS_MINIO_ACCESS_KEY}
+        secret_key: ${SECRET_THANOS_MINIO_SECRET_KEY}
     queryFrontend:
       enabled: false
     bucketweb:

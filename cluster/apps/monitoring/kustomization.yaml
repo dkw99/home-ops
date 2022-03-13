@@ -7,7 +7,8 @@ resources:
   - kube-prometheus-stack
   - loki
   - thanos
-  - vector
+  - promtail
+  # - vector
   # - node-problem-detector
   # - snmp-exporter
   # - uptimerobot-prometheus
