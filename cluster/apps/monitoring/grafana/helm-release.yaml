@@ -152,7 +152,7 @@ spec:
         - "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts:
-            - grafana.${DOMAIN}
+            - grafana.${SECRET_DOMAIN}
           secretName: grafana-tls
     serviceAccount:
       create: true
