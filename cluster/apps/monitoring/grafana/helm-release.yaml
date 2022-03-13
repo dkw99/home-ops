@@ -67,25 +67,25 @@ spec:
           - name: Loki
             orgId: 1
         datasources:
-          # - name: Prometheus
-          #   type: prometheus
-          #   access: proxy
-          #   url: http://thanos-query:9090/
-          #   isDefault: true
-          # - name: Loki
-          #   type: loki
-          #   access: proxy
-          #   url: http://loki:3100
-          # - name: InfluxDB_v1
-          #   type: influxdb
-          #   access: proxy
-          #   database: enphase
-          #   user: ${SECRET_INFLUX_HA_USER_USERNAME}
-          #   url: http://influxdb:8086
-          #   jsonData:
-          #     httpMode: GET
-          #   secureJsonData:
-          #     password: ${SECRET_INFLUX_HA_USER_PASSWORD}
+          - name: Prometheus
+            type: prometheus
+            access: proxy
+            url: http://thanos-query:9090/
+            isDefault: true
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki:3100
+          - name: InfluxDB_v1
+            type: influxdb
+            access: proxy
+            database: enphase
+            user: ${SECRET_INFLUX_HA_USER_USERNAME}
+            url: http://influxdb:8086
+            jsonData:
+              httpMode: GET
+            secureJsonData:
+              password: ${SECRET_INFLUX_HA_USER_PASSWORD}
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/7845
