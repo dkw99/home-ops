@@ -21,7 +21,7 @@ spec:
     config:
       storage_config:
         aws:
-          endpoint: singularity.milkyway:9000
+          endpoint: nas.home.lan:9000
           bucketnames: loki
           access_key_id: ${SECRET_MINIO_ACCESS_KEY}
           secret_access_key: ${SECRET_MINIO_SECRET_KEY}
