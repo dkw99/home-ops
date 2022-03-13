@@ -8,11 +8,11 @@ resources:
   - loki
   - thanos
   - promtail
-  # - vector
-  # - node-problem-detector
+  - node-problem-detector
   # - snmp-exporter
   # - uptimerobot-prometheus
   # - blackbox-exporter
   # - gotify
   # - unifi-poller
   # - uptimerobot-prometheus
+  # - vector
