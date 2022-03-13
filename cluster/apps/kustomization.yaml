@@ -10,5 +10,5 @@ resources:
   - db
   - home-automation
   - media
-  - flux-system
+  # - flux-system
   - kasten-io
