@@ -149,10 +149,11 @@ spec:
         hajimari.io/enable: "true"
         hajimari.io/icon: monitor-dashboard
       hosts:
-        - &host "grafana.${SECRET_DOMAIN}"
+        - "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts:
-            - *host
+            - grafana.${DOMAIN}
+          secretName: grafana-tls
     serviceAccount:
       create: true
       autoMount: true
