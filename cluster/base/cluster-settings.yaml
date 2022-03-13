@@ -5,6 +5,7 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
+  LOCAL_DOMAIN: home.lan
   ROUTER_IP: "192.168.16.1"
   BGP_PEER_ASN: "64512"
   BGP_MY_ASN: "64512"
