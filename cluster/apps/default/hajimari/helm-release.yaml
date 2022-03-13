@@ -33,6 +33,7 @@ spec:
           - db
           - media
           - kasten-io
+          - monitoring
       name: "House of the Wisesalmon"
       customApps:
         - name: Synology
