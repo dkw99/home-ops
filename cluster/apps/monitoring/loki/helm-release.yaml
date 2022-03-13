@@ -21,7 +21,7 @@ spec:
     config:
       storage_config:
         aws:
-          endpoint: nas.home.lan:9000
+          endpoint: s3.${SECRET_PRIVATE_DOMAIN}:9000
           bucketnames: loki
           access_key_id: ${SECRET_LOKI_MINIO_ACCESS_KEY}
           secret_access_key: ${SECRET_LOKI_MINIO_SECRET_KEY}

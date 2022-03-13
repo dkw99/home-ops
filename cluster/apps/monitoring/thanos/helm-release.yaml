@@ -24,6 +24,7 @@ spec:
       ingress:
         enabled: true
         hostname: thanos.${SECRET_DOMAIN}
+        ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
           cert-manager.io/cluster-issuer: letsencrypt-production
@@ -37,7 +38,7 @@ spec:
       type: S3
       config:
         bucket: thanos
-        endpoint: nas.home.lan:9000
+        endpoint: s3.${SECRET_PRIVATE_DOMAIN}:9000
         insecure: true
         access_key: ${SECRET_THANOS_MINIO_ACCESS_KEY}
         secret_key: ${SECRET_THANOS_MINIO_SECRET_KEY}
