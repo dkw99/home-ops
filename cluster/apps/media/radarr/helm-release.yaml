@@ -90,7 +90,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            server: "${SECRET_SYNOLOGY_IP}"
             path: /volume1/K10/radarr
         mountPath: /config/Backups
         readOnly: false
