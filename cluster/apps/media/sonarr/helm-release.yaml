@@ -55,16 +55,16 @@ spec:
           - hosts:
               - sonarr.${SECRET_DOMAIN}
             secretName: sonarr-tls
-    metrics:
-      enabled: true
-      prometheusRule:
-        enabled: true
-        exporter:
-          image:
-            repository: ghcr.io/onedr0p/exportarr
-            tag: v0.6.2
-          env:
-            additionalMetrics: true
+    # metrics:
+    #   enabled: true
+    #   prometheusRule:
+    #     enabled: true
+    #     exporter:
+    #       image:
+    #         repository: ghcr.io/onedr0p/exportarr
+    #         tag: v0.6.2
+    #       env:
+    #         additionalMetrics: true
     persistence:
       config:
         enabled: true
@@ -91,5 +91,4 @@ spec:
         cpu: 200m
         memory: 800Mi
       limits:
-        cpu: 1
         memory: 1Gi
