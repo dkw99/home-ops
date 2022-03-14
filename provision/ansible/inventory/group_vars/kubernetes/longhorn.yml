@@ -1,0 +1,3 @@
+---
+longhorn_enabled: yes
+longhorn_device: /dev/sda1
