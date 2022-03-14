@@ -5,3 +5,4 @@ resources:
   - minio-secret.sops.yaml
   - minio-profile.yaml
   - config-pvc.yaml
+  - home-automation.yaml
