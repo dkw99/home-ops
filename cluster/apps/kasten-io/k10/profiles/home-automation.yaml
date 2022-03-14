@@ -8,7 +8,7 @@ spec:
   locationSpec:
     type: FileStore
     fileStore:
-      claimName: synology-k10-nfs
+      claimName: synology-k10-nfs-pvc
       path: home-automation
     credential:
       secretType: ""
