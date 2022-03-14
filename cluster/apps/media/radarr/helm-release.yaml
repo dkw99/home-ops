@@ -55,16 +55,24 @@ spec:
           - hosts:
               - radarr.${SECRET_DOMAIN}
             secretName: radarr-tls
-    # metrics:
-    #   enabled: true
-    #   prometheusRule:
-    #     enabled: true
-    #     exporter:
-    #       image:
-    #         repository: ghcr.io/onedr0p/exportarr
-    #         tag: v0.6.2
-    #       env:
-    #         additionalMetrics: true
+    podSecurityContext:
+      supplementalGroups:
+        - 100
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: true
+      exporter:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v1.0.0
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: true
     persistence:
       config:
         enabled: true
@@ -77,10 +85,18 @@ spec:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
         mountPath: /downloads
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/K10/radarr
+        mountPath: /config/Backups
+        readOnly: false
     resources:
       requests:
-        cpu: 200m
-        memory: 800Mi
+        memory: 250Mi
+        cpu: 500m
       limits:
-        cpu: 1
-        memory: 1Gi
+        memory: 2000Mi
