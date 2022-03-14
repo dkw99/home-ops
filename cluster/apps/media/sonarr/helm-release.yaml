@@ -55,16 +55,16 @@ spec:
           - hosts:
               - sonarr.${SECRET_DOMAIN}
             secretName: sonarr-tls
-    # metrics:
-    #   enabled: true
-    #   prometheusRule:
-    #     enabled: true
-    #     exporter:
-    #       image:
-    #         repository: ghcr.io/onedr0p/exportarr
-    #         tag: v0.6.2
-    #       env:
-    #         additionalMetrics: true
+    metrics:
+      enabled: true
+      prometheusRule:
+        enabled: true
+        exporter:
+          image:
+            repository: ghcr.io/onedr0p/exportarr
+            tag: v0.6.2
+          env:
+            additionalMetrics: true
     persistence:
       config:
         enabled: true
@@ -77,6 +77,15 @@ spec:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
         mountPath: /downloads
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/K10/sonarr
+        mountPath: /config/Backups
+        readOnly: false
     resources:
       requests:
         cpu: 200m
