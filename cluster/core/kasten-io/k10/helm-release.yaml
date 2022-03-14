@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: k10
+  namespace: kasten-io
+spec:
+  releaseName: k10
+  interval: 10m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.kasten.io/
+      chart: k10
+      version: 4.5.10
+      sourceRef:
+        kind: HelmRepository
+        name: kasten-charts
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    eula:
+      accept: true
+      company: WiseSalmon
+      email: ${SECRET_EMAIL_ADDRESS}
+    networkPolicy:
+      create: false
+    global:
+      persistence:
+        storageClass: longhorn
+    auth:
+      tokenAuth:
+        enabled: true
+    # auth:
+    #   k10AdminUsers:
+    #     - ${SECRET_EMAIL_ADDRESS}
+      # oidcAuth:
+        # enabled: true
+        # providerURL: https://dex.${SECRET_DOMAIN}
+        # redirectURL: https://k10.${SECRET_DOMAIN}
+        # scopes: profile email
+        # clientID: ${DEX_K10_CLIENT_ID}
+        # clientSecret: ${DEX_K10_CLIENT_SECRET}
+        # usernameClaim: email
+    cluster:
+      domainName: ${CLUSTER_DOMAIN}
+    prometheus:
+      networkPolicy:
+        enabled: false
+    grafana:
+      enabled: false
+    clusterName: k8s
+    ingress:
+      create: true
+      class: nginx
+      host: k10.${SECRET_DOMAIN}
+      annotations:
+        external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      urlPath: k10
+      hosts:
+        - &host k10.${SECRET_DOMAIN}
+      tls:
+        enabled: true
+        secretName: k10-tls
+    # cacertconfigmap:
+    #   name: custom-ca-bundle-store
