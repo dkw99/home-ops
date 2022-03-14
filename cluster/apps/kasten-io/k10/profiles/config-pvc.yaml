@@ -12,7 +12,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: ${SECRET_SYNOLOGY_IP}
+    server: nas.${SECRET_PRIVATE_DOMAIN}
     path: "/volume1/K10"
   mountOptions:
     - nfsvers=3
