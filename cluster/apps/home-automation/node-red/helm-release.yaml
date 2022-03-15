@@ -41,6 +41,10 @@ spec:
           - hosts:
               - node-red.${SECRET_DOMAIN}
             secretName: node-red-tls
+    podSecurityContext:
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
     persistence:
       data:
         enabled: true
