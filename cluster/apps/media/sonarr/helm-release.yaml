@@ -93,9 +93,9 @@ spec:
         mountPath: /config/Backups
         readOnly: false
       test:
-        enabled: false
+        enabled: true
         existingClaim: sonarr-config-v1
-        mountPath: /test
+        mountPath: /config/test
         readonly: false
 
     resources:
