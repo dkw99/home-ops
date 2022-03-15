@@ -22,6 +22,9 @@ spec:
       tag: v3.0.7.1477
     env:
       TZ: ${TIMEZONE}
+    securityContext:
+      # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
+      privileged: true
     ingress:
       main:
         enabled: true
