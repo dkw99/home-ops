@@ -24,7 +24,7 @@ spec:
       TZ: ${TIMEZONE}
     securityContext:
       # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
-      privileged: true
+      privileged: false
       #fsGroup: 768
       runAsGroup: 768
       runAsUser: 768
