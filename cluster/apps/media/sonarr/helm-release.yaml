@@ -94,6 +94,11 @@ spec:
             path: /volume1/K10/sonarr
         mountPath: /config/Backups
         readOnly: false
+      test:
+        enabled: true
+        storageClass: "longhorn"
+        accessMode: ReadWriteOnce
+
     podSecurityContext:
       runAsUser: 1001
       runAsGroup: 1001
