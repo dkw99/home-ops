@@ -25,6 +25,9 @@ spec:
     securityContext:
       # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
       privileged: true
+      fsGroup: 768
+      runAsGroup: 768
+      runAsUser: 768
     ingress:
       main:
         enabled: true
@@ -89,6 +92,12 @@ spec:
             path: /volume1/K10/sonarr
         mountPath: /config/Backups
         readOnly: false
+      test:
+        enabled: true
+        existingClaim: sonarr-config-v1
+        mountPath: /test
+        readonly: false
+
     resources:
       requests:
         cpu: 200m
