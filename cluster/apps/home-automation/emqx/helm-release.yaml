@@ -24,7 +24,7 @@ spec:
       loadBalancerIP: ${EMQX_MQTT_IP}
     persistence:
       enabled: true
-      storageClass: pve110-dynamic-nfs
+      storageClass: longhorn
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
