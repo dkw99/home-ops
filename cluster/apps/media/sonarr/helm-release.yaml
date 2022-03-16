@@ -74,9 +74,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "longhorn"
-        accessMode: ReadWriteOnce
-        size: "5Gi"
+        existingClaim: sonarr-config
       media:
         enabled: true
         existingClaim: nfs-media-pvc
