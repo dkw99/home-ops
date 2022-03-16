@@ -25,6 +25,8 @@ spec:
     persistence:
       enabled: true
       storageClass: longhorn
+      labels:
+        k10.kasten.io/backup: "true"
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
