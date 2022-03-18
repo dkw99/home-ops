@@ -65,5 +65,5 @@ spec:
       tls:
         enabled: true
         secretName: "${SECRET_DOMAIN/./-}-tls"
-    # cacertconfigmap:
-    #   name: custom-ca-bundle-store
+    cacertconfigmap:
+      name: custom-ca-bundle-store
