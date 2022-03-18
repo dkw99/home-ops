@@ -66,5 +66,5 @@ spec:
         enabled: true
         secretName: k10-tls
         # "${SECRET_DOMAIN/./-}-tls"
-    cacertconfigmap:
-      name: custom-ca-bundle-store
+    # cacertconfigmap:
+    #   name: custom-ca-bundle-store
