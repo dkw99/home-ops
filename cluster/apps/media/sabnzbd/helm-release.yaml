@@ -36,7 +36,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
+          # cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/enable: "true"
           hajimari.io/icon: download-circle
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -50,8 +50,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - sabnzbd.${SECRET_DOMAIN}
-            secretName: sabnzbd-tls
+              - *host
     podSecurityContext:
       supplementalGroups:
         - 100
