@@ -64,6 +64,6 @@ spec:
         - &host k10.${SECRET_DOMAIN}
       tls:
         enabled: true
-        secretName: k10."${SECRET_DOMAIN}"
+        secretName: "${SECRET_DOMAIN/./-}-tls"
     # cacertconfigmap:
     #   name: custom-ca-bundle-store
