@@ -36,6 +36,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/enable: "true"
           hajimari.io/icon: download-circle
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -53,16 +54,16 @@ spec:
     podSecurityContext:
       supplementalGroups:
         - 100
-    # metrics:
-    #   enabled: true
-    #   prometheusRule:
-    #     enabled: true
-    #     exporter:
-    #       image:
-    #         repository: ghcr.io/onedr0p/exportarr
-    #         tag: v0.6.2
-    #       env:
-    #         additionalMetrics: true
+    metrics:
+      enabled: true
+      prometheusRule:
+        enabled: true
+        exporter:
+          image:
+            repository: ghcr.io/onedr0p/exportarr
+            tag: v0.6.2
+          env:
+            additionalMetrics: true
     persistence:
       config:
         enabled: true
