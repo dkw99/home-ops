@@ -92,10 +92,10 @@ spec:
             path: /volume1/K10/sonarr
         mountPath: /config/Backups
         readOnly: false
-    podSecurityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-      fsGroup: 1001
+    # podSecurityContext:
+    #   runAsUser: 1001
+    #   runAsGroup: 1001
+    #   fsGroup: 1001
     resources:
       requests:
         cpu: 200m
