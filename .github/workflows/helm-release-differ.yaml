@@ -65,14 +65,14 @@ jobs:
           diff="${diff//$'\r'/'%0D'}"
           echo "::set-output name=diff::$(echo ${diff})"
       - name: Find Comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v2
         id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
           comment-author: "${{ env.GIT_AUTHOR }}"
           body-includes: "${{ matrix.file }}"
       - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
