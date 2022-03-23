@@ -42,7 +42,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: pve110-dynamic-nfs
+              storageClassName: longhorn
               resources:
                 requests:
                   storage: 10Gi
@@ -110,10 +110,10 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: pve110-dynamic-nfs
+              storageClassName: longhorn
               resources:
                 requests:
-                  storage: 20Gi
+                  storage: 10Gi
         thanos:
           image: quay.io/thanos/thanos:v0.25.1
           objectStorageConfig:

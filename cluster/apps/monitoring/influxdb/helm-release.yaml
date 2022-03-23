@@ -25,8 +25,8 @@ spec:
       loadBalancerIP: ${INFLUXDB_IP}
     persistence:
       enabled: true
-      size: 50Gi
-      storageClass: pve110-dynamic-nfs
+      size: 10Gi
+      storageClass: longhorn
     resources:
       requests:
         memory: 2000Mi
