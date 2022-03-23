@@ -23,10 +23,11 @@ spec:
         aws:
           endpoint: s3.${SECRET_PRIVATE_DOMAIN}:9000
           bucketnames: loki
-          access_key_id: ${SECRET_LOKI_MINIO_ACCESS_KEY}
-          secret_access_key: ${SECRET_LOKI_MINIO_SECRET_KEY}
+          access_key_id: ${SECRET_MINIO_ACCESS_KEY}
+          secret_access_key: ${SECRET_MINIO_SECRET_KEY}
           s3forcepathstyle: true
           insecure: true
+          region: minio
         boltdb_shipper:
           active_index_directory: /data/index
           cache_location: /data/boltdb-cache
