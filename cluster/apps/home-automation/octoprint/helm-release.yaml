@@ -94,12 +94,12 @@ spec:
       webcam0:
         enabled: enable
         type: hostPath
-        hostPath: usb-SunplusIT_Inc_HD_WebCam-video-index0
+        hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index0
         mountPath: /dev/video0
       webcam1:
         enabled: enable
         type: hostPath
-        hostPath: usb-SunplusIT_Inc_HD_WebCam-video-index1
+        hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index1
         mountPath: /dev/video1
 
 
