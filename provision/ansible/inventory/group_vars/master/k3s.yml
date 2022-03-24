@@ -50,3 +50,6 @@ k3s_server:
   # Required for HAProxy health-checks
   kube-apiserver-arg:
     - "anonymous-auth=true"
+  # Required for longhorn
+  resolv-conf:
+    - "/etc/resolv.conf"
