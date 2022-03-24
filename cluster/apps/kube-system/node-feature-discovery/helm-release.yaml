@@ -69,6 +69,12 @@ spec:
             - name: CR-10-V2
               matchOn:
                 - usbId:
-                    class: ["255"]
+                    class: ["ff"]
                     vendor: ["1a86"]
                     device: ["7523"]
+            - name: octopi-webcam
+              matchOn:
+                - usbId:
+                    class: ["ef"]
+                    vendor: ["04f2"]
+                    device: ["b520"]
