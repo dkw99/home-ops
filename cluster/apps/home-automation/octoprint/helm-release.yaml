@@ -28,10 +28,10 @@ spec:
     # @default -- See below
     env:
       # -- Set the container timezone
-      TZ: UTC
+      TZ: "${TIMEZONE}"
       # -- Enable MJPG Streamer
       # Enable this to ensure camera streaming is enabled you add a video device.
-      ENABLE_MJPG_STREAMER: "true"
+      ENABLE_MJPG_STREAMER: "false"
       # -- MJPG Streamer input parameters
       MJPG_STREAMER_INPUT:  # "-y -n -r 640x480"
       # -- MJPG Streamer camera device
@@ -67,7 +67,8 @@ spec:
       printer:
         enabled: false
         type: hostPath
-        hostPath: /dev/ttyACM0
+        hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+        mountPath: /dev/ttyUSB0
   #   image:
   #     repository: octoprint/octoprint
   #     tag: 1.6.1
