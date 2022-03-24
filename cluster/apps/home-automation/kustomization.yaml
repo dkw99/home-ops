@@ -6,4 +6,4 @@ resources:
   - zwavejs2mqtt
   - home-assistant
   - node-red
-  # - octoprint
+  - octoprint
