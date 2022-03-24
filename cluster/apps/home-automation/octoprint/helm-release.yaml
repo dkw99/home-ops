@@ -20,7 +20,7 @@ spec:
       # -- image repository
       repository: octoprint/octoprint
       # -- image tag
-      tag: 1.6.1
+      tag: 1.7.2
       # -- image pull policy
       pullPolicy: IfNotPresent
 
@@ -60,7 +60,7 @@ spec:
     persistence:
       data:
         enabled: true
-        mountPath: /octoprint
+        # ountPath: /octoprint
         existingClaim: octoprint-data
       # -- Configure a hostPathMount to mount a USB device in the container.
       # @default -- See values.yaml
