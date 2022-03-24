@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: octoprint
+  namespace: home-automation
+spec:
+  interval: 10m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: octoprint
+      version: 6.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: octoprint/octoprint
+      tag: 1.6.1
+    env:
+      TZ: "${TIMEZONE}"
+      ENABLE_MJPG_STREAMER: "true"
+      # -- MJPG Streamer input parameters
+      MJPG_STREAMER_INPUT: "-y -n -r 640x480"
+      # -- MJPG Streamer camera device
+      CAMERA_DEV: /dev/video0
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          # nginx.ingress.kubernetes.io/auth-url: https://auth.${DOMAIN}/oauth2/auth
+          # nginx.ingress.kubernetes.io/auth-signin: https://auth.${DOMAIN}/oauth2/start
+          hajimari.io/enable: "true"
+          hajimari.io/icon: printer
+        hosts:
+          - host: op.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - op.${SECRET_DOMAIN}
+            secretName: octoprint-tls
+    persistence:
+      data:
+        enabled: true
+        #mountPath: /octoprint
+        existingClaim: octoprint-data
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+    printer:
+      enabled: false
+      type: hostPath
+      hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+      mountPath: /dev/ttyUSB0
+
+      # usb:
+      #   enabled: true
+      #   type: hostPath
+      #   hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+      #   mountPath: /dev/ttyUSB0
+    securityContext:
+      privileged: true
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #             - key: feature.node.kubernetes.io/CR-10-V2
+    #               operator: In
+    #               values: ["true"]
+    resources:
+      requests:
+        cpu: 200m
+        memory: 200Mi
+      limits:
+        cpu: 500m
+        memory: 200Mi
