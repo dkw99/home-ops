@@ -36,23 +36,43 @@ spec:
       MJPG_STREAMER_INPUT:  # "-y -n -r 640x480"
       # -- MJPG Streamer camera device
       CAMERA_DEV:  # /dev/video0
+      # Set octprint port 5000 https://github.com/OctoPrint/octoprint-docker/issues/160
+      # OCTPRINT_PORT: 5000
 
     # -- Configures service settings for the chart.
     # @default -- See values.yaml
+
+
+    # set enableServiceLinks: false https://github.com/OctoPrint/octoprint-docker/issues/160
+    # enableServiceLinks: false
     service:
       main:
         # -- Override the name suffix that is used for this service
-        nameOverride: -svc
+        # https://github.com/OctoPrint/octoprint-docker/issues/160
+        nameOverride: svc
         ports:
           http:
             port: 80
-
     ingress:
-      # -- Enable and configure ingress settings for the chart under this key.
-      # @default -- See values.yaml
       main:
-        enabled: false
-
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          # nginx.ingress.kubernetes.io/auth-url: https://auth.${DOMAIN}/oauth2/auth
+          # nginx.ingress.kubernetes.io/auth-signin: https://auth.${DOMAIN}/oauth2/start
+          hajimari.io/enable: "true"
+          hajimari.io/icon: printer
+        hosts:
+          - host: op.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - op.${SECRET_DOMAIN}
+            secretName: octoprint-tls
     securityContext:
       # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
       privileged: true
@@ -86,31 +106,7 @@ spec:
   #       ports:
   #         http:
   #           port: 80
-  #   ingress:
-  #     main:
-  #       enabled: true
-  #       ingressClassName: "nginx"
-  #       annotations:
-  #         external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
-  #         cert-manager.io/cluster-issuer: letsencrypt-production
-  #         # nginx.ingress.kubernetes.io/auth-url: https://auth.${DOMAIN}/oauth2/auth
-  #         # nginx.ingress.kubernetes.io/auth-signin: https://auth.${DOMAIN}/oauth2/start
-  #         hajimari.io/enable: "true"
-  #         hajimari.io/icon: printer
-  #       hosts:
-  #         - host: op.${SECRET_DOMAIN}
-  #           paths:
-  #             - path: /
-  #               pathType: Prefix
-  #       tls:
-  #         - hosts:
-  #             - op.${SECRET_DOMAIN}
-  #           secretName: octoprint-tls
-  #   persistence:
-  #     data:
-  #       enabled: true
-  #       # mountPath: /octoprint
-  #       existingClaim: octoprint-data
+
   # # -- Configure a hostPathMount to mount a USB device in the container.
   # # @default -- See values.yaml
   #   printer:
