@@ -26,6 +26,12 @@ spec:
       MJPG_STREAMER_INPUT: "-y -n -r 640x480"
       # -- MJPG Streamer camera device
       CAMERA_DEV: /dev/video0
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
     ingress:
       main:
         enabled: true
