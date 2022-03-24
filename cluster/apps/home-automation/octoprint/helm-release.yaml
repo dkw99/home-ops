@@ -51,23 +51,23 @@ spec:
       main:
         enabled: false
 
-securityContext:
-  # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
-  privileged: true
+    securityContext:
+      # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
+      privileged: true
 
-# -- Configure persistence settings for the chart under this key.
-# @default -- See values.yaml
-persistence:
-  data:
-    enabled: false
-    mountPath: /octoprint
-    existingClaim: octoprint-data
-  # -- Configure a hostPathMount to mount a USB device in the container.
-  # @default -- See values.yaml
-  printer:
-    enabled: false
-    type: hostPath
-    hostPath: /dev/ttyACM0
+    # -- Configure persistence settings for the chart under this key.
+    # @default -- See values.yaml
+    persistence:
+      data:
+        enabled: true
+        mountPath: /octoprint
+        existingClaim: octoprint-data
+      # -- Configure a hostPathMount to mount a USB device in the container.
+      # @default -- See values.yaml
+      printer:
+        enabled: false
+        type: hostPath
+        hostPath: /dev/ttyACM0
   #   image:
   #     repository: octoprint/octoprint
   #     tag: 1.6.1
@@ -121,8 +121,8 @@ persistence:
       #   type: hostPath
       #   hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
       #   mountPath: /dev/ttyUSB0
-    securityContext:
-      privileged: true
+    # securityContext:
+    #   privileged: true
     # affinity:
     #   nodeAffinity:
     #     requiredDuringSchedulingIgnoredDuringExecution:
