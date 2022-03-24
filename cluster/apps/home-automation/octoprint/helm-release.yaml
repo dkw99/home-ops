@@ -87,7 +87,7 @@ spec:
       # -- Configure a hostPathMount to mount a USB device in the container.
       # @default -- See values.yaml
       printer:
-        enabled: false
+        enabled: enable
         type: hostPath
         hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
         mountPath: /dev/ttyUSB0
@@ -122,14 +122,14 @@ spec:
       #   mountPath: /dev/ttyUSB0
     # securityContext:
     #   privileged: true
-    # affinity:
-    #   nodeAffinity:
-    #     requiredDuringSchedulingIgnoredDuringExecution:
-    #       nodeSelectorTerms:
-    #         - matchExpressions:
-    #             - key: feature.node.kubernetes.io/CR-10-V2
-    #               operator: In
-    #               values: ["true"]
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/CR-10-V2
+                  operator: In
+                  values: ["true"]
     resources:
       requests:
         cpu: 200m
