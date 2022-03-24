@@ -42,7 +42,7 @@ spec:
     service:
       main:
         # -- Override the name suffix that is used for this service
-        nameOverride: octoprint-svc
+        nameOverride: -svc
         ports:
           http:
             port: 80
