@@ -122,6 +122,11 @@ spec:
       #   mountPath: /dev/ttyUSB0
     # securityContext:
     #   privileged: true
+    tolerations:
+      - key: "restriced-node"
+        operator: "Equals"
+        value: "octoprint-server"
+        effect: "NoSchedule"
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
