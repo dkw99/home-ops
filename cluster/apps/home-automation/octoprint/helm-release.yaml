@@ -16,40 +16,40 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
-    mage:
-  # -- image repository
-  repository: octoprint/octoprint
-  # -- image tag
-  tag: 1.6.1
-  # -- image pull policy
-  pullPolicy: IfNotPresent
+    image:
+    # -- image repository
+    repository: octoprint/octoprint
+    # -- image tag
+    tag: 1.6.1
+    # -- image pull policy
+    pullPolicy: IfNotPresent
 
-# -- environment variables.
-# @default -- See below
-env:
-  # -- Set the container timezone
-  TZ: UTC
-  # -- Enable MJPG Streamer
-  # Enable this to ensure camera streaming is enabled you add a video device.
-  ENABLE_MJPG_STREAMER: "true"
-  # -- MJPG Streamer input parameters
-  MJPG_STREAMER_INPUT:  # "-y -n -r 640x480"
-  # -- MJPG Streamer camera device
-  CAMERA_DEV:  # /dev/video0
+    # -- environment variables.
+    # @default -- See below
+    env:
+      # -- Set the container timezone
+      TZ: UTC
+      # -- Enable MJPG Streamer
+      # Enable this to ensure camera streaming is enabled you add a video device.
+      ENABLE_MJPG_STREAMER: "true"
+      # -- MJPG Streamer input parameters
+      MJPG_STREAMER_INPUT:  # "-y -n -r 640x480"
+      # -- MJPG Streamer camera device
+      CAMERA_DEV:  # /dev/video0
 
-# -- Configures service settings for the chart.
-# @default -- See values.yaml
-service:
-  main:
-    ports:
-      http:
-        port: 80
+    # -- Configures service settings for the chart.
+    # @default -- See values.yaml
+    service:
+      main:
+        ports:
+          http:
+            port: 80
 
-ingress:
-  # -- Enable and configure ingress settings for the chart under this key.
-  # @default -- See values.yaml
-  main:
-    enabled: false
+    ingress:
+      # -- Enable and configure ingress settings for the chart under this key.
+      # @default -- See values.yaml
+      main:
+        enabled: false
 
 securityContext:
   # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
