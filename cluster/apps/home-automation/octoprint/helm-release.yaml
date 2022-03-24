@@ -123,8 +123,8 @@ spec:
     # securityContext:
     #   privileged: true
     tolerations:
-      - key: "restriced-node"
-        operator: "Equals"
+      - key: "restricted-node"
+        operator: "Equal"
         value: "octoprint-server"
         effect: "NoSchedule"
     affinity:
