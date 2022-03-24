@@ -132,7 +132,7 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
             - matchExpressions:
-                - key: feature.node.kubernetes.io/CR-10-V2
+                - key: feature.node.kubernetes.io/custom-CR-10-V2
                   operator: In
                   values: ["true"]
     resources:
