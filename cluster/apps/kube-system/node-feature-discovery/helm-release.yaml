@@ -66,3 +66,9 @@ spec:
                     class: ["03"]
                     vendor: ["051d"]
                     device: ["0002"]
+            - name: CR-10-V2
+              matchOn:
+                - usbId:
+                    class: ["02"]
+                    vendor: ["1a86"]
+                    device: ["7523"]
