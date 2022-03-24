@@ -78,3 +78,8 @@ spec:
                     class: ["ef"]
                     vendor: ["04f2"]
                     device: ["b520"]
+      tolerations:
+        - key: "restricted-node"
+          operator: "Equal"
+          value: "octoprint-server"
+          effect: "NoSchedule"
