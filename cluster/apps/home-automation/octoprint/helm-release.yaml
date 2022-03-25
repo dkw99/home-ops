@@ -31,9 +31,9 @@ spec:
       TZ: "${TIMEZONE}"
       # -- Enable MJPG Streamer
       # Enable this to ensure camera streaming is enabled you add a video device.
-      ENABLE_MJPG_STREAMER: "false"
+      ENABLE_MJPG_STREAMER: "true"
       # -- MJPG Streamer input parameters
-      MJPG_STREAMER_INPUT: "-y -n -r 640x480"
+      MJPG_STREAMER_INPUT: " --fps 10 -r 1280x720 -y "
       # -- MJPG Streamer camera device
       CAMERA_DEV: /dev/video0
       # Set octprint port 5000 https://github.com/OctoPrint/octoprint-docker/issues/160
