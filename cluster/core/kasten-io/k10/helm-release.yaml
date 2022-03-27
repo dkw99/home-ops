@@ -65,5 +65,7 @@ spec:
       tls:
         enabled: true
         secretName: "${SECRET_DOMAIN/./-}-tls"
-    # cacertconfigmap:
-    #   name: custom-ca-bundle-store
+      injectKanisterSidecar:
+        enabled: true
+        namespaceSelector:
+          matchLabels: "k10/injectKanisterSidecar=true"
