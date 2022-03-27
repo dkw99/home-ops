@@ -96,11 +96,11 @@ spec:
         type: hostPath
         hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index0
         mountPath: /dev/video0
-      webcam1:
-        enabled: enable
-        type: hostPath
-        hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index1
-        mountPath: /dev/video1
+      # webcam1:
+      #   enabled: enable
+      #   type: hostPath
+      #   hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index1
+      #   mountPath: /dev/video1
 
 
   #   image:
@@ -139,14 +139,14 @@ spec:
         operator: "Equal"
         value: "octoprint-server"
         effect: "NoSchedule"
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: feature.node.kubernetes.io/custom-CR-10-V2
-                  operator: In
-                  values: ["true"]
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #             - key: feature.node.kubernetes.io/custom-CR-10-V2
+    #               operator: In
+    #               values: ["true"]
     resources:
       requests:
         cpu: 200m
