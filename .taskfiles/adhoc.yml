@@ -1,6 +1,5 @@
 ---
 version: "3"
-
 tasks:
   update-deps:
     - task: update-deps:ansible
