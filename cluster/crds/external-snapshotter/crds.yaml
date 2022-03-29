@@ -15,8 +15,6 @@ spec:
     /*
     # include crd directory
     !/client/config/crd
-    # include snapshot-controller
-    !/deploy/kubernetes/snapshot-controller
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
