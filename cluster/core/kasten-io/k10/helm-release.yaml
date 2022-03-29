@@ -29,7 +29,7 @@ spec:
       create: false
     global:
       persistence:
-        storageClass: longhorn
+        storageClass: ceph-block
     auth:
       tokenAuth:
         enabled: true
