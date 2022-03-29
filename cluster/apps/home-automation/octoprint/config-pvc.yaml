@@ -11,5 +11,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
-  storageClassName: pve110-dynamic-nfs
+      storage: 5Gi
+  storageClassName: rook-ceph
