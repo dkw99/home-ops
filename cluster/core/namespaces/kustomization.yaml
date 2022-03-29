@@ -11,3 +11,4 @@ resources:
   - monitoring.yaml
   - networking.yaml
   - longhorn-system.yaml
+  - rook-ceph
