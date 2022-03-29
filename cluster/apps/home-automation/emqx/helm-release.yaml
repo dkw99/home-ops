@@ -24,7 +24,7 @@ spec:
       loadBalancerIP: ${EMQX_MQTT_IP}
     persistence:
       enabled: true
-      storageClass: longhorn
+      storageClass: ceph-block
       labels:
         k10.kasten.io/backup: "true"
     affinity:
