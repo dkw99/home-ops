@@ -65,7 +65,7 @@ spec:
       tls:
         enabled: true
         secretName: "${SECRET_DOMAIN/./-}-tls"
-      injectKanisterSidecar:
-        enabled: true
-        namespaceSelector:
-          matchLabels: "k10/injectKanisterSidecar=true"
+      # injectKanisterSidecar:
+      #   enabled: true
+      #   namespaceSelector:
+      #     matchLabels: "k10/injectKanisterSidecar=true"
