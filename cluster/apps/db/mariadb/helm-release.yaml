@@ -22,4 +22,4 @@ spec:
     primary:
       persistence:
         enabled: true
-        existingClaim: mariadb-v1
+        existingClaim: mariadb
