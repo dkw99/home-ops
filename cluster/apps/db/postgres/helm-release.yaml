@@ -23,4 +23,4 @@ spec:
     postgresqlPassword: ${SECRET_POSTGRES_PASSWORD}
     persistence:
       enabled: true
-      existingClaim: postgresql
+      existingClaim: postgresql-v1
