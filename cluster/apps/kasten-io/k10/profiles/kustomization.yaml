@@ -6,4 +6,3 @@ resources:
   - minio-profile.yaml
   - config-pvc.yaml
   - home-automation.yaml
-  - kanister-minio-profile.yaml
