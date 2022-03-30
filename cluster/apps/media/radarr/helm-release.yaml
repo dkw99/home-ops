@@ -105,6 +105,7 @@ spec:
             path: /volume1/Downloads
         mountPath: /downloads
         readOnly: false
+        accessMode: ReadWriteOnce
     resources:
       requests:
         memory: 250Mi

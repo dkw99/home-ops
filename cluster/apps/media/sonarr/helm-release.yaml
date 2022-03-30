@@ -95,6 +95,7 @@ spec:
         readOnly: false
       downloads:
         enabled: true
+        accessMode: ReadWriteOnce
         volumeSpec:
           nfs:
             server: "nas.${SECRET_PRIVATE_DOMAIN}"
