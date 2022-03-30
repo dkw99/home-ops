@@ -88,7 +88,7 @@ spec:
             server: "${SECRET_SYNOLOGY_IP}"
             path: /volume1/Media
         mountPath: /media
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Mi
       backup:
         enabled: true
@@ -99,7 +99,7 @@ spec:
             path: /volume1/k3sCluster/Apps/External/Backups/radarr
         mountPath: /config/Backups
         readOnly: false
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Mi
       downloads:
         enabled: true
@@ -109,7 +109,7 @@ spec:
             path: /volume1/Downloads
         mountPath: /downloads
         readOnly: false
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Mi
     resources:
       requests:
