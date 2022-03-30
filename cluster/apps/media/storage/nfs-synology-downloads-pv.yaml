@@ -5,7 +5,7 @@ metadata:
   name: nfs-media-downloads-pv
   namespace: media
 spec:
-  storageClassName: media-downloads
+  storageClassName: ceph-block
   capacity:
     storage: 1Mi
   accessModes:

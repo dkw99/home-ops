@@ -1,0 +1,6 @@
+#shellcheck disable=SC2148,SC2155
+
+export KUBECONFIG=$(greadlink -f ./provision/kubeconfig)
+export ANSIBLE_CONFIG=$(greadlink -f ./ansible.cfg)
+export SOPS_AGE_KEY_FILE=$(greadlink -f ~/.config/sops/age/keys.txt)
+export ANSIBLE_HOST_KEY_CHECKING="False"

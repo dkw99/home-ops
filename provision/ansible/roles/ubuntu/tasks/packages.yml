@@ -28,6 +28,7 @@
       - smartmontools
       - software-properties-common
       - unattended-upgrades
+      - linux-image-generic
 
     install_recommends: false
     update_cache: true
