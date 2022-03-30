@@ -102,7 +102,7 @@ spec:
             path: /volume1/Downloads
         mountPath: /downloads
         readOnly: false
-
+        size: 20Gi
     podSecurityContext:
       runAsUser: 1001
       runAsGroup: 1001
