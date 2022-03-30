@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - minio-secret.sops.yaml
   - minio-profile.yaml
-  - config-pvc.yaml
+  - k10-backups-pvc.yaml
+  - media.yaml
   - home-automation.yaml
