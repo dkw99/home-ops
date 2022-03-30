@@ -44,5 +44,5 @@ spec:
       #   repository: quay.io/metallb/speaker
       #   tag: v0.10.1
       tolerations:
-        - key: "node-role.kubernetes.io/master"
+        - key: "kubernetes.io/arch: amd64"
           operator: "Exists"
