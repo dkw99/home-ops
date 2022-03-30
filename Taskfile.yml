@@ -7,16 +7,19 @@ vars:
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
   ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible"
   TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
+  KUBECONFIG_DIR: "{{.PROJECT_DIR}}/provision"
   K3S_PRIMARY_MASTER_NODE_USERNAME: "ubuntu"
   K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.16.100"
   K3S_LB_ADDR: "192.168.2.1"
+  SOPS_AGE_KEY_DIR: "$HOME/.config/sops/age"
 
+dotenv: ['{{.PROJECT_DIR}}/.config.env']
 env:
   KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
 
 includes:
   ansible: .taskfiles/ansible.yml
-  cluster: .taskfiles/clustr.yml
+  cluster: .taskfiles/cluster.yml
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
