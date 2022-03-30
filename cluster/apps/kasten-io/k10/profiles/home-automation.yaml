@@ -2,14 +2,14 @@
 kind: Profile
 apiVersion: config.kio.kasten.io/v1alpha1
 metadata:
-  name: home-automation
+  name: synolgy-backups
   namespace: kasten-io
 spec:
   locationSpec:
     type: FileStore
     fileStore:
       claimName: nfs-synology-k10-pvc
-      path: home-automation
+      path: /
     credential:
       secretType: ""
       secret:
