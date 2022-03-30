@@ -72,7 +72,7 @@ spec:
         - name: nas-data
           nfs:
             server: "nas.${SECRET_PRIVATE_DOMAIN}"
-            path: /volume1/K3sCluster
+            path: /volume1/k3sCluster
         - name: direct-mount-scripts
           projected:
             defaultMode: 0775
