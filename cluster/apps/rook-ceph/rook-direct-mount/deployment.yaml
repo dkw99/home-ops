@@ -71,7 +71,7 @@ spec:
                 path: mon-endpoints
         - name: nas-data
           nfs:
-            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            server: "${SECRET_SYNOLOGY_IP}"
             path: /volume1/k3sCluster
         - name: direct-mount-scripts
           projected:
