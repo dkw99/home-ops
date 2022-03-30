@@ -99,8 +99,9 @@ spec:
           nfs:
             server: "nas.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/Downloads
-          mountPath: /downloads
-          readOnly: false
+        mountPath: /downloads
+        readOnly: false
+
     podSecurityContext:
       runAsUser: 1001
       runAsGroup: 1001
