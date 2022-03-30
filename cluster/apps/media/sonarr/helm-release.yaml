@@ -84,6 +84,8 @@ spec:
             server: "${SECRET_SYNOLOGY_IP}"
             path: /volume1/Media
         mountPath: /media
+        accessMode: ReadWriteOnce
+        size: 1Mi
       backup:
         enabled: true
         type: custom

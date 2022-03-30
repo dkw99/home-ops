@@ -30,7 +30,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: media-nfs
+  storageClassName: ceph-block
   resources:
     requests:
       storage: 1Mi

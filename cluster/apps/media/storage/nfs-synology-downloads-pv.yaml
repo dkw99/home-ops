@@ -31,7 +31,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: media-downloads
+  storageClassName: ceph-block
   resources:
     requests:
       storage: 1Mi
