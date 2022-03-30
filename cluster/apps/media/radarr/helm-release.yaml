@@ -85,53 +85,32 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            server: "${SECRET_SYNOLOGY_IP}"
             path: /volume1/Media
-          mountOptions:
-            - nfsvers=3
-            - tcp
-            - intr
-            - hard
-            - noatime
-            - nodiratime
         mountPath: /media
         accessMode: ReadWriteOnce
-        size: 1Gi
+        size: 1Mi
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            server: "${SECRET_SYNOLOGY_IP}"
             path: /k3sCluster/Apps/External/Backups/radarr
-          mountOptions:
-            - nfsvers=3
-            - tcp
-            - intr
-            - hard
-            - noatime
-            - nodiratime
         mountPath: /config/Backups
         readOnly: false
         accessMode: ReadWriteOnce
-        size: 1Gi
+        size: 1Mi
       downloads:
         enabled: true
         volumeSpec:
           nfs:
-            server: "nas.${SECRET_PRIVATE_DOMAIN}"
+            server: "${SECRET_SYNOLOGY_IP}"
             path: /volume1/Downloads
-          mountOptions:
-            - nfsvers=3
-            - tcp
-            - intr
-            - hard
-            - noatime
-            - nodiratime
         mountPath: /downloads
         readOnly: false
         accessMode: ReadWriteOnce
-        size: 1Gi
+        size: 1Mi
     resources:
       requests:
         memory: 250Mi
