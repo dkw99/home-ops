@@ -90,7 +90,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${SECRET_SYNOLOGY_IP}"
-            path: /k3sCluster/Apps/External/Backups/radarr
+            path: /k3sCluster/Apps/External/Backups/sonarr
         mountPath: /config/Backups
         accessMode: ReadWriteOnce
         readOnly: false
