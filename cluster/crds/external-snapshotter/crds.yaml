@@ -1,8 +1,8 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: external-snapshotter-crds
+  name: external-snapshotter-source
   namespace: flux-system
 spec:
   interval: 30m
@@ -13,17 +13,18 @@ spec:
   ignore: |
     # exclude all
     /*
-    # include crd directory
+    # include deploy crds dir
     !/client/config/crd
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: external-snapshotter-crds
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 15m
   prune: false
+  wait: true
   sourceRef:
     kind: GitRepository
-    name: external-snapshotter-crds
+    name: external-snapshotter-source
