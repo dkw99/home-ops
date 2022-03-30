@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - default
   - kube-system
+  - rook-ceph
   - networking
   - monitoring
   - system-upgrade
