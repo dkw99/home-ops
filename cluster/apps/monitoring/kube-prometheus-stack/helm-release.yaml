@@ -129,11 +129,11 @@ spec:
             static_configs:
               - targets:
                   - s3.${SECRET_PRIVATE_DOMAIN}:9000
-          # - job_name: octoprint
-          #   scrape_interval: 5s
-          #   metrics_path: /plugin/prometheus_exporter/metrics
-          #   params:
-          #     apikey: [8DF4068556C84F8FBBE4224DB8EEA1B7]
-          #   static_configs:
-          #     - targets:
-          #         - curiosity.milkyway:80
+          - job_name: octoprint
+            scrape_interval: 5s
+            metrics_path: /plugin/prometheus_exporter/metrics
+            params:
+              apikey: [0C53A2C719114472A89B4BED7CB22BB4]
+            static_configs:
+              - targets:
+                  - octoprint-svc.home-automation.svc.cluster.local:80
