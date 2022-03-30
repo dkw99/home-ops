@@ -106,6 +106,7 @@ spec:
         mountPath: /downloads
         readOnly: false
         accessMode: ReadWriteOnce
+        size: 20Gi
     resources:
       requests:
         memory: 250Mi
