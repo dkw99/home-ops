@@ -71,7 +71,7 @@ spec:
                 path: mon-endpoints
         - name: nas-data
           nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
+            server: "nas.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/K3sCluster
         - name: direct-mount-scripts
           projected:
