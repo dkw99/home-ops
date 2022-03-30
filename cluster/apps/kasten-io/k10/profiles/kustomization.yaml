@@ -6,4 +6,4 @@ resources:
   - minio-profile.yaml
   - k10-backups-pvc.yaml
   - media.yaml
-  - home.yaml
+  - home-automation.yaml
