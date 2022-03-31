@@ -90,7 +90,7 @@ spec:
           nfs:
             server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/Downloads
-        mountPath: /config/Backups
+        mountPath: /config/downloads
         readOnly: false
         accessMode: ReadWriteOnce
         size: 1Mi
