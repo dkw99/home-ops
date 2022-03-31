@@ -77,18 +77,34 @@ spec:
           port: 9794
           additionalMetrics: true
           unknownQueueItems: true
+    podSecurityContext:
+      supplementalGroups:
+        - 100
     persistence:
       config:
         enabled: true
         existingClaim: sonarr-config-v1
       media:
         enabled: true
-        existingClaim: nfs-synology-media
-        mountPath: /media
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/Media
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Mi
       downloads:
         enabled: true
-        existingClaim: nfs-synology-downloads
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/Downloads
         mountPath: /downloads
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Mi
       backup:
         enabled: true
         type: custom
@@ -96,12 +112,6 @@ spec:
           nfs:
             server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/k3sCluster/Apps/External/Backups/sonarr
-        mountPath: /config/Backups
-        accessMode: ReadWriteOnce
-        readOnly: false
-    podSecurityContext:
-      supplementalGroups:
-        - 100
     resources:
       requests:
         cpu: 200m
