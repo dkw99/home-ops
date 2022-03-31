@@ -83,25 +83,12 @@ spec:
         existingClaim: sonarr-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
-            path: /volume1/Media
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 1Mi
+        existingClaim: nfs-synology-media
+        mountPath: /media
       downloads:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
-            path: /volume1/Downloads
-        mountPath: /config/Backups
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 1Mi
+        existingClaim: nfs-synology-downloads
+        mountPath: /downloads
       backup:
         enabled: true
         type: custom
