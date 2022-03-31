@@ -60,33 +60,39 @@ spec:
         - 100
     metrics:
       enabled: true
-      serviceMonitor:
-        interval: 3m
-        scrapeTimeout: 1m
       prometheusRule:
         enabled: true
-      exporter:
-        image:
-          repository: ghcr.io/onedr0p/exportarr
-          tag: v1.0.0
-        env:
-          port: 9794
-          additionalMetrics: true
-          unknownQueueItems: true
+        exporter:
+          image:
+            repository: ghcr.io/onedr0p/exportarr
+            tag: v1.0.0
+          env:
+            additionalMetrics: true
     persistence:
       config:
         enabled: true
         existingClaim: radarr-config-v1
       media:
         enabled: true
-        existingClaim: nfs-synology-media
-        mountPath: /media
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/Media
         readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Mi
       downloads:
         enabled: true
-        existingClaim: nfs-synology-downloads
-        mountPath: /downloads
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/Downloads
+        mountPath: /config/Backups
         readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Mi
       backup:
         enabled: true
         type: custom

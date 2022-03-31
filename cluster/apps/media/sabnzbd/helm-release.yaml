@@ -70,14 +70,25 @@ spec:
         existingClaim: sabnzbd-config-v1
       media:
         enabled: true
-        existingClaim: nfs-synology-media
-        mountPath: /media
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/Media
         readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Mi
       downloads:
         enabled: true
-        existingClaim: nfs-synology-downloads
-        mountPath: /downloads
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/Downloads
+        mountPath: /config/Backups
         readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Mi
     resources:
       requests:
         cpu: 200m
