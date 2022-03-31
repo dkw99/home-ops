@@ -62,6 +62,9 @@ spec:
             tag: v1.0.0
           env:
             additionalMetrics: true
+    podSecurityContext:
+      supplementalGroups:
+        - 100
     persistence:
       config:
         enabled: true

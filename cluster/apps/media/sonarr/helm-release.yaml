@@ -77,6 +77,9 @@ spec:
           port: 9794
           additionalMetrics: true
           unknownQueueItems: true
+    podSecurityContext:
+      supplementalGroups:
+        - 100
     persistence:
       config:
         enabled: true
@@ -99,9 +102,6 @@ spec:
         mountPath: /config/Backups
         accessMode: ReadWriteOnce
         readOnly: false
-    podSecurityContext:
-      supplementalGroups:
-        - 100
     resources:
       requests:
         cpu: 200m
