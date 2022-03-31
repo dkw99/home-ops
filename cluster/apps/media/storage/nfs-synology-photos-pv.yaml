@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-synology-downloads
+  name: nfs-synology-photos
   namespace: media
 spec:
-  storageClassName: nfs-synology-downloads
+  storageClassName: nfs-synology-photos
   capacity:
     storage: 1Mi
   accessModes:
@@ -13,4 +13,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: nfs1.${SECRET_PRIVATE_DOMAIN}
-    path: "/volume1/Downloads"
+    path: "/volume1/photo"

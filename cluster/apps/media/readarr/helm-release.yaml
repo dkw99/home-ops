@@ -2,15 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sabnzbd
+  name: readarr
   namespace: media
 spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: sabnzbd
-      version: 9.2.0
+      chart: readarr
+      version: 6.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -20,31 +19,27 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sabnzbd
-      tag: v3.5.3
+      repository: ghcr.io/k8s-at-home/readarr-nightly
+      tag: v0.1.1.1287
     env:
       TZ: "${TIMEZONE}"
-      HOST_WHITELIST_ENTRIES: >-
-        sabnzbd,
-        sabnzbd.media,
-        sabnzbd.media.svc,
-        sabnzbd.media.svc.cluster,
-        sabnzbd.media.svc.cluster.local,
-        sabnzbd.${SECRET_DOMAIN}
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          # cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          # nginx.ingress.kubernetes.io/auth-url: https://auth.${SECRET_DOMAIN}/oauth2/auth
+          # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
           hajimari.io/enable: "true"
-          hajimari.io/icon: download-circle
+          hajimari.io/icon: book-open-variant
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/sabnzbd/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/readarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "sabnzbd.${SECRET_DOMAIN}"
+          - host: &host "readarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -54,20 +49,10 @@ spec:
     podSecurityContext:
       supplementalGroups:
         - 100
-    metrics:
-      enabled: true
-      prometheusRule:
-        enabled: true
-        exporter:
-          image:
-            repository: ghcr.io/onedr0p/exportarr
-            tag: v0.6.2
-          env:
-            additionalMetrics: true
     persistence:
       config:
         enabled: true
-        existingClaim: sabnzbd-config-v1
+        existingClaim: readarr-config-v1
       media:
         enabled: true
         existingClaim: nfs-synology-media
@@ -78,10 +63,18 @@ spec:
         existingClaim: nfs-synology-downloads
         mountPath: /downloads
         readOnly: false
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/k3sCluster/Apps/External/Backups/readarr
+        mountPath: /config/Backups
+        readOnly: false
     resources:
       requests:
-        cpu: 200m
-        memory: 800Mi
+        memory: 100Mi
+        cpu: 100m
       limits:
-        cpu: 1
-        memory: 1Gi
+        memory: 1000Mi

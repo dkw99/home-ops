@@ -78,36 +78,27 @@ spec:
         existingClaim: sonarr-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${SECRET_SYNOLOGY_IP}"
-            path: /volume1/Media
+        existingClaim: nfs-synology-media
         mountPath: /media
-        accessMode: ReadWriteOnce
-        size: 1Mi
+        readOnly: false
+      downloads:
+        enabled: true
+        existingClaim: nfs-synology-downloads
+        mountPath: /downloads
+        readOnly: false
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "${SECRET_SYNOLOGY_IP}"
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/k3sCluster/Apps/External/Backups/sonarr
         mountPath: /config/Backups
         accessMode: ReadWriteOnce
         readOnly: false
-      downloads:
-        enabled: true
-        volumeSpec:
-          nfs:
-            server: "${SECRET_SYNOLOGY_IP}"
-            path: /volume1/Downloads
-        mountPath: /downloads
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 1Mi
     podSecurityContext:
-      fsGroup: 100
+      supplementalGroups:
+        - 100
     resources:
       requests:
         cpu: 200m

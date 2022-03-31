@@ -3,4 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - nfs-synology-media-pv.yaml
+  - nfs-synology-media-pvc.yaml
   - nfs-synology-downloads-pv.yaml
+  - nfs-synology-downloads-pvc.yaml
+  - nfs-synology-photos-pv.yaml
+  - nfs-synology-photos-pvc.yaml
