@@ -56,9 +56,6 @@ spec:
               - radarr.${SECRET_DOMAIN}
             secretName: radarr-tls
     podSecurityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-      fsGroup: 1001
       supplementalGroups:
         - 100
     metrics:
@@ -82,32 +79,22 @@ spec:
         existingClaim: radarr-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${SECRET_SYNOLOGY_IP}"
-            path: /volume1/Media
+        existingClaim: nfs-synology-media
         mountPath: /media
-        accessMode: ReadWriteOnce
-        size: 1Mi
+        readOnly: false
+      downloads:
+        enabled: true
+        existingClaim: nfs-synology-downloads
+        mountPath: /downloads
+        readOnly: false
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "${SECRET_SYNOLOGY_IP}"
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/k3sCluster/Apps/External/Backups/radarr
         mountPath: /config/Backups
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 1Mi
-      downloads:
-        enabled: true
-        volumeSpec:
-          nfs:
-            server: "${SECRET_SYNOLOGY_IP}"
-            path: /volume1/Downloads
-        mountPath: /downloads
         readOnly: false
         accessMode: ReadWriteOnce
         size: 1Mi
