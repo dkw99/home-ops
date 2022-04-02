@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    replicaCount: 2
+    replicaCount: 3
     recreatePods: true
     service:
       type: LoadBalancer
@@ -46,6 +46,8 @@ spec:
       EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
       EMQX_AUTH__USER__1__USERNAME: "${SECRET_EMQX_HAUSER_USERNAME}"
       EMQX_AUTH__USER__1__PASSWORD: "${SECRET_EMQX_HAUSER_PASSWORD}"
+      EMQX_AUTH__USER__2__USERNAME: "${SECRET_EMQX_ZJSUSER_USERNAME}"
+      EMQX_AUTH__USER__2__PASSWORD: "${SECRET_EMQX_ZJSUSER_PASSWORD}"
     #   EMQX_ACL_NOMATCH: "deny"
 
     emqxAclConfig: >
