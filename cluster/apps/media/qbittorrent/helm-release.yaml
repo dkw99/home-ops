@@ -63,6 +63,8 @@ spec:
     podSecurityContext:
       supplementalGroups:
         - 100
+    podAnnotations:
+      setGateway: "true"
     persistence:
       config:
         enabled: true
