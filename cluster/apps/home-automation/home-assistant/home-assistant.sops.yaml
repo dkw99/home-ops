@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: home-assistant
+    name: home-assistant-secrets
     namespace: home-automation
 stringData:
     HASS_DARKSKY_API_KEY: ""
