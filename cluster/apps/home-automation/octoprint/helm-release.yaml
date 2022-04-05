@@ -96,12 +96,16 @@ spec:
         type: hostPath
         hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index0
         mountPath: /dev/video0
-      # webcam1:
-      #   enabled: enable
-      #   type: hostPath
-      #   hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index1
-      #   mountPath: /dev/video1
-
+      webcam1:
+        enabled: enable
+        type: hostPath
+        hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index0
+        mountPath: /dev/video2
+      webcam2:
+        enabled: enable
+        type: hostPath
+        hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index2
+        mountPath: /dev/video3
 
   #   image:
   #     repository: octoprint/octoprint
