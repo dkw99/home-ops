@@ -100,8 +100,13 @@ spec:
         enabled: enable
         type: hostPath
         hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index0
-        mountPath: /dev/video2
+        mountPath: /dev/video1
       webcam2:
+        enabled: enable
+        type: hostPath
+        hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index1
+        mountPath: /dev/video2
+      webcam3:
         enabled: enable
         type: hostPath
         hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index2
