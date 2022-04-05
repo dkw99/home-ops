@@ -22,11 +22,6 @@ spec:
     service:
       type: LoadBalancer
       loadBalancerIP: ${EMQX_MQTT_IP}
-    persistence:
-      enabled: true
-      storageClass: ceph-block
-      labels:
-        k10.kasten.io/backup: "true"
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
