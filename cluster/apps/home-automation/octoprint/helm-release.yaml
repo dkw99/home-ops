@@ -35,7 +35,7 @@ spec:
       # -- MJPG Streamer input parameters
       MJPG_STREAMER_INPUT: "" #" --fps 10 -r 1280x720 -y "
       # -- MJPG Streamer camera device
-      CAMERA_DEV: /dev/video1
+      CAMERA_DEV: /dev/video0
       # Set octprint port 5000 https://github.com/OctoPrint/octoprint-docker/issues/160
       # OCTPRINT_PORT: 5000
 
