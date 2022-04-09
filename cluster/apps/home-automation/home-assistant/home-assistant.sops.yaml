@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: home-assistant
+    name: home-assistant-secrets
     namespace: home-automation
 stringData:
     HASS_DARKSKY_API_KEY: ""
@@ -45,8 +45,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-04-09T12:52:18Z"
-    mac: ENC[AES256_GCM,data:u2KgmjfQJp7uChmWYasmf6iDPb1P8rBf/UT57Rl5AcqLddiqVE8ilC6VqyLbFj62X/VeyJ/ghUozZ/hUmzRlhx6v2qT5ex0DNcIupltCKXiLHtsAlD+7jezS7juOkcvyKLPDR8BMaKZxWO2j19Rg51gj6Fz5Hj254bfZRjir9V4=,iv:aPSxZAZrqb5ajlgIKuMYtQ/viJQECMmEkE+kfuTDNag=,tag:1J3LfdVA6pvHSsu/MHj/0w==,type:str]
+    lastmodified: "2022-04-09T13:23:38Z"
+    mac: ENC[AES256_GCM,data:Q/wwBMyYjdnwIFOhWv/xb5Y0DqNt6TgmSkngMgsCw5FCCl4noyaf+6PSKTrzNK//NbO0XuKLM7+NNvE+2Juq20l/d2nwIhrhx7FI2RqXGsvS8ZbIWz62UbAhcbrc5nozXeWb9SeHfbEHtuoMutifIBk660OfkQfDh8AGsv3etEs=,iv:QmtbS3aRYnV81Isou9BXudIcLk8lHl/ykd2bQsrDDd0=,tag:TwduIl7L3QV/UEy056AupQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.2
