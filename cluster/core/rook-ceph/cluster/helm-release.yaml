@@ -32,6 +32,8 @@ spec:
       dashboard:
         annotations:
           kubernetes.io/ingress.class: "nginx"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: chess-rook
         host:
           name: &host "rook.${SECRET_DOMAIN}"
           path: "/"
@@ -49,7 +51,7 @@ spec:
       crashCollector:
         disable: false
       mgr:
-        count: 2
+        count: 1
       dashboard:
         enabled: true
         urlPrefix: /
