@@ -51,6 +51,15 @@ spec:
                       operator: In
                       values:
                         - ceph-storage-node
+      # The above placement information can also be specified for mon, osd, and mgr components
+      #    mon:
+      # Monitor deployments may contain an anti-affinity rule for avoiding monitor
+      # collocation on the same node. This is a required rule when host network is used
+      # or when AllowMultiplePerNode is false. Otherwise this anti-affinity rule is a
+      # preferred rule with weight: 50.
+      #    osd:
+      #    mgr:
+      #    cleanup:
       resources:
         mon:
           requests:
@@ -64,15 +73,6 @@ spec:
             memory: "1024i"
           limits:
             memory: "2048Mi"
-      # The above placement information can also be specified for mon, osd, and mgr components
-      #    mon:
-      # Monitor deployments may contain an anti-affinity rule for avoiding monitor
-      # collocation on the same node. This is a required rule when host network is used
-      # or when AllowMultiplePerNode is false. Otherwise this anti-affinity rule is a
-      # preferred rule with weight: 50.
-      #    osd:
-      #    mgr:
-      #    cleanup:
       crashCollector:
         disable: false
       mgr:
