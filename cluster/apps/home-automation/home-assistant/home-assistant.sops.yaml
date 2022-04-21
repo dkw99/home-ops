@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: home-assistant
+    name: home-assistant-secrets
     namespace: home-automation
 stringData:
     HASS_DARKSKY_API_KEY: ""
@@ -27,6 +27,9 @@ stringData:
     HASS_OPNSENSE_API_PASSWORD: ENC[AES256_GCM,data:06vGv75daUEy4qd/HdUW2nSsxtvq/t1ifdmgmxiB6AqClDBT/euKXsN9cXSW6yEl3xOetl4jEDirhMrgM2sLFbVH3dgPlnaMCHHADZsnDiQ=,iv:QvJru1iX/qZsj+smIP7tyIENdldOqcTl2KJqB193fZI=,tag:9Y58akN61QtsiY48KxySPg==,type:str]
     HASS_TUYA_ACCESS_CLIENT_ID: ENC[AES256_GCM,data:nxuFg8htHATrbpZSGu++XC8Lt0U=,iv:3Cr9Lduq4jXh6Cm+pZsEpDZm312/SgSUrhvqPRzlVHk=,tag:Lt2vIqGhMwAiSvXOrj2HAQ==,type:str]
     HASS_TUYA_ACCESS_CKIENT_SECRET: ENC[AES256_GCM,data:gSfHdb1nH7Lpxyx+4y0EPejT1PO7JII6dIfx/b6cx7M=,iv:e1HV/4AXbednQEKzkxnMeCYTaINS5f/hsubb3BQh91Q=,tag:0ZVW2ikUlS+81zQ9GWA0Ow==,type:str]
+    HASS_GA_PROJECT_ID: ENC[AES256_GCM,data:tYQ3ydchUPXeE+x/bcM=,iv:wcPrbZ4LSJRyzICb3/gZGD+PSQnCSd3LVltJNt9XeOw=,tag:7nvD6324lhE6fCgnKrNbMg==,type:str]
+    HASS_GA_CLIENT_EMAIL: ENC[AES256_GCM,data:ql96aHbp3hGVPl46l0QDzrLWDq6qniYBXajVtWoQQijknzBGFneeomEpaBthK4IbjBQiEjo=,iv:BbrWIGxrrGyi20zLHifBIEG/AJRJsYUs28YGbaDgar4=,tag:tzw/hEVoVovTjTD5eO7PBA==,type:str]
+    HASS_GA_PRIVATE_KEY: ENC[AES256_GCM,data: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,iv:mTX9RPrGkA6a2E72qcZu2tmtlbSwSOoQPvXut1e/ZD8=,tag:aoRk/O0Bwd16Tstnrvc46g==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -42,8 +45,8 @@ sops:
             VmJhQm5tcUFnOHZFQU1JVDg1aWZxSU0KC2sptqNHma7vTKoxBLjtPoUWHOzZzQLk
             4ii0jTUR7Hk4ZHBZXo/6ksFypXmENIbriduelpQ3KgPT1H+FiCWUTg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-03-02T11:21:59Z"
-    mac: ENC[AES256_GCM,data:GSs8EDJmiPQOQw2XoQ8yKQqXQ37/pcIVscX5EFmHHrApvdr5Mv1NfiJuBw5Wa+4fxYSIuqz8Fa6AdN58fqohSrBSFIEEs99mQOdH2n+gBaFtXnrgDnXiv6nDXO4afFZ3lv/pk/9LQ6EnZZ3v5agI0BYlGzs/fs8oMrYkDNJn11M=,iv:YffWxHAR0JIqOnTh1RwlIpSx05YguAaJHRDy0X3HEGE=,tag:SD7B9dXIbiD/8TYmczC3Dw==,type:str]
+    lastmodified: "2022-04-09T13:23:38Z"
+    mac: ENC[AES256_GCM,data:Q/wwBMyYjdnwIFOhWv/xb5Y0DqNt6TgmSkngMgsCw5FCCl4noyaf+6PSKTrzNK//NbO0XuKLM7+NNvE+2Juq20l/d2nwIhrhx7FI2RqXGsvS8ZbIWz62UbAhcbrc5nozXeWb9SeHfbEHtuoMutifIBk660OfkQfDh8AGsv3etEs=,iv:QmtbS3aRYnV81Isou9BXudIcLk8lHl/ykd2bQsrDDd0=,tag:TwduIl7L3QV/UEy056AupQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.1
+    version: 3.7.2

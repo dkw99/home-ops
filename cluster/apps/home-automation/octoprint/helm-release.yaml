@@ -33,9 +33,9 @@ spec:
       # Enable this to ensure camera streaming is enabled you add a video device.
       ENABLE_MJPG_STREAMER: "true"
       # -- MJPG Streamer input parameters
-      MJPG_STREAMER_INPUT: " --fps 10 -r 1280x720 -y "
+      MJPG_STREAMER_INPUT: " --fps 30 -r 1280x720 -y "
       # -- MJPG Streamer camera device
-      CAMERA_DEV: /dev/video0
+      CAMERA_DEV: /dev/video1
       # Set octprint port 5000 https://github.com/OctoPrint/octoprint-docker/issues/160
       # OCTPRINT_PORT: 5000
 
@@ -96,12 +96,21 @@ spec:
         type: hostPath
         hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index0
         mountPath: /dev/video0
-      # webcam1:
-      #   enabled: enable
-      #   type: hostPath
-      #   hostPath: /dev/v4l/by-id/usb-SunplusIT_Inc_HD_WebCam-video-index1
-      #   mountPath: /dev/video1
-
+      webcam1:
+        enabled: enable
+        type: hostPath
+        hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index0
+        mountPath: /dev/video1
+      webcam2:
+        enabled: enable
+        type: hostPath
+        hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index1
+        mountPath: /dev/video2
+      webcam3:
+        enabled: enable
+        type: hostPath
+        hostPath: /dev/v4l/by-id/usb-Verbatim_1080p_AF_Webcam_Verbatim_1080p_AF_Webcam_20211012001-video-index2
+        mountPath: /dev/video3
 
   #   image:
   #     repository: octoprint/octoprint

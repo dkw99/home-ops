@@ -54,7 +54,13 @@
       "requiredStatusChecks": null,
       "schedule": "after 1am and before 5am",
       "updateTypes": ["minor", "patch"],
-      "matchPackageNames": ["thanos"]
+      "matchPackageNames": ["thanos",
+        "sonarr",
+        "radarr",
+        "readarr",
+        "sabnzbd",
+        "qbittorrent"
+      ]
     }
   ]
 }

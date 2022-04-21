@@ -27,7 +27,7 @@ tasks:
     desc: Remotely fetch kubeconfig from Kubernetes
     cmds:
       - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.PROJECT_DIR}}/provision/kubeconfig"
-      - sed -i '' 's/127.0.0.1/{{.K3S_PRIMARY_MASTER_NODE_ADDR}}/g' "{{.PROJECT_DIR}}/provision/kubeconfig"
+      - sed -i  's/127.0.0.1/{{.K3S_PRIMARY_MASTER_NODE_ADDR}}/g' "{{.PROJECT_DIR}}/provision/kubeconfig"
       - chmod go-r "{{.PROJECT_DIR}}/provision/kubeconfig"
   update-deps:brew:
     desc: update brew for MacOS
