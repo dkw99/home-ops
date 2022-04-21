@@ -54,10 +54,10 @@ spec:
       resources:
         mon:
           requests:
-          cpu: 35m
-          memory: 800Mi
-        limits:
-          memory: 1024Mi
+            cpu: 35m
+            memory: 800Mi
+          limits:
+            memory: 1024Mi
         osd:
           requests:
             cpu: "35m"
