@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: homeassistant/home-assistant
-      tag: 2022.4.5
+      tag: 2022.4.6
     env:
       TZ: ${TIMEZONE}
     envFrom:
@@ -47,6 +47,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
+          nginx.org/websocket-services: home-assistant
           external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
           cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/enable: "true"

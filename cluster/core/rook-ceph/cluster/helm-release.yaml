@@ -32,6 +32,8 @@ spec:
       dashboard:
         annotations:
           kubernetes.io/ingress.class: "nginx"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: chess-rook
         host:
           name: &host "rook.${SECRET_DOMAIN}"
           path: "/"
@@ -41,15 +43,45 @@ spec:
     cephClusterSpec:
       placement:
         all:
-          tolerations:
-            - effect: NoSchedule
-              operator: Exists
-            - effect: NoExecute
-              operator: Exists
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: role
+                      operator: In
+                      values:
+                        - ceph-storage-node
+      # The above placement information can also be specified for mon, osd, and mgr components
+      #    mon:
+      # Monitor deployments may contain an anti-affinity rule for avoiding monitor
+      # collocation on the same node. This is a required rule when host network is used
+      # or when AllowMultiplePerNode is false. Otherwise this anti-affinity rule is a
+      # preferred rule with weight: 50.
+      #    osd:
+      #    mgr:
+      #    cleanup:
+      resources:
+        mon:
+          requests:
+            cpu: 35m
+            memory: 800Mi
+          limits:
+            memory: 1024Mi
+        osd:
+          requests:
+            cpu: "35m"
+            memory: "1024i"
+          limits:
+            memory: "2048Mi"
       crashCollector:
         disable: false
       mgr:
-        count: 2
+        count: 1
+        modules:
+          # Several modules should not need to be included in this list. The "dashboard" and "monitoring" modules
+          # are already enabled by other settings in the cluster CR.
+          - name: pg_autoscaler
+            enabled: true
       dashboard:
         enabled: true
         urlPrefix: /
@@ -69,6 +101,33 @@ spec:
           - name: "k3s-b"
             devices:
               - name: "sdb"
+        healthCheck:
+          daemonHealth:
+            mon:
+              disabled: false
+              interval: 45s
+            osd:
+              disabled: false
+              interval: 60s
+            status:
+              disabled: false
+              interval: 60s
+          # Change pod liveness probe timing or threshold values. Works for all mon,mgr,osd daemons.
+          livenessProbe:
+            mon:
+              disabled: false
+            mgr:
+              disabled: false
+            osd:
+              disabled: false
+          # Change pod startup probe timing or threshold values. Works for all mon,mgr,osd daemons.
+          startupProbe:
+            mon:
+              disabled: false
+            mgr:
+              disabled: false
+            osd:
+              disabled: false
     cephBlockPoolsVolumeSnapshotClass:
       enabled: true
       name: csi-rbdplugin-snapclass

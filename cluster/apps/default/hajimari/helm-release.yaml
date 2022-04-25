@@ -34,6 +34,7 @@ spec:
           - media
           - kasten-io
           - monitoring
+          - rook-ceph
       name: "House of the Wisesalmon"
       customApps:
         - name: Synology
