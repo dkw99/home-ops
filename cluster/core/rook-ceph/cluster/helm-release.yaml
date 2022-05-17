@@ -60,6 +60,7 @@ spec:
       #    osd:
       #    mgr:
       #    cleanup:
+      #
       resources:
         mon:
           requests:
