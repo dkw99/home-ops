@@ -71,7 +71,7 @@ spec:
         osd:
           requests:
             cpu: "35m"
-            memory: "1024i"
+            memory: "1024Mi"
           limits:
             memory: "2048Mi"
       crashCollector:
