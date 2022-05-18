@@ -1,13 +1,7 @@
 ---
 ignore: |
-  charts/
-  docs/
-  .private/
-  .terraform/
-  .vscode/
   *.sops.*
   gotk-components.yaml
-  temp/
 extends: default
 rules:
   truthy:
