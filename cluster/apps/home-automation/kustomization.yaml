@@ -5,5 +5,5 @@ resources:
   - emqx
   # - zwavejs2mqtt
   # - home-assistant
-  # - node-red
+  - node-red
   - octoprint
