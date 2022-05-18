@@ -1,0 +1,9 @@
+---
+version: "3"
+
+tasks:
+
+  taint:k3s-c:
+    desc: apply taints to k3s-c Octoprint
+    cmds:
+      - kubectl --kubeconfig={{.KUBECONFIG_DIR}}/kubeconfig taint nodes k3s-c restricted-node=octoprint-server:NoSchedule
