@@ -5,7 +5,7 @@ metadata:
   name: rook-ceph-cluster
   namespace: rook-ceph
 spec:
-  interval: 2m
+  interval: 10m
   chart:
     spec:
       # renovate: registryUrl=https://charts.rook.io/release
@@ -18,15 +18,18 @@ spec:
   install:
     createNamespace: true
     remediation:
-      retries: 3
+      retries: 5
   upgrade:
     remediation:
-      retries: 3
+      retries: 5
   dependsOn:
     - name: rook-ceph
       namespace: rook-ceph
   values:
     monitoring:
+      enabled: true
+      createPrometheusRules: true
+    toolbox:
       enabled: true
     ingress:
       dashboard:
@@ -34,6 +37,7 @@ spec:
           kubernetes.io/ingress.class: "nginx"
           hajimari.io/enable: "true"
           hajimari.io/icon: chess-rook
+          hajimari.appName: "Rook"
         host:
           name: &host "rook.${SECRET_DOMAIN}"
           path: "/"
@@ -77,7 +81,7 @@ spec:
       crashCollector:
         disable: false
       mgr:
-        count: 1
+        count: 2
         modules:
           # Several modules should not need to be included in this list. The "dashboard" and "monitoring" modules
           # are already enabled by other settings in the cluster CR.
@@ -102,59 +106,32 @@ spec:
           - name: "k3s-b"
             devices:
               - name: "sdb"
-        healthCheck:
-          daemonHealth:
-            mon:
-              disabled: false
-              interval: 45s
-            osd:
-              disabled: false
-              interval: 60s
-            status:
-              disabled: false
-              interval: 60s
-          # Change pod liveness probe timing or threshold values. Works for all mon,mgr,osd daemons.
-          livenessProbe:
-            mon:
-              disabled: false
-            mgr:
-              disabled: false
-            osd:
-              disabled: false
-          # Change pod startup probe timing or threshold values. Works for all mon,mgr,osd daemons.
-          startupProbe:
-            mon:
-              disabled: false
-            mgr:
-              disabled: false
-            osd:
-              disabled: false
-    cephBlockPoolsVolumeSnapshotClass:
-      enabled: true
-      name: csi-rbdplugin-snapclass
-      annotations:
-        k10.kasten.io/is-snapshot-class: "true"
-    cephBlockPools:
-      - name: ceph-blockpool
-        spec:
-          failureDomain: host
-          replicated:
-            size: 3
-        storageClass:
-          enabled: true
-          name: ceph-block
-          isDefault: true
-          reclaimPolicy: Delete
-          allowVolumeExpansion: true
-          parameters:
-            imageFormat: "2"
-            imageFeatures: layering
-            csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
-            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
-            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-            csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
-            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
-            csi.storage.k8s.io/fstype: ext4
+    # cephBlockPoolsVolumeSnapshotClass:
+    #   enabled: true
+    #   name: csi-rbdplugin-snapclass
+    #   annotations:
+    #     k10.kasten.io/is-snapshot-class: "true"
+    # cephBlockPools:
+    #   - name: ceph-blockpool
+    #     spec:
+    #       failureDomain: host
+    #       replicated:
+    #         size: 3
+    #     storageClass:
+    #       enabled: true
+    #       name: ceph-block
+    #       isDefault: true
+    #       reclaimPolicy: Delete
+    #       allowVolumeExpansion: true
+    #       parameters:
+    #         imageFormat: "2"
+    #         imageFeatures: layering
+    #         csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+    #         csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+    #         csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+    #         csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+    #         csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+    #         csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+    #         csi.storage.k8s.io/fstype: ext4
     cephFileSystems: []
     cephObjectStores: []
