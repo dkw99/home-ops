@@ -31,6 +31,11 @@ spec:
         sabnzbd.media.svc.cluster,
         sabnzbd.media.svc.cluster.local,
         sabnzbd.${SECRET_DOMAIN}
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
     ingress:
       main:
         enabled: true

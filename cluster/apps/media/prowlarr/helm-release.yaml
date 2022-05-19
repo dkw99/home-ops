@@ -22,6 +22,11 @@ spec:
       tag: v0.4.0.1788
     env:
       TZ: ${TIMEZONE}
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
     ingress:
       main:
         enabled: true
