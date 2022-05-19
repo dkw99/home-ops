@@ -73,8 +73,7 @@ spec:
           nfs:
             server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
             path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
-        mountPath: /config/backups
-        readOnly: false
+        mountPath: /config/backup
         accessMode: ReadWriteOnce
         size: 1M
     addons:
