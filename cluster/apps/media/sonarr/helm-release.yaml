@@ -63,12 +63,12 @@ spec:
               - sonarr.${SECRET_DOMAIN}
             secretName: sonarr-tls
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
         interval: 3m
         scrapeTimeout: 1m
       prometheusRule:
-        enabled: true
+        enabled: false
       exporter:
         image:
           repository: ghcr.io/onedr0p/exportarr
