@@ -11,7 +11,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: "${SECRET_SYNOLOGY_IP}"
+    server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
     path: /volume1/k3sCluster/Apps/External/Kasten
 ---
 apiVersion: v1
