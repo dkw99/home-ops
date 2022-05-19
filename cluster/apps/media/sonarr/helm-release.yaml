@@ -22,11 +22,11 @@ spec:
       tag: v3.0.8.1507
     env:
       TZ: ${TIMEZONE}
-    # podSecurityContext:
-    #   runAsUser: 568
-    #   runAsGroup: 568
-    #   fsGroup: 568
-    #   fsGroupChangePolicy: "OnRootMismatch"
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
     # securityContext:
     #   # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
     #   privileged: false
