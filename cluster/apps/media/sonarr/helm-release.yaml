@@ -68,7 +68,7 @@ spec:
               - sonarr.${SECRET_DOMAIN}
             secretName: sonarr-tls
     metrics:
-      enabled: false
+      enabled: true
       serviceMonitor:
         interval: 3m
         scrapeTimeout: 1m

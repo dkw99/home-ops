@@ -61,7 +61,7 @@ spec:
               - radarr.${SECRET_DOMAIN}
             secretName: radarr-tls
     metrics:
-      enabled: false
+      enabled: true
       prometheusRule:
         enabled: true
         exporter:
