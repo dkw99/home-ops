@@ -22,12 +22,12 @@ spec:
       tag: v3.0.8.1507
     env:
       TZ: ${TIMEZONE}
-    securityContext:
-      # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
-      privileged: false
-      #fsGroup: 768
-      runAsGroup: 768
-      runAsUser: 768
+    # securityContext:
+    #   # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
+    #   privileged: false
+    #   #fsGroup: 768
+    #   runAsGroup: 768
+    #   runAsUser: 768
     ingress:
       main:
         enabled: true
