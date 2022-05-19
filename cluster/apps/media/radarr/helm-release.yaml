@@ -21,6 +21,11 @@ spec:
       tag: v4.1.0.6175
     env:
       TZ: ${TIMEZONE}
+    securityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
     ingress:
       main:
         enabled: true
@@ -56,7 +61,7 @@ spec:
               - radarr.${SECRET_DOMAIN}
             secretName: radarr-tls
     metrics:
-      enabled: true
+      enabled: false
       prometheusRule:
         enabled: true
         exporter:
