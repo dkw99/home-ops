@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sabnzbd-config-nfs-v1
+  name: sonarr-config-nfs-v1
   namespace: media
   labels:
     k10.kasten.io/backup: "true"
@@ -11,5 +11,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
-  storageClassName: pve110-dynamic-nfs
+      storage: 1Gi
+  storageClassName: ceph-block

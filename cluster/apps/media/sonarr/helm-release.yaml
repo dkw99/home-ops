@@ -18,7 +18,7 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sonarr-nightly
+      repository: ghcr.io/k8s-at-home/sonarr
       tag: v3.0.8.1507
     env:
       TZ: ${TIMEZONE}
@@ -83,7 +83,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config-v1
+        existingClaim: sonarr-config-nfs-v1
       media:
         enabled: true
         type: custom

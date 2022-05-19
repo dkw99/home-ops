@@ -66,6 +66,17 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+            path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
+        mountPath: /config/backups
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1M
     addons:
       codeserver:
         enabled: true

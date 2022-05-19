@@ -38,13 +38,13 @@ spec:
       name: "House of the Wisesalmon"
       customApps:
         - name: Synology
-          url: http://nas.${SECRET_PRIVATE_LAN}:5000
+          url: http://nas.${SECRET_PRIVATE_DOMAIN}:5000
           icon: test-tube
         - name: Plex
           url: http://nas.${SECRET_PRIVATE_LAN}:32400/web/index.html
           icon: plex
         - name: Opnsense
-          url: https://opnsense.${SECRET_PRIVATE_LAN}
+          url: https://opnsense.${SECRET_PRIVATE_DOMAIN}
           icon: firewall
       groups:
         - name: Communicate
