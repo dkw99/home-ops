@@ -7,4 +7,5 @@ resources:
   - sabnzbd
   - readarr
   - qbittorrent
+  - qbittorrent-vpn
   - prowlarr
