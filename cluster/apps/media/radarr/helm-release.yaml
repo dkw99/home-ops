@@ -21,7 +21,7 @@ spec:
       tag: v4.1.0.6175
     env:
       TZ: ${TIMEZONE}
-    securityContext:
+    podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
@@ -70,9 +70,6 @@ spec:
             tag: v1.0.0
           env:
             additionalMetrics: true
-    podSecurityContext:
-      supplementalGroups:
-        - 100
     persistence:
       config:
         enabled: true
