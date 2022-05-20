@@ -50,7 +50,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: zwavejs2mqtt-config-v1
+        existingClaim: zwavejs2mqtt-config-nfs
       usb:
         enabled: true
         type: hostPath
