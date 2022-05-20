@@ -7,3 +7,4 @@ resources:
   - k10-backups-pvc.yaml
   - media.yaml
   - home-automation.yaml
+  - k10-disaster-recovery.yaml
