@@ -49,7 +49,7 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: node-red-data
+        existingClaim: node-red-data-v1
     resources:
       requests:
         cpu: 200m
