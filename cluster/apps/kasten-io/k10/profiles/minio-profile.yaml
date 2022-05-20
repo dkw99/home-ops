@@ -11,7 +11,7 @@ spec:
     objectStore:
       name: k10
       objectStoreType: S3
-      endpoint: http://${SECRET_SYNOLOGY_IP}:9000/
+      endpoint: http://nfs1.${SECRET_PRIVATE_DOMAIN}:9000/
       region: minio
     credential:
       secretType: AwsAccessKey
