@@ -9,4 +9,3 @@ resources:
   - rook-ceph
   - system-upgrade
   - kasten-io
-  - dev
