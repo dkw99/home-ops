@@ -29,7 +29,7 @@ spec:
     service:
       main:
         type: ClusterIP
-        loadBalancerIP: ${HASS_DEV_IP}
+        loadBalancerIP: ${HASS_IP}
         ports:
           http:
             port: 8123
