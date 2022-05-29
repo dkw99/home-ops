@@ -54,14 +54,14 @@ spec:
           hajimari.io/icon: home-assistant
           ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
         hosts:
-          - host: hass.${SECRET_DOMAIN}
+          - host: hass.dev.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - hass.${SECRET_DOMAIN}
-            secretName: hass-tls
+              - hass.dev.${SECRET_DOMAIN}
+            secretName: hass-dev-tls
     persistence:
       config:
         enabled: true
@@ -106,14 +106,14 @@ spec:
             # nginx.ingress.kubernetes.io/auth-url: https://auth.${SECRET_DOMAIN}/oauth2/auth
             # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
           hosts:
-            - host: &host hass-config.${SECRET_DOMAIN}
+            - host: &host hass-config.dev.${SECRET_DOMAIN}
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - hass-config.${SECRET_DOMAIN}
-              secretName: hass-config-tls
+                - hass-config.dev.${SECRET_DOMAIN}
+              secretName: hass-dev-config-tls
         volumeMounts:
           - name: config
             mountPath: /config
