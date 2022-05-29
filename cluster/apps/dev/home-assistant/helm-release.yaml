@@ -65,7 +65,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: home-assistant-config
+        existingClaim: home-assistant-config-dev
       backups:
         enabled: true
         type: custom
