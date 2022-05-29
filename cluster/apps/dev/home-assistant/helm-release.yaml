@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: home-assistant
-  namespace: home-automation
+  namespace: dev
 spec:
   interval: 10m
   chart:
@@ -29,7 +29,7 @@ spec:
     service:
       main:
         type: ClusterIP
-        loadBalancerIP: ${HASS_DEV_IP}
+        loadBalancerIP: ${HASS_IP}
         ports:
           http:
             port: 8123
@@ -54,13 +54,13 @@ spec:
           hajimari.io/icon: home-assistant
           ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
         hosts:
-          - host: hass.dev.${SECRET_DOMAIN}
+          - host: hass.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - hass.dev.${SECRET_DOMAIN}
+              - hass.${SECRET_DOMAIN}
             secretName: hass-tls
     persistence:
       config:
@@ -106,7 +106,7 @@ spec:
             # nginx.ingress.kubernetes.io/auth-url: https://auth.${SECRET_DOMAIN}/oauth2/auth
             # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
           hosts:
-            - host: &host hass-config.dev.${SECRET_DOMAIN}
+            - host: &host hass-config.${SECRET_DOMAIN}
               paths:
                 - path: /
                   pathType: Prefix
