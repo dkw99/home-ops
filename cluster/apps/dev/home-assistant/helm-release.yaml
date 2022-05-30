@@ -117,9 +117,9 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
-          - name: hass-backups
-            mountPath: /config/backups
-            subPath: backups
+          - name: backups
+            mountPath: /hass-backups
+
 
     resources:
       requests:
