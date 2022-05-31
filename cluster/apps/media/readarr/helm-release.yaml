@@ -45,10 +45,9 @@ spec:
             sub_filter
             '</head>'
             '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/readarr/readarr-base.css">
-            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/readarr/readarr-darker.css">
+            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/readarr/readarr-darker/readarr-darker.css">
             </head>';
             sub_filter_once on;
-            '</head>'
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
