@@ -50,7 +50,7 @@ spec:
             sub_filter
             '</head>'
             '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/sonarr-base.css">
-            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/sonarr/sonarr-darker.css">
+            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/sonarr/sonarr-darker/sonarr-darker.css">
             </head>';
             sub_filter_once on;
             '</head>'
