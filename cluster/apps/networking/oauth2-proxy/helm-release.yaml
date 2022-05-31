@@ -39,7 +39,7 @@ spec:
           secretName: auth-tls
     extraArgs:
       provider: oidc
-      oidc-issuer-url: https://${SECRET_AUTH0_NAME}.au.auth0.com
+      oidc-issuer-url: https://${SECRET_AUTH0_NAME}.au.auth0.com/
       skip-provider-button:
       pass-authorization-header:
       email-domain: "*"
