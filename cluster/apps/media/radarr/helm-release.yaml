@@ -37,15 +37,23 @@ spec:
           # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
           hajimari.io/enable: "true"
           hajimari.io/icon: filmstrip
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter
+            '</head>'
+            '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/radarr/radarr-base.css">
+            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/radarr-darker.css">
+            </head>';
+            sub_filter_once on;
+            '</head>'
         hosts:
-          - host: radarr.${SECRET_DOMAIN}
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - radarr.${SECRET_DOMAIN}
-            secretName: radarr-tls
+              - *host
       api:
         enabled: true
         nameSuffix: api

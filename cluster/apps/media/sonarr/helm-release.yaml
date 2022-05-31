@@ -45,15 +45,23 @@ spec:
           #
           hajimari.io/enable: "true"
           hajimari.io/icon: television-classic
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter
+            '</head>'
+            '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/sonarr-base.css">
+            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/sonarr/sonarr-darker.css">
+            </head>';
+            sub_filter_once on;
+            '</head>'
         hosts:
-          - host: sonarr.${SECRET_DOMAIN}
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - sonarr.${SECRET_DOMAIN}
-            secretName: sonarr-tls
+              - *host
       api:
         enabled: true
         annotations:

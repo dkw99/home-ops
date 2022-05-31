@@ -42,10 +42,15 @@ spec:
           hajimari.io/icon: book-open-variant
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/readarr/nord.css"></head>';
+            sub_filter
+            '</head>'
+            '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/readarr/readarr-base.css">
+            <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/addons/readarr/readarr-darker.css">
+            </head>';
             sub_filter_once on;
+            '</head>'
         hosts:
-          - host: &host "readarr.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
