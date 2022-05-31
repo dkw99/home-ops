@@ -10,7 +10,11 @@
   "prettier.configPath": ".github/linters/.prettierrc.yaml",
   "prettier.ignorePath": ".github/linters/.prettierignore",
   "yaml.schemas": {
-      "Kubernetes": "cluster/*.yaml"
+    "Kubernetes": "cluster/*.yaml",
+    "kubernetes://schema/helm.toolkit.fluxcd.io/v2beta1@helmrelease": [
+      "file:///Users/michelle/Documents/HomeLab-Mac/home-ops/cluster/apps/monitoring/loki/helm-release.yaml",
+      "file:///Users/michelle/Documents/HomeLab-Mac/home-ops/cluster/apps/networking/oauth2-proxy/helm-release.yaml"
+    ]
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs":"active",
