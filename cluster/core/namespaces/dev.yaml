@@ -5,3 +5,4 @@ metadata:
   name: dev
   labels:
     k10/injectKanisterSidecar: "true"
+    name: "dev"
