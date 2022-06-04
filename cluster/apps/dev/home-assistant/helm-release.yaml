@@ -65,7 +65,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: home-assistant-config-dev
+        existingClaim: home-assistant-config-dev-nfs
       backups:
         enabled: true
         type: custom
@@ -119,8 +119,6 @@ spec:
             mountPath: /config
           - name: backups
             mountPath: /config/hass-backups
-
-
     resources:
       requests:
         cpu: 500m
