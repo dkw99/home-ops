@@ -70,6 +70,6 @@ spec:
       namespaceSelector:
         matchLabels:
           k10/injectKanisterSidecar: "true"
-          name: dev
-      # objectSelector:
-      #   matchLabels: {}
+      objectSelector:
+        matchLabels:
+          k10.kasten.io/nfs-pvc: "true"
