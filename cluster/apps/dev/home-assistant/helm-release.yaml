@@ -35,6 +35,7 @@ spec:
             port: 8123
     podAnnotations:
       secret.reloader.stakater.com/reload: "home-assistant"
+      k10.kasten.io/nfs-pvc: "true"
     probes:
       liveness:
         enabled: false
