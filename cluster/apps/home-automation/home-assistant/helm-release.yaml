@@ -29,7 +29,8 @@ spec:
     service:
       main:
         type: ClusterIP
-        loadBalancerIP: ${HASS_IP}
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${HASS_IP}
         ports:
           http:
             port: 8123
