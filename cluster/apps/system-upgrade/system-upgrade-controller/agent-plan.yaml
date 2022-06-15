@@ -23,3 +23,8 @@ spec:
       - "k3s-server"
   upgrade:
     image: rancher/k3s-upgrade
+  tolerations:
+    - key: "restricted-node"
+      operator: "Equal"
+      value: "octoprint-server"
+      effect: "NoSchedule"
