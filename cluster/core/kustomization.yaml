@@ -7,5 +7,4 @@ resources:
   - kube-system
   - metallb-system
   - rook-ceph
-  - system-upgrade
   - kasten-io

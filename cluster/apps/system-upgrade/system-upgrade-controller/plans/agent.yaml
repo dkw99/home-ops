@@ -16,6 +16,10 @@ spec:
         operator: NotIn
         values:
           - "true"
+      - key: k3s-upgrade
+        operator: In
+        values:
+          - "true"
   prepare:
     image: rancher/k3s-upgrade
     args:
@@ -23,8 +27,3 @@ spec:
       - "k3s-server"
   upgrade:
     image: rancher/k3s-upgrade
-  tolerations:
-    - key: "restricted-node"
-      operator: "Equal"
-      value: "octoprint-server"
-      effect: "NoSchedule"
