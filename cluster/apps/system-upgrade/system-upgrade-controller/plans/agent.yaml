@@ -12,18 +12,14 @@ spec:
   channel: https://update.k3s.io/v1-release/channels/latest
   nodeSelector:
     matchExpressions:
-      - key: node-role.kubernetes.io/master
-        operator: NotIn
-        values:
-          - "true"
-      - key: k3s-upgrade
-        operator: Exists
-      - key: k3s-upgrade
-        operator: In
-        values:
-          - "true"
-      - key: restricted-server
-        operator: Exists
+      # - {key: k3s-upgrade, operator: Exists}
+      - {key: k3s-upgrade, operator: NotIn, values: ["disabled", "false"]}
+      - {key: k3os.io/mode, operator: DoesNotExist}
+      - {key: node-role.kubernetes.io/master, operator: NotIn, values: ["true"]}
+      - {key: node-role.kubernetes.io/control-plane, operator: DoesNotExist}
+  tolerations:
+    - {key: kubernetes.io/arch, effect: NoSchedule, operator: Equal, value: amd64}
+    - {key: restricted-server, effect: NoSchedule, operator: Equal, value: octo-print}
   prepare:
     image: rancher/k3s-upgrade
     args:
