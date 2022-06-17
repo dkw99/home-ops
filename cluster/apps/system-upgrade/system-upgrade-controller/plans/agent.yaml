@@ -17,6 +17,8 @@ spec:
         values:
           - "true"
       - key: k3s-upgrade
+        operator: Exists
+      - key: k3s-upgrade
         operator: In
         values:
           - "true"
