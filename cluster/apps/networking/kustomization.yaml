@@ -2,7 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - echo-server
+  - error-pages
+  - external-dns
+  - external-services
   - ingress-nginx
-  - wildcard-certificate
-  - opnsense
   - oauth2-proxy
+  - opnsense

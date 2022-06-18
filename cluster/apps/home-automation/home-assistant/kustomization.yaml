@@ -7,3 +7,4 @@ resources:
   - helm-release.yaml
   - home-assistant.sops.yaml
   - home-assistant-ga-key-secret.enc.yaml
+  - secret.sops.yaml

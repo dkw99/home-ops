@@ -1,8 +1,0 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: dev
-  labels:
-    k10/injectKanisterSidecar: "true"
-    name: "dev"
