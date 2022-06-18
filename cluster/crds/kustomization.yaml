@@ -5,4 +5,7 @@ resources:
   - cert-manager
   - external-snapshotter
   - kube-prometheus-stack
+  - kyverno
+  # TODO(rook-ceph): On rebuild, switch CRDs to be managed outside helm release
+  # - rook-ceph
   - system-upgrade-controller

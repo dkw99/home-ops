@@ -2,16 +2,19 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - default
-  - kube-system
-  - rook-ceph
-  - networking
-  - monitoring
-  - system-upgrade
-  - db
-  - home-automation
-  - media
-  - flux-system
-  - kasten-io
-  - dev
   - cad
+  - cert-manager
+  - db
+  - default
+  - dev
+  - flux-system
+  - home-automation
+  - kasten-io
+  - kube-system
+  # - kyverno
+  - media
+  - metallb-system
+  - monitoring
+  - networking
+# - starboard-system
+  - system-upgrade

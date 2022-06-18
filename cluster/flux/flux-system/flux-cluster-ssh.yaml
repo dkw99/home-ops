@@ -1,0 +1,28 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: 10m
+  # 6a: Change this to your user and repo names
+  url: ssh://git@github.com/$user/$repo
+  ref:
+    branch: main
+  secretRef:
+    name: github-deploy-key
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./cluster/flux
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
