@@ -26,6 +26,7 @@ jobs:
         with:
           app_id: "${{ secrets.BOT_APP_ID }}"
           private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+          repository: "dkw99/home-ops"
       - name: MegaLinter
         uses: megalinter/megalinter/flavors/terraform@v5
         env:
