@@ -123,10 +123,15 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
+            - host: &host-custom-config "hass-config.${SECRET_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
           tls:
             - hosts:
                 - *host-release-code
                 - *host-custom-code
+                - *host-custom-config
         volumeMounts:
           - name: config
             mountPath: /config
