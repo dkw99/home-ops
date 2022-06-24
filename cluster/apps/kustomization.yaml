@@ -6,7 +6,7 @@ resources:
   - cert-manager
   - db
   - default
-  - dev
+  # - dev
   - flux-system
   - home-automation
   - kasten-io
