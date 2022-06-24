@@ -130,6 +130,8 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
+          - name: backups
+            mountPath: /config/hass-backups
     resources:
       requests:
         cpu: 100m
