@@ -87,14 +87,12 @@ spec:
         #   nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
         # path: /
         # pathType: Prefix
+        path: /
         hosts:
-          - host: &host-release "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
+          - emqx.${SECRET_DOMAIN}
         tls:
           - hosts:
-              - *host-release
+              - emqx.${SECRET_DOMAIN}
   valuesFrom:
     - targetPath: emqxConfig.EMQX_ADMIN_PASSWORD
       kind: Secret
