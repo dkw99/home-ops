@@ -29,14 +29,16 @@ spec:
       #     operator: "Exists"
     affinity:
       podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - emqx
-            topologyKey: "kubernetes.io/hostname"
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - emqx
+              topologyKey: kubernetes.io/hostname
     emqxConfig:
       EMQX_ALLOW_ANONYMOUS: "false"
     #   EMQX_ACL_NOMATCH: "deny"
