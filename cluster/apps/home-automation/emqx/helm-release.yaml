@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app emqx
+  name: emqx
   namespace: home-automation
 spec:
   interval: 5m
@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://repos.emqx.io/charts
       chart: emqx
-      version: 4.4.4
+      version: 4.4.3
       sourceRef:
         kind: HelmRepository
         name: emqx-charts
@@ -19,12 +19,28 @@ spec:
   values:
     replicaCount: 3
     recreatePods: true
-    env:
-      TZ: ${TIMEZONE}
+    service:
+      type: LoadBalancer
+      # loadBalancerIP:  ${EMQX_MQTT_IP}
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: ${EMQX_MQTT_IP}
+    # tolerations:
+    #   - key: "arm"
+    #     operator: "Exists"
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - emqx
+            topologyKey: "kubernetes.io/hostname"
     emqxConfig:
       EMQX_ALLOW_ANONYMOUS: "false"
-      EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
-      EMQX_CLUSTER__K8S__SUFFIX: svc.${CLUSTER_DOMAIN}
+    #   EMQX_ACL_NOMATCH: "deny"
+
     emqxAclConfig: >
       {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
       {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
@@ -46,56 +62,27 @@ spec:
       {emqx_mod_rewrite, false}.
       {emqx_mod_subscription, false}.
       {emqx_mod_topic_metrics, true}.
-    service:
-      type: LoadBalancer
-      annotations:
-        metallb.universe.tf/loadBalancerIPs: ${EMQX_MQTT_IP}
-    metrics:
-      enabled: true
-    persistence:
-      enabled: true
-      storageClass: ceph-block
-      size: 100Mi
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - emqx
-              topologyKey: kubernetes.io/hostname
     resources:
+      limits:
+        memory: 256Mi
       requests:
         cpu: 100m
         memory: 150Mi
-      limits:
-        memory: 512Mi
+
     ingress:
       dashboard:
         enabled: true
-        ingressClassName: nginx
         annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: quality-medium
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
+          kubernetes.io/ingress.class: nginx
           nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
-        #   nginx.ingress.kubernetes.io/auth-url: "https://auth.${SECRET_DOMAIN}/oauth2/auth"
-        #   nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
-        # path: /
-        pathType: Prefix
+          # nginx.ingress.kubernetes.io/auth-url: "https://auth.${SECRET_DOMAIN}/oauth2/auth"
+          # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
         path: /
         hosts:
           - emqx.${SECRET_DOMAIN}
-          - mqtt.${SECRET_DOMAIN}
         tls:
           - hosts:
               - emqx.${SECRET_DOMAIN}
-              - mqtt.${SECRET_DOMAIN}
   valuesFrom:
     - targetPath: emqxConfig.EMQX_ADMIN_PASSWORD
       kind: Secret
