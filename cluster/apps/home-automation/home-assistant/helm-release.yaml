@@ -59,18 +59,14 @@ spec:
           hajimari.io/icon: home-assistant
           ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
         hosts:
-          - host: &host-release "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-          - host: &host-custom "hass.${SECRET_DOMAIN}"
+          - host: &host-release "hass.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host-release
-              - *host-custom
+
     persistence:
       config:
         enabled: true
@@ -115,11 +111,7 @@ spec:
             # nginx.ingress.kubernetes.io/auth-url: https://auth.${SECRET_DOMAIN}/oauth2/auth
             # nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
           hosts:
-            - host: &host-release-code "{{ .Release.Name }}-code.${SECRET_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
-            - host: &host-custom-code "hass-code.${SECRET_DOMAIN}"
+            - host: &host-release-code "hass-code.${SECRET_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
@@ -130,7 +122,6 @@ spec:
           tls:
             - hosts:
                 - *host-release-code
-                - *host-custom-code
                 - *host-custom-config
         volumeMounts:
           - name: config
