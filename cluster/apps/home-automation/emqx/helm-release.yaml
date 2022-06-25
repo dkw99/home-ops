@@ -90,9 +90,11 @@ spec:
         path: /
         hosts:
           - emqx.${SECRET_DOMAIN}
+          - mqtt.${SECRET_DOMAIN}
         tls:
           - hosts:
               - emqx.${SECRET_DOMAIN}
+              - mqtt.${SECRET_DOMAIN}
   valuesFrom:
     - targetPath: emqxConfig.EMQX_ADMIN_PASSWORD
       kind: Secret
