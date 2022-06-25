@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - echo-server
   # - error-pages
-  - external-dns
+  # - external-dns
   - external-services
   - ingress-nginx
   - oauth2-proxy
