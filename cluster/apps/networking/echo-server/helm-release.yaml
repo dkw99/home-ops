@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app echo-server
-  namespace: networking
+  namespace: default
 spec:
   interval: 15m
   chart:
@@ -12,16 +12,21 @@ spec:
       version: 1.1.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: k8s-at-home
         namespace: flux-system
       interval: 15m
   install:
     createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     global:
       nameOverride: *app
     controller:
-      replicas: 3
+      replicas: 1
       strategy: RollingUpdate
     image:
       repository: docker.io/jmalloc/echo-server
@@ -68,16 +73,20 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "video-input-antenna"
         hosts:
-          - host: &host "echo-server.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
+            secretName: "echo-server-tls"
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -87,7 +96,7 @@ spec:
             app.kubernetes.io/name: *app
     resources:
       requests:
-        cpu: 10m
-        memory: 50Mi
+        cpu: 50m
+        memory: 64Mi
       limits:
-        memory: 100Mi
+        memory: 96Mi

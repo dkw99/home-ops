@@ -5,19 +5,23 @@ metadata:
   name: &app theme-park
   namespace: default
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: theme-park
+      chart: kah-common-chart
       version: 1.1.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     global:
       nameOverride: *app
@@ -26,7 +30,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/k8s-at-home/theme-park
-      tag: v1.9.5
+      tag: v1.9.5@sha256:07535424a0da3bc193e83d398067b050e6cdb944b9a1126602d25ebb117ce336
     service:
       main:
         ports:
@@ -40,13 +44,13 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - host: "theme-park.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "theme-park.${SECRET_DOMAIN}"
+              - *host
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
