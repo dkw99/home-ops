@@ -7,5 +7,5 @@ resources:
   - oauth2-proxy
   - opnsense
   - echo-server
-  - error-pages
+  # - error-pages
   # - external-dns
