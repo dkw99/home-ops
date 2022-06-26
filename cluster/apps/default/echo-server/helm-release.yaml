@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app echo-server
-  namespace: networking
+  namespace: default
 spec:
   interval: 15m
   chart:
@@ -78,7 +78,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "video-input-antenna"
         hosts:
-          - host: &host "echo-server.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -86,13 +86,6 @@ spec:
           - hosts:
               - *host
             secretName: "echo-server-tls"
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
     resources:
       requests:
         cpu: 50m

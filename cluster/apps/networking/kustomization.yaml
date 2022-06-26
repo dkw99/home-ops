@@ -6,6 +6,6 @@ resources:
   - ingress-nginx
   - oauth2-proxy
   - opnsense
-  - echo-server
-  # - error-pages
+  # - echo-server
+  - error-pages
   # - external-dns

@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - hajimari
   - theme-park
+  - echo-server
