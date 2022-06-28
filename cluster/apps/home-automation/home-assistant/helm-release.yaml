@@ -107,7 +107,7 @@ spec:
             external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
             cert-manager.io/cluster-issuer: letsencrypt-production
             ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
-            external-dns/is-public: "true"
+            external-dns/is-public: "false"
             hajimari.io/enable: "true"
             hajimari.io/icon: settings
             # nginx.ingress.kubernetes.io/auth-url: https://auth.${SECRET_DOMAIN}/oauth2/auth
