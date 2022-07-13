@@ -20,3 +20,9 @@ tasks:
     dir: provision/terraform/cloudflare
     cmds:
       - terraform apply {{.CLI_ARGS}}
+
+  cf-gen:
+    desc: cf-generate
+    dir: provision/terraform/cloudflare
+    cmds:
+      - cf-terraforming generate --resource-type "cloudflare_record" --zone $CLOUDFLARE_ZONE_ID -t $CLOUDFLARE_API_TOKEN {{.CLI_ARGS}}
