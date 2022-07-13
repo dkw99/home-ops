@@ -30,7 +30,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/k8s-at-home/theme-park
-      tag: v1.9.5@sha256:07535424a0da3bc193e83d398067b050e6cdb944b9a1126602d25ebb117ce336
+      tag: v1.9.7@sha256:01bb227597532153b47d74666163993d0f01410ee75646b236f514cdd4fa6da4
     service:
       main:
         ports:
