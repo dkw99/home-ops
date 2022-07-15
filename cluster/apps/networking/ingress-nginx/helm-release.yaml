@@ -5,19 +5,26 @@ metadata:
   name: ingress-nginx
   namespace: networking
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
       chart: ingress-nginx
       version: 4.2.0
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: cert-manager
+      namespace: cert-manager
   values:
     controller:
       replicaCount: 1
@@ -25,9 +32,9 @@ spec:
         - name: TZ
           value: "${TIMEZONE}"
       service:
-        type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: ${INGRESS_NGINX_IP}
+          metallb.universe.tf/loadBalancerIPs: |-
+            ${INGRESS_NGINX_IP}
         externalTrafficPolicy: Local
       publishService:
         enabled: true
