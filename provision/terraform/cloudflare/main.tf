@@ -3,7 +3,7 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "3.18.0"
+      version = "3.19.0"
     }
     http = {
       source  = "hashicorp/http"
@@ -106,5 +106,13 @@ resource "cloudflare_record" "hajimari" {
   value   = "ipv4.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}"
   proxied = true
   type    = "CNAME"
+  ttl     = 1
+}
+resource "cloudflare_record" "vault" {
+  name    = "vault"
+  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  value   = chomp(data.http.ipv4.body)
+  proxied = false
+  type    = "A"
   ttl     = 1
 }
