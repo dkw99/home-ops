@@ -5,15 +5,16 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
   annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     external-dns/is-public: "true"
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: nginx
   rules:
-    - host: "flux-webhook.${SECRET_DOMAIN}"
+    - host: "flux-receiver.${SECRET_DOMAIN}"
       http:
         paths:
-          - path: /
+          - path: /hook/
             pathType: Prefix
             backend:
               service:
@@ -22,4 +23,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - "flux-webhook.${SECRET_DOMAIN}"
+        - "flux-receiver.${SECRET_DOMAIN}"
+      secretName: flux-receiver-tls
