@@ -27,12 +27,12 @@ tasks:
   flux:install:
     desc: Install Flux into your cluster, run this again if it fails
     cmds:
-      - kubectl apply -k {{.CLUSTER_DIR}}/base/flux-system
+      - kubectl apply -k {{.CLUSTER_DIR}}/flux/flux-system
 
   reconcile:
     desc: Force update Flux to pull in changes from your Git repository
     cmds:
-      - flux reconcile source git flux-system {{.CLI_ARGS | default "-n flux-system"}}
+      - flux reconcile source git flux-cluster {{.CLI_ARGS | default "-n flux-system"}}
 
   nodes:
     desc: List all the nodes in your cluster
