@@ -60,12 +60,11 @@ spec:
     ingress:
       main:
         enabled: true
+        className: external
         annotations:
-          external-dns.home.arpa/enabled: "false"
-          cert-manager.home.arpa/enabled: "true"
-          auth.home.arpa/enabled: "false"
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
-          - host: &host mealie.${SECRET_DOMAIN}
+          - host: &host "{{ .Release.Name }}-external.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -74,7 +73,19 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: mealie-tls
+      internal:
+        enabled: true
+        className: internal
+        hosts:
+          - host: &host "{{ .Release.Name }}-internal.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
