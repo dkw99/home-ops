@@ -16,6 +16,7 @@ resources:
   - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
   - ./openebs.yaml
+  - ./piraues.yaml
   - ./postfinance.yaml
   - ./stakater.yaml
   - ./xenitab.yaml
