@@ -45,7 +45,7 @@ spec:
               SMTP_PORT: 25
               SMTP_AUTH_STRATEGY: NONE
               SMTP_FROM_EMAIL: mealie@${SECRET_DOMAIN}
-              THEME_DARK_PRIMARY: '#E58325'
+              THEME_DARK_PRIMARY:
             resources:
               requests:
                 cpu: 100m
