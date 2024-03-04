@@ -37,7 +37,7 @@ spec:
       dashboard:
         ingressClassName: internal
         host:
-          name: &host rook.devbu.io
+          name: &host rook.${SECRET_DOMAIN}
           path: /
         tls:
           - hosts:
@@ -88,7 +88,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: true
-        deviceFilter: nvme0n1
+        deviceFilter: sdb
         config:
           osdsPerDevice: "1"
       placement:
