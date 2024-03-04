@@ -80,7 +80,7 @@ spec:
         enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "external1.${SECRET_DOMAIN}"
         hosts:
           - host: &host "{{ .Release.Name }}-external.${SECRET_DOMAIN}"
             paths:
@@ -95,7 +95,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}-internal.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}-internal1.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
