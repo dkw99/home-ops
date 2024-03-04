@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./backube.yaml
+  - ./bjw-s.yaml
+  - ./cilium.yaml
+  - ./cloudnative-pg.yaml
+  - ./descheduler.yaml
+  - ./emqx.yaml
+  - ./grafana.yaml
+  - ./external-dns.yaml
+  - ./ingress-nginx.yaml
+  - ./k8s-gateway.yaml
+  - ./intel.yaml
+  - ./jetstack.yaml
+  - ./metrics-server.yaml
+  - ./node-feature-discovery.yaml
+  - ./openebs.yaml
+  - ./piraeus.yaml
+  - ./prometheus-community.yaml
+  - ./postfinance.yaml
+  - ./rook-ceph.yaml
+  - ./stakater.yaml
+  - ./xenitab.yaml
