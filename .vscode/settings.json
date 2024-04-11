@@ -19,9 +19,10 @@
         "Kubernetes": "./kubernetes/*.yaml"
     },
     "vs-kubernetes": {
-        "vs-kubernetes.kubeconfig": "./kubeconfig",
+        "vs-kubernetes.kubeconfig": "/home/dkwise/home-lab/repos/dkw99/home-ops/kubernetes/main/kubeconfig",
         "vs-kubernetes.knownKubeconfigs": [
-          "./kubeconfig"
-      ]
+            "./kubeconfig",
+            "/home/dkwise/home-lab/repos/dkw99/home-ops/kubernetes/main/kubeconfig"
+        ]
     }
 }
