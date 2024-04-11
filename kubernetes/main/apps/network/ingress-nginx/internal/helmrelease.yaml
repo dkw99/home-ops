@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: ingress-nginx-internal
+  name: nginx-internal
   namespace: network
 spec:
   interval: 30m
@@ -24,7 +24,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    fullnameOverride: ingress-nginx-internal
+    fullnameOverride: nginx-internal
     controller:
       replicaCount: 1
       service:
