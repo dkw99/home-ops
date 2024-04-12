@@ -88,8 +88,8 @@ spec:
                   timeoutSeconds: 1
                   periodSeconds: 5
             securityContext: &securityContext
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: true
+              # readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources: &resources
               requests:
@@ -115,8 +115,8 @@ spec:
         controller: bitwarden-cli
         podSelector:
           matchLabels:
-            app.kubernetes.io/instance: external-secrets-stores
-            app.kubernetes.io/name: external-secrets-stores
+            app.kubernetes.io/instance: bitwarden-cli
+            app.kubernetes.io/name: bitwarden-cli
         policyTypes:
           - Ingress
         rules:
