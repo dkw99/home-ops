@@ -1,0 +1,128 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: bitwarden-cli
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      bitwarden-cli:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          bitwarden-cli:
+            image:
+              repository: docker.io/triargos/bitwarden-cli
+              tag: v1.0.1@sha256:0d4795bedd75af357420ae7fa5aae0dccfda6ed741207edbc81ef4894b8d3c1d
+            env:
+              - name: SERVE_PORT
+                value: &apiPort 8087
+              - name: BW_SERVER
+                valueFrom:
+                  secretKeyRef:
+                    name: bitwarden-cli-secret
+                    key: BW_HOST
+              - name: BW_CLIENTID
+                valueFrom:
+                  secretKeyRef:
+                    name: bitwarden-cli-secret
+                    key: BW_USERNAME
+              - name: BW_CLIENTSECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: bitwarden-cli-secret
+                    key: BW_PASSWORD
+
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command:
+                      - wget
+                      - -q
+                      - http://127.0.0.1:8087/sync?force=true
+                      - --post-data=''
+                  initialDelaySeconds: 20
+                  failureThreshold: 3
+                  timeoutSeconds: 1
+                  periodSeconds: 120
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: *apiPort
+                  initialDelaySeconds: 20
+                  failureThreshold: 3
+                  timeoutSeconds: 1
+                  periodSeconds: 10
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: *apiPort
+                  initialDelaySeconds: 10
+                  failureThreshold: 30
+                  timeoutSeconds: 1
+                  periodSeconds: 5
+            securityContext: &securityContext
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources: &resources
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256M
+        pod:
+          securityContext:
+            runAsUser: 999
+            runAsGroup: 999
+            runAsNonRoot: true
+            fsGroup: 999
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: bitwarden-cli
+        ports:
+          http:
+            port: *apiPort
+    networkpolicies:
+      main:
+        enabled: true
+        controller: bitwarden-cli
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/instance: external-secrets-stores
+            app.kubernetes.io/name: external-secrets-stores
+        policyTypes:
+          - Ingress
+        rules:
+          ingress:
+            - from:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/instance: external-secrets
+                      app.kubernetes.io/name: external-secrets
