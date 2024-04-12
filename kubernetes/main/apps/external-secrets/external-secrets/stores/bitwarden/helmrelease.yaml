@@ -1,18 +1,18 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: bitwarden-cli
+  name: bitwarden-eso-provider
 spec:
   interval: 30m
   chart:
     spec:
-      chart: app-template
-      version: 3.1.0
+      chart: bitwarden-eso-provider
+      version: 0.6.0
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: bitwarden-eso-provider
         namespace: flux-system
   install:
     remediation:
@@ -23,104 +23,19 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    controllers:
-      bitwarden-cli:
-        strategy: RollingUpdate
-        annotations:
-          reloader.stakater.com/auto: "true"
-        containers:
-          bitwarden-cli:
-            image:
-              repository: ghcr.io/charlesthomas/bitwarden-cli
-              tag: 2023.12.1
-            env:
-              - name: BW_HOST
-                valueFrom:
-                  secretKeyRef:
-                    name: bitwarden-cli-secret
-                    key: BW_HOST
-              - name: BW_USER
-                valueFrom:
-                  secretKeyRef:
-                    name: bitwarden-cli-secret
-                    key: BW_USERNAME
-              - name: BW_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: bitwarden-cli-secret
-                    key: BW_PASSWORD
-
-            probes:
-              liveness:
-                enabled: true
-                custom: true
-                spec:
-                  exec:
-                    command:
-                      - wget
-                      - -q
-                      - http://127.0.0.1:8087/sync?force=true
-                      - --post-data=''
-                  initialDelaySeconds: 20
-                  failureThreshold: 3
-                  timeoutSeconds: 1
-                  periodSeconds: 120
-              readiness:
-                enabled: true
-                custom: true
-                spec:
-                  tcpSocket:
-                    port: 8087
-                  initialDelaySeconds: 20
-                  failureThreshold: 3
-                  timeoutSeconds: 1
-                  periodSeconds: 10
-              # startup:
-              #   enabled: true
-              #   custom: true
-              #   spec:
-              #     tcpSocket:
-              #       port: 8087
-              #     initialDelaySeconds: 10
-              #     failureThreshold: 30
-              #     timeoutSeconds: 1
-              #     periodSeconds: 5
-            securityContext: &securityContext
-              allowPrivilegeEscalation: true
-              # readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources: &resources
-              requests:
-                cpu: 10m
-              limits:
-                memory: 256M
-        # pod:
-        #   securityContext:
-        #     runAsUser: 999
-        #     runAsGroup: 999
-        #     runAsNonRoot: true
-        #     fsGroup: 999
-        #     fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        controller: bitwarden-cli
-        ports:
-          http:
-            port: 8087
-    # networkpolicies:
-    #   main:
-    #     enabled: true
-    #     controller: bitwarden-cli
-    #     podSelector:
-    #       matchLabels:
-    #         app.kubernetes.io/instance: bitwarden-cli
-    #         app.kubernetes.io/name: bitwarden-cli
-    #     policyTypes:
-    #       - Ingress
-    #     rules:
-    #       ingress:
-    #         - from:
-    #             - podSelector:
-    #                 matchLabels:
-    #                   app.kubernetes.io/instance: external-secrets
-    #                   app.kubernetes.io/name: external-secrets
+    bitwarden_eso_provider:
+      auth:
+        # -- use an existing Kubernetes Secret for bitwarden credentials
+        existingSecret: "bitwarden-cli-secret"
+        # -- Keys in the existing Kubernetes Secret to use for each sensitive value
+        secretKeys:
+          # -- secret key for Bitwarden password key
+          password: "BW_PASSWORD"
+          # -- secret key for Bitwarden client Secret to use to grabs secrets in the pod
+          clientSecret: "BW_CLIENTSECRET"
+          # -- secret key for Bitwarden client ID to use to grabs secrets in the pod
+          clientID: "BW_CLIENTID"
+          # -- bitwarden app ID to identify your pod to the Bitwarden server so that you don't receieve infinite email notifications every login
+          appID: "BW_APPID"
+          # -- secret key for Bitwarden hostname to use to grab secrets in the pod
+          host: "BW_HOST"
