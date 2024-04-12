@@ -30,7 +30,7 @@ spec:
         # -- Keys in the existing Kubernetes Secret to use for each sensitive value
         secretKeys:
           # -- secret key for Bitwarden password key
-          # password: "BW_PASSWORD"
+          password: "BW_PASSWORD"
           # -- secret key for Bitwarden client Secret to use to grabs secrets in the pod
           clientSecret: "BW_CLIENTSECRET"
           # -- secret key for Bitwarden client ID to use to grabs secrets in the pod
