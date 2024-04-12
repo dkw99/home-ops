@@ -96,13 +96,13 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256M
-        pod:
-          securityContext:
-            runAsUser: 999
-            runAsGroup: 999
-            runAsNonRoot: true
-            fsGroup: 999
-            fsGroupChangePolicy: OnRootMismatch
+        # pod:
+        #   securityContext:
+        #     runAsUser: 999
+        #     runAsGroup: 999
+        #     runAsNonRoot: true
+        #     fsGroup: 999
+        #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: bitwarden-cli
