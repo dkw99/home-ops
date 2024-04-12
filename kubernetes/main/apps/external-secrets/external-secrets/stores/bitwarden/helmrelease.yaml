@@ -31,22 +31,20 @@ spec:
         containers:
           bitwarden-cli:
             image:
-              repository: docker.io/triargos/bitwarden-cli
-              tag: v1.0.1@sha256:0d4795bedd75af357420ae7fa5aae0dccfda6ed741207edbc81ef4894b8d3c1d
+              repository: ghcr.io/charlesthomas/bitwarden-cli
+              tag: 2023.12.1
             env:
-              - name: SERVE_PORT
-                value: &apiPort 8087
-              - name: BW_SERVER
+              - name: BW_HOST
                 valueFrom:
                   secretKeyRef:
                     name: bitwarden-cli-secret
                     key: BW_HOST
-              - name: BW_CLIENTID
+              - name: BW_USER
                 valueFrom:
                   secretKeyRef:
                     name: bitwarden-cli-secret
                     key: BW_USERNAME
-              - name: BW_CLIENTSECRET
+              - name: BW_PASSWORD
                 valueFrom:
                   secretKeyRef:
                     name: bitwarden-cli-secret
@@ -72,7 +70,7 @@ spec:
                 custom: true
                 spec:
                   tcpSocket:
-                    port: *apiPort
+                    port: 8087
                   initialDelaySeconds: 20
                   failureThreshold: 3
                   timeoutSeconds: 1
@@ -82,7 +80,7 @@ spec:
                 custom: true
                 spec:
                   tcpSocket:
-                    port: *apiPort
+                    port: 8087
                   initialDelaySeconds: 10
                   failureThreshold: 30
                   timeoutSeconds: 1
@@ -108,21 +106,21 @@ spec:
         controller: bitwarden-cli
         ports:
           http:
-            port: *apiPort
-    networkpolicies:
-      main:
-        enabled: true
-        controller: bitwarden-cli
-        podSelector:
-          matchLabels:
-            app.kubernetes.io/instance: bitwarden-cli
-            app.kubernetes.io/name: bitwarden-cli
-        policyTypes:
-          - Ingress
-        rules:
-          ingress:
-            - from:
-                - podSelector:
-                    matchLabels:
-                      app.kubernetes.io/instance: external-secrets
-                      app.kubernetes.io/name: external-secrets
+            port: 8087
+    # networkpolicies:
+    #   main:
+    #     enabled: true
+    #     controller: bitwarden-cli
+    #     podSelector:
+    #       matchLabels:
+    #         app.kubernetes.io/instance: bitwarden-cli
+    #         app.kubernetes.io/name: bitwarden-cli
+    #     policyTypes:
+    #       - Ingress
+    #     rules:
+    #       ingress:
+    #         - from:
+    #             - podSelector:
+    #                 matchLabels:
+    #                   app.kubernetes.io/instance: external-secrets
+    #                   app.kubernetes.io/name: external-secrets
