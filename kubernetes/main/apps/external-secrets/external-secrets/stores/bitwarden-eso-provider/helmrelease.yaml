@@ -24,6 +24,7 @@ spec:
       retries: 3
   values:
     bitwarden_eso_provider:
+      create_cluster_secret_store: false
       auth:
         # -- use an existing Kubernetes Secret for bitwarden credentials
         existingSecret: "bwes-secret"
