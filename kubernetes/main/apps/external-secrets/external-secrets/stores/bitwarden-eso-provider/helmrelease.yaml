@@ -21,7 +21,7 @@ spec:
     cleanupOnFail: true
     remediation:
       strategy: rollback
-      retries: 3
+      retries: 2
   values:
     bitwarden_eso_provider:
       create_cluster_secret_store: false
