@@ -90,10 +90,10 @@ spec:
         existingClaim: mealie-config
         globalMounts:
           - path: /app/data
-      backups:
-        enabled: true
-        type: nfs
-        server: nfs1.home.lan
-        path: /volume1/k3sCluster/Apps/External/Backups
-        globalMounts:
-          - path: /app/data/backups
+      # backups:
+      #   enabled: true
+      #   type: nfs
+      #   server: nfs1.home.lan
+      #   path: /volume1/k3sCluster/Apps/External/Backups
+      #   globalMounts:
+      #     - path: /app/data/backups
