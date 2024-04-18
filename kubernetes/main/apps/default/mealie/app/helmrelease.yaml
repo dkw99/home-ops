@@ -90,3 +90,9 @@ spec:
         existingClaim: mealie-config
         globalMounts:
           - path: /app/data
+      backups:
+        type: nfs
+        server: nfs1.home.lan
+        path: /volume1/k3sCluster/Apps/External/Backups/mealie
+        globalMounts:
+          - path: /app/data/backups
