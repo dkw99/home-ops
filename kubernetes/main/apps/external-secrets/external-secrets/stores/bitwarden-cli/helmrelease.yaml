@@ -44,6 +44,25 @@ spec:
               limits:
                 cpu: 200m
                 memory: 800Mi
+            probes:
+  #           # -- Liveness probe configuration
+  #           # @default -- See below
+              liveness:
+  #             # -- Enable the liveness probe
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command:
+                    - wget
+                    - -q
+                    - http://127.0.0.1:8087/sync
+                    - --post-data=''
+                  failureThreshold: 30
+                  initialDelaySeconds: 20
+                  periodSeconds: 10
+                  successThreshold: 1
+                  timeoutSeconds: 1
     service:
       app:
         controller: bitwarden-cli
