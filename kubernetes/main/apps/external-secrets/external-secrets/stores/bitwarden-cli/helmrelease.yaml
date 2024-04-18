@@ -103,4 +103,29 @@ spec:
         ports:
           http:
             port: *port
+    networkpolicies:
+      main:
+        enabled: true
+        controller: bitwarden-cli
+        rules:
+          ingress:
+            - from:
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: external-secrets
+                    app.kubernetes.io/name: external-secrets
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: external-secrets
+                    app.kubernetes.io/name: external-secrets-cert-controller
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: external-secrets
+                    app.kubernetes.io/name: external-secrets-webhook
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: external-secrets
+                    app.kubernetes.io/name: maintenance
+
+
 
