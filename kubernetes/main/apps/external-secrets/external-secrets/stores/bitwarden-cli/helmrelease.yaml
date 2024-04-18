@@ -107,6 +107,8 @@ spec:
       main:
         enabled: true
         controller: bitwarden-cli
+        policyTypes:
+          - Ingress
         rules:
           ingress:
             - from:
