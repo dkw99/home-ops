@@ -48,3 +48,6 @@ spec:
     network_policy:
       # -- enable a network policy between bitwarden_eso_provider and external-secrets-operator
       enabled: true
+      labels:
+        app.kubernetes.io/name: maintenance
+
