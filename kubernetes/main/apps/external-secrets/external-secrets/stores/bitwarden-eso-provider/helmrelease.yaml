@@ -47,4 +47,4 @@ spec:
       runAsUser: 1000
     network_policy:
       # -- enable a network policy between bitwarden_eso_provider and external-secrets-operator
-      enabled: false
+      enabled: true
