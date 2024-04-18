@@ -72,7 +72,7 @@ spec:
                   periodSeconds: 10
                   successThreshold: 1
                   tcpSocket:
-                    port: 8087
+                    port: &port 8087
               startup:
                 enabled: true
                 custom: true
@@ -82,12 +82,25 @@ spec:
                   periodSeconds: 10
                   successThreshold: 1
                   tcpSocket:
-                    port: 8087
+                    port: *port
                   timeoutSeconds: 1
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 2000
+        fsGroupChangePolicy: OnRootMismatch
+        #supplementalGroups: [10000]
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: bitwarden-cli
         ports:
           http:
-            port: 8087
+            port: *port
 
