@@ -86,9 +86,18 @@ spec:
         urlPrefix: /
         ssl: false
       storage:
-        useAllNodes: true
-        useAllDevices: true
-        deviceFilter: /dev/sdb
+        useAllNodes: false
+        useAllDevices: false
+        nodes:
+          - name: k8s-0
+            devices:
+              - name: sdb
+          - name: k8s-1
+            devices:
+              - name: sdb
+          - name: k8s-2
+            devices:
+              - name: sdb
         config:
           osdsPerDevice: "1"
       placement:
