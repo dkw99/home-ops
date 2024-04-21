@@ -8,3 +8,4 @@ data:
   TIMEZONE: "Australia/Sydney"
   CLUSTER_CIDR: "10.69.0.0/16"
   NODE_CIDR: "192.168.15.0/24"
+  VOLSYNC_RESTIC_REPOSITORY: s3:http://nas.home.lan:9001/volsync
