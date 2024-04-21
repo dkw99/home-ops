@@ -88,7 +88,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: true
-        deviceFilter: sdb
+        deviceFilter: /dev/sdb
         config:
           osdsPerDevice: "1"
       placement:
