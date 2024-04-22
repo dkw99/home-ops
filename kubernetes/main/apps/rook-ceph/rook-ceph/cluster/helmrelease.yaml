@@ -21,7 +21,7 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
-      retries: 4
+      retries: 3
   uninstall:
     keepHistory: false
   dependsOn:
@@ -216,7 +216,7 @@ spec:
           enabled: true
           ingressClassName: internal
           host:
-            name: &host rgw.${SECRET_DOMAIN}
+            name: &host rgw.${SECRET_DOMAIN_T}
             path: /
           tls:
             - hosts:
