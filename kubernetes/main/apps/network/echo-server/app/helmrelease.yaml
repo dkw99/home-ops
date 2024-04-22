@@ -94,7 +94,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: extmain.${SECRET_DOMAIN}
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_T}"
+          - host: &host "{{ .Release.Name }}-ext.${SECRET_DOMAIN_T}"
             paths:
               - path: /
                 service:
