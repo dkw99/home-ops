@@ -18,3 +18,11 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      GATUS_SUBDOMAIN: *app
+      VOLSYNC_CAPACITY: 1Gi
+      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_STORAGECLASS: openebs-hostpath #ceph-filesystem
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem

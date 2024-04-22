@@ -13,15 +13,64 @@ spec:
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: "{{ .REPOSITORY_TEMPLATE }}/${APP}"
-        RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
-        AWS_ACCESS_KEY_ID: "{{ .MINIO_ROOT_USER }}"
-        AWS_SECRET_ACCESS_KEY: "{{ .MINIO_ROOT_PASSWORD }}"
-  dataFrom:
-    - extract:
-        key: minio
-    - extract:
-        key: volsync-minio-template
+        # key in the Kubernetes secret to create
+        AWS_ACCESS_KEY_ID: |-
+          {{ .username }}
+        AWS_SECRET_ACCESS_KEY: |-
+          {{ .password }}
+        REPOSITORY_TEMPLATE: |-
+          {{ .REPOSITORY_TEMPLATE }}
+        RESTIC_PASSWORD: |-
+          {{ .RESTIC_PASSWORD }}
+
+  data:
+    - secretKey: username
+      sourceRef:
+        storeRef:
+          name: bitwarden-cli-login
+          kind: ClusterSecretStore  # or SecretStore
+      remoteRef:
+        key: nas_minio_root
+        property: username
+    # value to pass to the Kubernetes secret, go-templated as {{ .password }} above
+
+    - secretKey: password
+      sourceRef:
+        storeRef:
+          # Use the bitwarden-login store to get password values from a Bitwarden item
+          # does *not* contain custom fields. Use bitwarden-fields for Bitwarden items with custom fields
+          name: bitwarden-cli-login
+          kind: ClusterSecretStore
+      remoteRef:
+        # This is the `name` of your Bitwarden item (not the id)
+        key: nas_minio_root
+        # This is the property of the Bitwarden item that we want e.g. password
+        property: password
+    - secretKey: REPOSITORY_TEMPLATE
+      sourceRef:
+        storeRef:
+          # Use the bitwarden-login store to get password values from a Bitwarden item
+          # does *not* contain custom fields. Use bitwarden-fields for Bitwarden items with custom fields
+          name: bitwarden-cli-fields
+          kind: ClusterSecretStore
+      remoteRef:
+        # This is the `name` of your Bitwarden item (not the id)
+        key: nas_minio_root
+        # This is the property of the Bitwarden item that we want e.g. password
+        property: REPOSITORY_TEMPLATE
+    - secretKey: RESTIC_PASSWORD
+      sourceRef:
+        storeRef:
+          # Use the bitwarden-login store to get password values from a Bitwarden item
+          # does *not* contain custom fields. Use bitwarden-fields for Bitwarden items with custom fields
+          name: bitwarden-cli-fields
+          kind: ClusterSecretStore
+      remoteRef:
+        # This is the `name` of your Bitwarden item (not the id)
+        key: nas_minio_root
+        # This is the property of the Bitwarden item that we want e.g. password
+        property: RESTIC_PASSWORD
+
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
