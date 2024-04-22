@@ -40,7 +40,7 @@ spec:
               SMTP_HOST: ${SMTP_HOST_IP}
               SMTP_PORT: 25
               SMTP_AUTH_STRATEGY: NONE
-              SMTP_FROM_EMAIL: mealie@${SECRET_DOMAIN}
+              SMTP_FROM_EMAIL: mealie@${SECRET_DOMAIN_T}
               THEME_DARK_PRIMARY:
             resources:
               requests:
@@ -75,7 +75,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}.t.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_T}"
             paths:
               - path: /
                 service:

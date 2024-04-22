@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "${SECRET_DOMAIN/./-}-staging"
+  name: "${SECRET_DOMAIN_T/./-}-staging"
 spec:
-  secretName: "${SECRET_DOMAIN/./-}-staging-tls"
+  secretName: "${SECRET_DOMAIN_T/./-}-staging-tls"
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: "t.${SECRET_DOMAIN}"
+  commonName: "${SECRET_DOMAIN_T}"
   dnsNames:
-    - "t.${SECRET_DOMAIN}"
-    - "*.t.${SECRET_DOMAIN}"
+    - "${SECRET_DOMAIN_T}"
+    - "*.${SECRET_DOMAIN_T}"
