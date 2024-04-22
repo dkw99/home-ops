@@ -41,8 +41,8 @@ spec:
     policy: sync
     sources: ["crd", "ingress"]
     txtOwnerId: default
-    txtPrefix: k8sm.
-    domainFilters: ["${SECRET_DOMAIN}"]
+    txtPrefix: k8st.
+    domainFilters: ["${SECRET_DOMAIN_T}"]
     serviceMonitor:
       enabled: true
     podAnnotations:
