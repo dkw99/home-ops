@@ -5,4 +5,4 @@ resources:
   - ./production.yaml
   - ./production-t.yaml
   - ./staging.yaml
-  # - ./staging-t.yaml
+  - ./staging-t.yaml
