@@ -90,20 +90,10 @@ spec:
             scrapeTimeout: 10s
     ingress:
       app:
+        enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: extmain.${SECRET_DOMAIN}
-        hosts:
-          - host: &host "{{ .Release.Name }}-ext.${SECRET_DOMAIN_T}"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [*host]
-      internal:
-        className: internal
+          external-dns.alpha.kubernetes.io/target: "extmain.${SECRET_DOMAIN}"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_T}"
             paths:
@@ -112,4 +102,18 @@ spec:
                   identifier: app
                   port: http
         tls:
-          - hosts: [*host]
+          - hosts:
+              - *host
+      internal:
+        enabled: true
+        className: internal
+        hosts:
+          - host: &host1 "{{ .Release.Name }}.${SECRET_DOMAIN_T}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host1
