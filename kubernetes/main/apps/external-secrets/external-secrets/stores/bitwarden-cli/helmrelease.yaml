@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: jessebot/bweso
-              tag: v0.5.0
+              tag: 0.6.0
             envFrom: &envFrom
               - secretRef:
                   name: bwes-secret
