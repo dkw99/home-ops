@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: github-deploy-key
+    namespace: flux-system
+stringData:
+    identity: ENC[AES256_GCM,data:iEPH272eMmd1qUekWLaZGkt8BTR7HptwVS9P2xXCxe5oSWCbhOHKFHXo/WLIQ5NynHCVc4EF3jWmEAS7aVdjEdo7pCQwaGeo3mev9XGnhdohMNLlP5EqIyrCuw96Bu6NzyF+/1FFHvVrpjLxlKXsg+DEoErgRWJrAGQ2/dwf0PGNuCETCVEySQ8ieSqbo+yEJckLFPyOeUk+yGal2YqIj71gH3cIZF4Ka1DMd233OgryHZ4iGvAbGtG/fzXgxYpRjbxwuOaRrhIh4TmFvr9QPBywPOfJqBYJ7/pTw7ewi8PJ/T/EqRsHaU2jajb6fUfXNScY5N/fhwJdZy88oPv2ZJFAwjNmS9Q9K2gH1cn8CEnYKR6ZoN/uAuVfZAs1YazCgfUfQula68d7RW6VskRh6GbtF6jTTvMTDVsLG7yPP5DK6SE+y0dCcn+SNHN06KhugXhC979e1QHAPI+UcT3cbj9tWIY2OZ9MAYjIyMZnOPzbxkIdi7ydt0Udb1UdgNMqoVt1WrBZvngQv5xyv/pYEyoMMM6LBIqUQeuXyUxajjv0SXCLJKL1TezoWdnItbb1WuB8p0Y+HOKzOohusYFv+9ule9xj1eNE3FZE/vBvJ6zc18CdmiT4XFgc5eAb4rdEmX2+PPcHzLwGrdEAmOjpxA7XLR9m/6jDbEnAaTB2tQpB2piJYF3ArUiP2es6MpbSqF9pxRVgtHjgYT8AWztLYwobOVUvR7MELLU0BXOmT65CT7blfaRV6m4LI14W2+qJs1I8NP1ju1dTNnVD6m3bRTuCmQtYsNHeELbjt+ZJrg8brS9K3Lpm/3eOXO3CHSsavkI7WJdVjMuTPiQ5GudGWND6YjTe4zok4AaxIK7Yeeeg+qfQSQPjBz7DVPn7k+v72rTlT5hWx2grf1DclwHU5EU2sPG1bl1W/P4ns5ClcijNKgU6PeXUb9L2CH3klnuPuyLW+clumU+p71IobNrPfg==,iv:ltPvFZRqgVMs+JNuKbl3yDJwPhPeiI3fF/yzc1dh9sk=,tag:V+2pvqIZXnT7Rg1/MQfEpA==,type:str]
+    known_hosts: ENC[AES256_GCM,data:2+izhjo06Sb6k5LLmb1pqiimyhEOBpZ2AGAdd9rJ3qrFyHFYRPcmqFJY826Akc2XiMLRu/oloeS5oSEkn90dKERIPc0WtfRIsm4OkPfeuW3lpf3xLoHTlJjE8e5HUkBK3qpyQCKt668/RZdvgsiNqFqFeNe5jTX7bHXUdIpAIrBhxwlvXoJNeeQO3YVd2EQtPSF9Ukjr17UsEMD1cQ1KNLPowDTR2uHeepGMPYG7xP3z58qQiyyMwhYDjUd1rGEdBomSCh2brOl+vb4HqkW9f3fZK5XzEs0GVJLd85/S1gaZV3RrrCiJI6dD+NPBixH1tWo90FbiY+ghqJueenSbjF9xFotOeR/ZErS4IAZeMauuyH63DJQbYmz0jFctXe+aMW30h6EAo5V6Hm1uT9mQc7KZT9C0mz6+qG+WgsPfOdVNdsNd6vGXLCudCYZHZmPTzLv+o3MR3DPARTajRwQffhhWUSQQtz3J8EJsJF6v+IljW17GtacfrXs5lI+HFn0I5YhbdfKYDVKs5o5BZw9Nxorc9AMoBa8Jiau+u90PAHBunEDiNUmFMJrSPvztLAnsQ/pdi2tl5xLmOhx37sTUnoNjFvLvmPXq3IOzarBKhf1X6iSybRTCAdUk+Nv6RwNvNGvPlQMpOlzOZxoUq+et7UgNvssFoCxorQo2STnswghdTlVsOK6gQtzelVIht3d5FkD1q61DT49AldIGO0gwjhiFZtELLTbtOSMTjF7kp3v2ELM0lSGiYN3BlB6Np2un7loyZZ8jZpm5NZCClP05mUsFJUmyiBldm93PglMBEBAsnZwRP6Q/X81jc3FrVw+IdtMdYvRZN+eEk9LonqeDZoPR8ejsG3eQ7tZKIxCY1g88OgxnvmOXj7vl6vJwMeeiyLTfGXXep8I7ia/3lHG7u476jJ0cEb2xSv3uO5pQvbuzT71CGH/18SwDI+xafjorhbWGbd6JQPNBlv8Kfm5vjQTT6Z5bV6W0fmlUtCV/VzWVkP2Q3PJ2Wz9lQesx8em5Wb5d+NtCGKcYxeVCJgvcow0LCibAA56JtqZxVbLCph1kBtyU8MfXkQdCkmOfWC+l05rQKTCAYxHD67wa,iv:OBqT9+Yc8C/D5fq3p9SFgR7rwAz+46Bs1eAbCXnU8Vc=,tag:h3zlgvVbx7nOa+pWV0Ve1g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1swfceavhed7qqdn6tq3s6dv3ny7m8ngk5z8ap64kk4ztumqgxc8q3x7eed
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNWUcvbElid2lHNTZBME84
+            aFJVMVVKbkx2b0k2U1dqeDBSYTZPcThXbGtFCjg4NlpUaktHTXRxVXFlSm40UVpO
+            QmhtdWxJQVljaVhBdEg2ZlhPR1JJc3cKLS0tICt2YkMyVHdqd0YxMzlvK2MwMk1E
+            c3ZoUHJ4dTgzYWtTa3ZkZ2t0VTBQTWsKAVnmyx6KCmmw+C14fScoie6PSPyxKohM
+            OO/+74Pbx7IiDqb3qW0tTLCVMncJ9D0CiqFo/TIZyTZkWMpf0UQi2w==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1qqz7ryljcrncf70a6n0yqptdq34nte99uj8j6ppucw94npccad0q304pkw
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAvY3V2cUhnRVVjUmtrVkpu
+            VDNtdWRkdStXbFQ4K2RjdzdockFVaTFOR0VZCmVqSDRNQWlmb1lXSWJWOXF6UnRC
+            NlRWeGUxeWE1K0lTSktvOVFjZ05UdEEKLS0tIG53cStYZmJRUU9SQ2E1Ym9nalNp
+            cnF1cEJNdWNiNUEzTjQ3a3hNRXV5M2sKn7EjODg45rie7ur+Sdcb62L3MnGGtLrO
+            w5+934Ta0RuWENRwfqB6e4rTmk5c3+A6n2oen1IqsEEbC+jy/JOHiQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-13T06:22:55Z"
+    mac: ENC[AES256_GCM,data:q/fbv5uzBG7K7wAdOX9893yq1752d1lws6vu7489d3autwwVynqD//nvjwX8uB06FjGqUWJ9KJ6ZDM+9RCSr85lDuz6t1IJZqZ7ubMZp/T/00wSkmg/FcKbU5tnFvC9wYXhkFbWnIw+x4cGq9DQdbU+gPa6ejhR+nc+s4P7uOSE=,iv:2ASNcXRj1GkJryYVnE+/LL4aNF2+Ioo4w3HgVP9+Z24=,tag:/zatboBU4mAW7tgH494ZOA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1

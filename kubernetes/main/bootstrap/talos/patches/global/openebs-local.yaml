@@ -1,0 +1,10 @@
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/mnt/sata
+        type: bind
+        source: /var/mnt/sata
+        options:
+          - bind
+          - rshared
+          - rw

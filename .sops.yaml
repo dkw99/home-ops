@@ -1,23 +1,26 @@
 ---
+keys:
+  - &user_dkw99 age1swfceavhed7qqdn6tq3s6dv3ny7m8ngk5z8ap64kk4ztumqgxc8q3x7eed
+  - &user_flux age1qqz7ryljcrncf70a6n0yqptdq34nte99uj8j6ppucw94npccad0q304pkw
+
 creation_rules:
-  - # IMPORTANT: Keep this rule first
-    path_regex: talos/.+\.secret(\.sops)?\.ya?ml
-    input_type: yaml
-    encrypted_regex: ^(token|crt|key|id|secret|secretboxEncryptionSecret|ca)$
+  - path_regex: kubernetes/.*/talos/.*\.sops\.ya?ml$
     key_groups:
       - age:
-          - "age1qqz7ryljcrncf70a6n0yqptdq34nte99uj8j6ppucw94npccad0q304pkw"
-  - path_regex: kubernetes/.+\.secret(\.sops)?\.ya?ml
-    input_type: yaml
-    encrypted_regex: ^(data|stringData)$
+          - *user_dkw99
+          - *user_flux
+
+  - path_regex: kubernetes/.*\.sops\.ya?ml$
+    encrypted_regex: "^(data|stringData)$"
     key_groups:
       - age:
-          - "age1qqz7ryljcrncf70a6n0yqptdq34nte99uj8j6ppucw94npccad0q304pkw"
-  - path_regex: kubernetes/.+\.secret(\.sops)?\.env
-    input_type: env
+          - *user_dkw99
+          - *user_flux
+
+  - path_regex: .*\.sops\.ya?ml$
     key_groups:
       - age:
-          - "age1qqz7ryljcrncf70a6n0yqptdq34nte99uj8j6ppucw94npccad0q304pkw"
+          - *user_dkw99
 stores:
   yaml:
     indent: 2

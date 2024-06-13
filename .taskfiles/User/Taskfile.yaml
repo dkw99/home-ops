@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+vars:
+  KUBERNETES_DIR: "{{.ROOT}}/kubernetes"
+
+tasks:
+  gen-config:
+
+    dir: "{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos"
+    cmds:
+      - cmd: echo "{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos"
+      - task: :talos:generate-clusterconfig
+
+    requires:
+      vars:
+        - cluster
+  generate-clusterconfig:
+    desc: Generate clusterconfig for Talos
+    # --env-file {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talenv.sops.yaml
+    cmds:
+      - talhelper genconfig
+        --secret-file {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talsecret.sops.yaml
+        --config-file {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talconfig.yaml
+        --out-dir {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/clusterconfig
+    requires:
+      vars:
+        - cluster
+    preconditions:
+      - which talhelper
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talenv.sops.yaml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talsecret.sops.yaml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talconfig.yaml
