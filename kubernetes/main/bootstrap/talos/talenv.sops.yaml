@@ -1,0 +1,32 @@
+clusterName: ENC[AES256_GCM,data:qiZqIw==,iv:x0VtkZC5bKt6ck1EhRd/ek1FgygFiA+c3voIGtNYI9s=,tag:oH52totLXLb5Tb8kh5uqog==,type:str]
+clusterDNSSuffix: ENC[AES256_GCM,data:Z6haC++EtWw=,iv:bwoaoqiFlTaI1KxXUtmUijjvY8eRijn4ad6eVWi3PSw=,tag:DJ/vB9uGbBh5UWHt0ELvjg==,type:str]
+clusterEndpointIP: ENC[AES256_GCM,data:WZrmCQn8eNpALXVjdg==,iv:YNYEGLqQzc271xxkB1QGbvgcr0g08z77VFZ4Fw8Dk4c=,tag:4+ZhpLkh3Ky+plxDx96zXA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1swfceavhed7qqdn6tq3s6dv3ny7m8ngk5z8ap64kk4ztumqgxc8q3x7eed
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5OS9ocTE4a1dDbXBoWVZj
+            elk4cVd4Vm4wbkpGQnpSRmdnZjBRd1VnbWhjCm1RdnEzbHVHV0JYT1phOTNlYzVP
+            RXcrckdDV1dIeWhtODFBeDByOE9scjQKLS0tIFFZSGdmUTF6R2Vic3dGM0Y1VlRF
+            MjAzbEx1bFB3Ykl3ajBYakg5YzFQVmsKRcL/6x48UgVqDm0Ornj9bs5XCJDmBMdX
+            uQ+PPzfo6ofY549wz5td60aGov6B5NIsqDQhaLKAHzxLOnemw/NQrA==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1qqz7ryljcrncf70a6n0yqptdq34nte99uj8j6ppucw94npccad0q304pkw
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1UlB0am04KzMyYjBZZFpY
+            SXJmMGxCOSszeUVXaEpTSTgrcVRKWWM1Ulg0Cm1YaWxFT0swK015TStoVHlCK0Rq
+            bVloZkhhM2NwYjJzaWZKNmlLK1FnTzAKLS0tIEZTNXd3K2lqUlIySnBScFRSNzYx
+            b2VGejhVRytJYlRnTGFoLzRReXpoQUkKKfF3+eXN9XtgOWFv1iCV7xEgSjFGG1A8
+            0Vlhmbh/jSD/YfvkEum1Znwu8Jah8o2MdLQ0mWxVuEv5CJ3Gt7g1dg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-13T06:22:54Z"
+    mac: ENC[AES256_GCM,data:nXVSPcNetyTH8RDvMqWxZ+IKStqbBXuLXxy0LtkT/n2x2a+dzyVtCeAmqJjLB4D8MwepyqHhg6JNwYwJBsCwwp+fR4nwJTRPW86G8N9IGfZ6KIZ74D5gkZr6XH65aZYDrkIioDEuIxllYd4VWPIv+w+FU3MciTZmHUgy37km2vc=,iv:GxZpQRJ77dIVvdEIFlTcJD80Y3LwieKOnRNzoGmb2Bw=,tag:j6gVDNUOfs957Te9xyptag==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1

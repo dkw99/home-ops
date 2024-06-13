@@ -1,37 +1,43 @@
 ---
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 vars:
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
-
-env:
-  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/main/kubeconfig:{{.KUBERNETES_DIR}}/kubernetes/storage/kubeconfig"
-  SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
+  TERRAFORM_DIR: "{{.ROOT_DIR}}/infrastructure/terraform"
 
 includes:
-  ansible: .taskfiles/Ansible/Taskfile.yaml
-  bootstrap: .taskfiles/Bootstrap/Taskfile.yaml
-  external-secrets: .taskfiles/ExternalSecrets/Taskfile.yaml
-  flux: .taskfiles/Flux/Taskfile.yaml
-  kubernetes:
-    aliases: ["k8s"]
-    taskfile: .taskfiles/Kubernetes/Taskfile.yaml
-  repository:
-    aliases: ["repo"]
-    taskfile: .taskfiles/Repository/Taskfile.yaml
-  rook: .taskfiles/Rook/Taskfile.yaml
-  talos: .taskfiles/Talos/Taskfile.yaml
-  sops: .taskfiles/Sops/Taskfile.yaml
-  workstation: .taskfiles/Workstation/Taskfile.yaml
+  flux:
+    dir: .taskfiles/flux
+    taskfile: .taskfiles/flux
+  k8s:
+    taskfile: .taskfiles/k8s
+    dir: .taskfiles/k8s
+  externalsecrets:
+    taskfile: .taskfiles/externalsecrets
+    dir: .taskfiles/externalsecrets
+  postgres:
+    taskfile: ".taskfiles/postgres"
+    dir: .taskfiles/postgres
+  rook:
+    taskfile: ".taskfiles/rook"
+    dir: .taskfiles/rook
+  sops:
+    taskfile: ".taskfiles/sops"
+    dir: .taskfiles/sops
+  talos:
+    taskfile: ".taskfiles/talos"
+    dir: .taskfiles/talos
+  volsync:
+    taskfile: ".taskfiles/volsync"
+    dir: .taskfiles/volsync
+  workstation:
+    taskfile: ".taskfiles/workstation"
+    dir: .taskfiles/workstation
   user:
     taskfile: .taskfiles/User
     optional: true
-  volsync: .taskfiles/VolSync/Taskfile.yaml
-
 tasks:
-
   default:
     silent: true
-    cmd: task -l
+    cmds:
+      - task -l

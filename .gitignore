@@ -3,6 +3,7 @@
 Thumbs.db
 # k8s
 kubeconfig
+talosconfig
 .decrypted~*.yaml
 .config.env
 *.agekey
@@ -11,7 +12,6 @@ kubeconfig
 # Private
 .private
 .bin
-Archive
 # Ansible
 .venv*
 # Taskfile
@@ -24,5 +24,4 @@ Brewfile.lock.json
 wiki
 # Bootstrap
 /config.yaml
-talosconfig
-Archive/
+/*-config.yaml

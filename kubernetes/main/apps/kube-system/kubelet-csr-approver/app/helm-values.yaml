@@ -1,2 +1,3 @@
 ---
-providerRegex: ^k8s-\d$
+providerRegex: ^(k8s-main-0)$
+bypassDnsResolution: true
