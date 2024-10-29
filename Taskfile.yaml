@@ -4,6 +4,13 @@ version: "3"
 vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   TERRAFORM_DIR: "{{.ROOT_DIR}}/infrastructure/terraform"
+  PYTHON_BIN: python3
+  PIP_REQUIREMENTS_FILE: "{{.ROOT_DIR}}/requirements.txt"
+env:
+  KUBECONFIG: "{{.KUBECONFIG_FILE}}"
+  PYTHONDONTWRITEBYTECODE: "1"
+  SOPS_AGE_KEY_FILE: "{{.AGE_FILE}}"
+  VIRTUAL_ENV: "{{.ROOT_DIR}}/.venv"
 
 includes:
   flux:
@@ -26,13 +33,14 @@ includes:
     dir: .taskfiles/sops
   talos:
     taskfile: ".taskfiles/talos"
-    dir: .taskfiles/talos
+    #dir: .taskfiles/talos
+  tal:
+    taskfile: ".taskfiles/Talos"
   volsync:
     taskfile: ".taskfiles/volsync"
     dir: .taskfiles/volsync
   workstation:
     taskfile: ".taskfiles/workstation"
-    dir: .taskfiles/workstation
   user:
     taskfile: .taskfiles/User
     optional: true
