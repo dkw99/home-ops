@@ -22,9 +22,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: mosquitto
-      namespace: home-automation
+  # dependsOn:
+  #   - name: mosquitto
+  #     namespace: home-automation
     # - name: openebs-localpv-provisioner
     #   namespace: openebs-system
   #  - name: rook-ceph-cluster
