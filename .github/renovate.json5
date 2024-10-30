@@ -40,6 +40,19 @@
   "packageRules": [
     // automerge
     {
+      "description": ["Auto-merge container digests updates for trusted containers"],
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": ["digest"],
+      "matchPackagePatterns": [
+        "ghcr.io/bjw-s",
+        "ghcr.io/onedr0p",
+        "ghcr.io/recyclarr",
+        "ghcr.io/unpackerr"
+      ]
+    },
+    {
       "description": ["Auto merge Github Actions"],
       "matchManagers": ["github-actions"],
       "automerge": true,
