@@ -20,8 +20,8 @@ spec:
   dependsOn:
     - name: mosquitto
       namespace: home-automation
-    - name: openebs-localpv-provisioner
-      namespace: openebs-system
+    # - name: openebs-localpv-provisioner
+    #   namespace: openebs-system
     # - name: rook-ceph-cluster
     #   namespace: rook-ceph
     # - name: volsync
