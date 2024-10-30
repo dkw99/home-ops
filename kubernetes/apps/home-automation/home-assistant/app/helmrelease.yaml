@@ -109,10 +109,10 @@ spec:
           - path: /config/tts
       tmp:
         type: emptyDir
-      backups:
-        enabled: true
-        type: nfs
-        server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
-        path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
-        globalMounts:
-          - path: /config/backups
+      # backups:
+      #   enabled: true
+      #   type: nfs
+      #   server: "nfs1.${SECRET_PRIVATE_DOMAIN}"
+      #   path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
+      #   globalMounts:
+      #     - path: /config/backups
