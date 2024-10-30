@@ -16,7 +16,7 @@ spec:
         name: bjw-s
         namespace: flux-system
   dependsOn:
-    - name: local-path-provisioner
+    - name: openebs-localpv-provisioner
       namespace: storage
   values:
     controllers:

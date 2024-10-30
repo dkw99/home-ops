@@ -20,7 +20,7 @@ spec:
   dependsOn:
     - name: mosquitto
       namespace: home-automation
-    - name: local-path-provisioner
+    - name: openebs-localpv-provisioner
       namespace: storage
     # - name: rook-ceph-cluster
     #   namespace: rook-ceph
