@@ -40,7 +40,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://cloudnative-pg/
-      endpointURL: https://nas.home.lan
+      endpointURL: https://nfs1.home.lan
       serverName: &currentCluster postgres16-v1
       s3Credentials:
         accessKeyId:
