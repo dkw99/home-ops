@@ -24,7 +24,7 @@ spec:
       retries: 3
   dependsOn:
     - name: openebs-localpv-provisioner
-      namespace: storage
+      namespace: openebs-system
 
   #  - name: rook-ceph-cluster
   #     namespace: rook-ceph
