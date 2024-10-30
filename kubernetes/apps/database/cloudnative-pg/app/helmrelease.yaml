@@ -24,9 +24,9 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: openebs-localpv-provisioner
-      namespace: openebs-system
+  # dependsOn:
+  #   - name: openebs-localpv-provisioner
+  #     namespace: openebs-system
   values:
     crds:
       create: true
