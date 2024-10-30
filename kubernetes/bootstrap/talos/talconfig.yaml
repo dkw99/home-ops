@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
+---
+# renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+talosVersion: v1.8.1
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.31.1
+
+clusterName: "main"
+endpoint: https://192.168.16.254:6443
+clusterPodNets:
+  - "10.42.0.0/16"
+clusterSvcNets:
+  - "10.43.0.0/16"
+additionalApiServerCertSans: &sans
+  - "192.168.16.254"
+  - 127.0.0.1 # KubePrism
+  - "k8s-apiserver"
+  - "192.168.16.254"
+  - "127.0.0.1"
+additionalMachineCertSans: *sans
+
+# Disable built-in Flannel to use Cilium
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: "k8s-node-0"
+    ipAddress: "192.168.16.100"
+    installDisk: "/dev/sda"
+    talosImageURL: factory.talos.dev/installer/9aef01f8e14c2b890712ce6f46cf7cc0e494dbc2d1add3e0430ecc5d0b3fad61
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "02:77:55:71:57:cc"
+        dhcp: false
+        addresses:
+          - "192.168.16.100/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.16.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.16.254"
+
+# Global patches
+patches:
+  - "@./patches/global/cluster-discovery.yaml"
+  - "@./patches/global/containerd.yaml"
+  - "@./patches/global/disable-search-domain.yaml"
+  - "@./patches/global/hostdns.yaml"
+  - "@./patches/global/kubelet.yaml"
+  - "@./patches/global/openebs-local.yaml"
+  - "@./patches/global/sysctl.yaml"
+
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/api-access.yaml"
+    - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/disable-admission-controller.yaml"
+    - "@./patches/controller/etcd.yaml"
+

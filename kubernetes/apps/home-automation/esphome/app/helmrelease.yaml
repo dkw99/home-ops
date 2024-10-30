@@ -1,0 +1,100 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: esphome
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+    controllers:
+      esphome:
+        annotations:
+          secret.reloader.stakater.com/reload: esphome-secrets,esphome-deploykey
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/esphome/esphome
+              tag: 2024.10.0
+            env:
+              TZ: Australia/Sydney
+              ESPHOME_DASHBOARD_USE_PING: true
+              PIP_CACHE_DIR: "/config/.pip"
+              PLATFORMIO_CORE_DIR: .plattformio
+              PLATFORMIO_GLOBALLIB_DIR: .plattformioLibs
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 5m
+                memory: 1374M
+              limits:
+                memory: 2048M
+    service:
+      app:
+        controller: esphome
+        ports:
+          http:
+            port: 6052
+
+    ingress:
+      app:
+        enabled: true
+        className: "internal"
+        hosts:
+          - host: &hostName esphome.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *hostName
+
+    persistence:
+      config:
+        existingClaim: esphome-config
+        advancedMounts:
+          esphome:
+            app:
+              - path: /config
+      secrets:
+        type: secret
+        name: esphome-secrets
+        globalMounts:
+          - path: /config/secrets.yaml
+            subPath: secrets.yaml
+      esphome-cache:
+        type: emptyDir
+        advancedMounts:
+          esphome:
+            app:
+              - path: /config/.esphome
