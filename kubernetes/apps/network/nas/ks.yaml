@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/networking/nas/app
+  path: ./kubernetes/apps/network/nas/app
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/networking/media-pvr-ext/app
+  path: ./kubernetes/apps/network/media-pvr-ext/app
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
