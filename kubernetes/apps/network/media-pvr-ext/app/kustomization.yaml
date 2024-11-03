@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./service.yaml
+  - ./bazarr/ingress.yaml
+  - ./heimdall/ingress.yaml
+  - ./openspeedtest/ingress.yaml
+  - ./prowlarr/ingress.yaml
+  - ./qbit/ingress.yaml
+  - ./radarr/ingress.yaml
+  - ./readarr/ingress.yaml
+  - ./sonarr/ingress.yaml
+  - ./sabnzbd/ingress.yaml
