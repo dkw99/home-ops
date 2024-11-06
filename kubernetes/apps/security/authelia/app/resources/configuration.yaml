@@ -102,7 +102,7 @@ identity_providers:
       #   userinfo_signed_response_alg: none
       - client_name: Mealie
         client_id: mealie
-        public: true
+        #public: true
         authorization_policy: two_factor
         require_pkce: true
         pkce_challenge_method: S256
@@ -110,7 +110,7 @@ identity_providers:
         redirect_uris:
           - https://mealie.${SECRET_DOMAIN}/login/
         userinfo_signed_response_alg: none
-        token_endpoint_auth_method: none
+        #token_endpoint_auth_method: none
         client_secret: "$${MEALIE_OAUTH_CLIENT_SECRET}"
       # - client_name: Paperless
       #   client_id: paperless
