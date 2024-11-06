@@ -37,11 +37,19 @@ spec:
               BASE_URL: https://mealie.${SECRET_DOMAIN}
               ALLOW_SIGNUP: false
               API_DOCS: false
-              SMTP_HOST: ${SMTP_HOST_IP}
+              SMTP_HOST: ${ROUTER_IP}
               SMTP_PORT: 25
               SMTP_AUTH_STRATEGY: NONE
               SMTP_FROM_EMAIL: mealie@${SECRET_DOMAIN}
-              THEME_DARK_PRIMARY:
+              OIDC_AUTH_ENABLED: true
+              OIDC_SIGNUP_ENABLED: true
+              OIDC_CONFIGURATION_URL: https://auth.${SECRET_DOMAIN}/.well-known/openid-configuration
+              OIDC_CLIENT_ID: mealie
+              OIDC_USER_CLAIM: preferred_username
+              OIDC_AUTO_REDIRECT: false
+              OIDC_GROUPS_CLAIM: groups
+              OIDC_ADMIN_GROUP: admins
+              OIDC_USER_GROUP: family
             resources:
               requests:
                 cpu: 100m
