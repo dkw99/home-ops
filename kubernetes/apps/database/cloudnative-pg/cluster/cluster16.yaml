@@ -25,23 +25,23 @@ spec:
       shared_buffers: 512MB
   resources:
     requests:
-      memory: "2Gi"
+      memory: "1Gi"
       cpu: "500m"
     limits:
-      memory: "4Gi"
+      memory: "2Gi"
   monitoring:
     enablePodMonitor: true
+    # see https://github.com/cloudnative-pg/cloudnative-pg/issues/2501
+    podMonitorMetricRelabelings:
+      - sourceLabels: ["cluster"]
+        targetLabel: cnpg_cluster
+        action: replace
+      - regex: cluster
+        action: labeldrop
   backup:
     retentionPolicy: 30d
-    barmanObjectStore:
-      data:
-        compression: bzip2
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      destinationPath: s3://cloudnative-pg/
-      endpointURL: https://nas16.internal
-      serverName: &currentCluster postgres16-v1
+    barmanObjectStore: &barmanObjectStore
+      endpointURL: http://nas16.internal:9000
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -49,19 +49,24 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+      destinationPath: s3://cloudnative-pg/
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 4
+      
+      # NOTE: serverName version needs to be incremented
+      # when recovering from an existing cnpg cluster
+      serverName: &currentCluster postgres16-v1
+  # NOTE: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  # bootstrap:
+  #   recovery:
+  #     source: &previousCluster postgres16-v0   
+  # # NOTE: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previousCluster
   #     barmanObjectStore:
-  #       wal:
-  #         compression: bzip2
-  #         maxParallel: 8
-  #       destinationPath: s3://cloudnative-pg/
-  #       endpointURL: https://nas16.internal
-  #       s3Credentials:
-  #         accessKeyId:
-  #           name: cloudnative-pg-secret
-  #           key: aws-access-key-id
-  #         secretAccessKey:
-  #           name: cloudnative-pg-secret
-  #           key: aws-secret-access-key
+  #       <<: *barmanObjectStore
+  #       serverName: *previousCluster
