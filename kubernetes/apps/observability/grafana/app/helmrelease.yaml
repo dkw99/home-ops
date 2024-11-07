@@ -22,9 +22,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: authelia
-      namespace: security
+  # dependsOn:
+  #   - name: authelia
+  #     namespace: security
   values:
     extraInitContainers:
       - name: 01-init-db
