@@ -101,7 +101,7 @@ spec:
       # backups:
       #   enabled: true
       #   type: nfs
-      #   server: nfs1.home.lan
+      #   server: nas16.internal
       #   path: /volume1/k3sCluster/Apps/External/Backups
       #   globalMounts:
       #     - path: /app/data/backups
