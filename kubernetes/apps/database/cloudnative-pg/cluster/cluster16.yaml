@@ -57,7 +57,7 @@ spec:
   #         compression: bzip2
   #         maxParallel: 8
   #       destinationPath: s3://cloudnative-pg/
-  #       endpointURL: https://s3.turbo.ac
+  #       endpointURL: https://nas16.internal
   #       s3Credentials:
   #         accessKeyId:
   #           name: cloudnative-pg-secret

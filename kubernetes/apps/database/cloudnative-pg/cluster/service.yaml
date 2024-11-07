@@ -5,7 +5,7 @@ metadata:
   name: postgres-lb
   annotations:
     #external-dns.alpha.kubernetes.io/hostname: postgres.wisesalmon.net
-    io.cilium/lb-ipam-ips: 192.168.16.250
+    io.cilium/lb-ipam-ips: ${POSGRES_LB_IP}
 spec:
   type: LoadBalancer
   ports:
