@@ -110,7 +110,7 @@ spec:
         type: emptyDir
       backups:
         type: nfs
-        server: "${NFS_IP}.${SECRET_PRIVATE_DOMAIN}"
+        server: "${NFS_IP}"
         path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
         globalMounts:
           - path: /config/backups
