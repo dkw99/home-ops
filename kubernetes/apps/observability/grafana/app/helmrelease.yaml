@@ -218,39 +218,39 @@ spec:
           revision: 1
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
-        zfs:
-          # renovate: depName="ZFS"
-          gnetId: 7845
-          revision: 4
-          datasource: Prometheus
+        # zfs:
+        #   # renovate: depName="ZFS"
+        #   gnetId: 7845
+        #   revision: 4
+        #   datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
           datasource: Prometheus
-        external-secrets:
-          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
-          datasource: Prometheus
+        # external-secrets:
+        #   url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
+        #   datasource: Prometheus
         node-feature-discovery:
           url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/examples/grafana-dashboard.json
           datasource: Prometheus
-        miniflux:
-          url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
-          datasource: Prometheus
-      ceph:
-        ceph-cluster:
-          # renovate: depName="Ceph Cluster"
-          gnetId: 2842
-          revision: 18
-          datasource: Prometheus
-        ceph-osd:
-          # renovate: depName="Ceph - OSD (Single)"
-          gnetId: 5336
-          revision: 9
-          datasource: Prometheus
-        ceph-pools:
-          # renovate: depName="Ceph - Pools"
-          gnetId: 5342
-          revision: 9
-          datasource: Prometheus
+      #   miniflux:
+      #     url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
+      #     datasource: Prometheus
+      # # ceph:
+      #   ceph-cluster:
+      #     # renovate: depName="Ceph Cluster"
+      #     gnetId: 2842
+      #     revision: 18
+      #     datasource: Prometheus
+      #   ceph-osd:
+      #     # renovate: depName="Ceph - OSD (Single)"
+      #     gnetId: 5336
+      #     revision: 9
+      #     datasource: Prometheus
+      #   ceph-pools:
+      #     # renovate: depName="Ceph - Pools"
+      #     gnetId: 5342
+      #     revision: 9
+      #     datasource: Prometheus
       emqx:
         emqx-authentication:
           url: https://raw.githubusercontent.com/emqx/emqx-exporter/main/grafana-dashboard/template/emqx-5/authentication.json
