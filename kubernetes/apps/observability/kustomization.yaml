@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./grafana/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
+  - ./kube-prometheus-stack/ks.yaml
