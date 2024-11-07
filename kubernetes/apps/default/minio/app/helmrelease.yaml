@@ -118,6 +118,6 @@ spec:
       config:
         type: nfs
         server: nas16.internal
-        path: /volume1/k3sCluster/Apps/Minio
+        path: /volume1/minio
         globalMounts:
           - path: /data
