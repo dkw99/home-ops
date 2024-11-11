@@ -16,7 +16,7 @@ spec:
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes:
       - ReadWriteOnce
-    cacheCapacity: 8Gi
+    cacheCapacity: 12Gi
     storageClassName: openebs-hostpath
     accessModes:
       - ReadWriteOnce
