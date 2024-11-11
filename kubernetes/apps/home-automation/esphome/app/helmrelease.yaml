@@ -25,8 +25,6 @@ spec:
   dependsOn:
     - name: openebs
       namespace: openebs-system
-    - name: volsync
-      namespace: volsync-system
   values:
     controllers:
       esphome:
@@ -36,45 +34,66 @@ spec:
               repository: esphome/esphome
               tag: 2024.10.3@sha256:4e3611857c4f71b1a48a09bb8a34687da54ff4793535879efec8ea4b1302615d
             env:
+              TZ: Australia/Sydney
               ESPHOME_DASHBOARD_USE_PING: true
+              PIP_CACHE_DIR: "/config/.pip"
+              PLATFORMIO_CORE_DIR: .plattformio
+              PLATFORMIO_GLOBALLIB_DIR: .plattformioLibs
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
               startup:
-                enabled: true
-                spec:
-                  failureThreshold: 30
-                  periodSeconds: 5
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 10m
-                memory: 500Mi
+                cpu: 5m
+                memory: 1024M
               limits:
-                memory: 4Gi
+                memory: 2048M
     service:
       app:
         controller: esphome
         ports:
           http:
             port: 6052
+
     ingress:
       app:
-        className: internal
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+        enabled: true
+        className: "internal"
         hosts:
-          - host: esphome.${SECRET_DOMAIN}
+          - host: &hostName esphome.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts:
+              - *hostName
+
     persistence:
       config:
-        existingClaim: esphome
-      cache:
-        type: emptyDir
+        existingClaim: esphome-config
+        advancedMounts:
+          esphome:
+            app:
+              - path: /config
+      secrets:
+        type: secret
+        name: esphome-secrets
         globalMounts:
-          - path: /config/.esphome
+          - path: /config/secrets.yaml
+            subPath: secrets.yaml
+      esphome-cache:
+        type: emptyDir
+        advancedMounts:
+          esphome:
+            app:
+              - path: /config/.esphome

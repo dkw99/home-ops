@@ -22,4 +22,3 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      CAPACITY: 10Gi
