@@ -6,3 +6,4 @@ resources:
   - ./secret.sops.yaml
   - ./secret.sops-deploykey.yaml
   - ./helmrelease.yaml
+  - ../../../../templates/persistence
