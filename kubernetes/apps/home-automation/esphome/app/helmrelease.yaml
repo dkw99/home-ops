@@ -63,7 +63,7 @@ spec:
               - /config
             resources:
               requests:
-                cpu: 10m
+                cpu: 5m
               limits:
                 memory: 512Mi
 
@@ -78,9 +78,9 @@ spec:
 
     ingress:
       app:
-        className: "internal-nginx"
+        className: "internal"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress-int.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
           nginx.ingress.kubernetes.io/rewrite-target: /$1
         hosts:
           - host: esphome.${SECRET_DOMAIN}
