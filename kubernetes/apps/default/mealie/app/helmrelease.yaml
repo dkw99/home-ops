@@ -52,7 +52,7 @@ spec:
               # OIDC_USER_GROUP: family
             resources:
               requests:
-                cpu: 100m
+                cpu: 50m
                 memory: 500Mi
               limits:
                 cpu: 200m
