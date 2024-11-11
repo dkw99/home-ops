@@ -23,7 +23,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: openebs-hostpath
+    - name: openebs
       namespace: openebs-system
     - name: volsync
       namespace: volsync-system
