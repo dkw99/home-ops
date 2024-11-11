@@ -10,35 +10,38 @@ spec:
     spec:
       chart: app-template
       version: 3.5.1
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
-  dependsOn:
-    - name: openebs
-      namespace: openebs-system
+
   values:
     controllers:
       esphome:
+        annotations:
+          secret.reloader.stakater.com/reload: esphome-secrets,esphome-deploykey
+
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name":"multus-iot",
+                "namespace": "network",
+                "ips": ["10.1.3.152/24"],
+                "mac": "92:cf:d7:05:70:84"
+              }]
+          securityContext:
+            runAsUser: 2000
+            runAsGroup: 2000
+            fsGroup: 2000
+            fsGroupChangePolicy: OnRootMismatch
+
         containers:
           app:
             image:
-              repository: esphome/esphome
-              tag: 2024.10.3@sha256:4e3611857c4f71b1a48a09bb8a34687da54ff4793535879efec8ea4b1302615d
-            env:
-              TZ: Australia/Sydney
-              ESPHOME_DASHBOARD_USE_PING: true
-              PIP_CACHE_DIR: "/config/.pip"
-              PLATFORMIO_CORE_DIR: .plattformio
-              PLATFORMIO_GLOBALLIB_DIR: .plattformioLibs
+              repository: ghcr.io/bjw-s-labs/esphome
+              tag: 2024.10.3@sha256:4abd302a0642c47bb7a5cad8051b95e5ac19d76f8b9212fa3f6be761ba8a0a2e
             probes:
               liveness:
                 enabled: false
@@ -46,37 +49,66 @@ spec:
                 enabled: false
               startup:
                 enabled: false
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 5m
-                memory: 1024M
+                memory: 512Mi
               limits:
-                memory: 2048M
+                memory: 3072Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+          code-server:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.95.1@sha256:d9bc7797d997e1b199e333676732e075bac4bae276dc0fe1baece2e313edfa09
+            args:
+              - --auth
+              - none
+              - --disable-telemetry
+              - --disable-update-check
+              - --user-data-dir
+              - /config/.code-server
+              - --extensions-dir
+              - /config/.code-server
+              - --port
+              - "12321"
+              - /config
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+
     service:
       app:
         controller: esphome
         ports:
           http:
             port: 6052
+          code-server:
+            port: 12321
 
     ingress:
       app:
-        enabled: true
-        className: "internal"
+        className: "internal-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ingress-int.${SECRET_DOMAIN}
+          nginx.ingress.kubernetes.io/rewrite-target: /$1
         hosts:
-          - host: &hostName esphome.${SECRET_DOMAIN}
+          - host: esphome.${SECRET_DOMAIN}
             paths:
-              - path: /
+              - path: /(.*)
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *hostName
+              - path: /code/(.*)
+                service:
+                  identifier: app
+                  port: code-server
 
     persistence:
       config:
@@ -85,15 +117,26 @@ spec:
           esphome:
             app:
               - path: /config
+            code-server:
+              - path: /config
       secrets:
         type: secret
         name: esphome-secrets
         globalMounts:
           - path: /config/secrets.yaml
             subPath: secrets.yaml
-      esphome-cache:
+      cache:
         type: emptyDir
         advancedMounts:
           esphome:
             app:
-              - path: /config/.esphome
+              - path: /cache
+      deploy-key:
+        type: secret
+        name: esphome-deploykey
+        defaultMode: 256
+        advancedMounts:
+          esphome:
+            code-server:
+              - path: /home/coder/.ssh/id_ed25519
+                subPath: id_ed25519
