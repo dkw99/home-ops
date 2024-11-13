@@ -49,6 +49,6 @@ spec:
       # NOTE: needs to follow schematic id from kubernetes/bootstrap/talos
       TALOS_SCHEMATIC_ID: 9aef01f8e14c2b890712ce6f46cf7cc0e494dbc2d1add3e0430ecc5d0b3fad61
       # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-      TALOS_VERSION: v1.8.2
+      TALOS_VERSION: v1.8.3
       # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
       KUBERNETES_VERSION: v1.31.2
