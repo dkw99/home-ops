@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghcr.io/bjw-s-labs/esphome
-              tag: 2024.10.3@sha256:4abd302a0642c47bb7a5cad8051b95e5ac19d76f8b9212fa3f6be761ba8a0a2e
+              tag: 2024.11.1@sha256:26aa7250ae7e7b81f951d77e6cbd45dba45240e5766715c41372d30b57ea42f3
             probes:
               liveness:
                 enabled: false
