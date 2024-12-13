@@ -21,11 +21,11 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  # postBuild:
-  #   substitute:
-  #     APP: *app
+  postBuild:
+    substitute:
+      APP: *app
   #     GATUS_SUBDOMAIN: zigbee
-  #     VOLSYNC_CAPACITY: 1Gi
-  #     VOLSYNC_ACCESSMODES: ReadWriteMany
-  #     VOLSYNC_STORAGECLASS: ceph-filesystem
+      VOLSYNC_CAPACITY: 1Gi
+      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_STORAGECLASS: openebs-hostpath
   #     VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
