@@ -6,4 +6,3 @@ resources:
   - ./secret.sops.yaml
   - ./claim.yaml
   - ./helmrelease.yaml
-  - ../../../../templates/persistence
