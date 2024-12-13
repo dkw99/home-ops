@@ -9,7 +9,8 @@ spec:
     manual: restore-once
   restic:
     repository: "${APP}-volsync"
-    copyMethod: Snapshot
+    # copyMethod: Snapshot
+    copyMethod: Direct
     volumeSnapshotClassName: openebs-hostpath
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes:
