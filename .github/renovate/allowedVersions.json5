@@ -9,7 +9,7 @@
     {
       "matchDatasources": ["github-releases"],
       "matchPackagePatterns": ["kubelet"],
-      "allowedVersions": "<1.32.0"
+      "allowedVersions": "<1.32"
     }
   ]
 }
