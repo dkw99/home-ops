@@ -5,11 +5,6 @@
       "matchDatasources": ["docker"],
       "matchPackagePatterns": ["postgresql"],
       "allowedVersions": "<17"
-    },
-    {
-      "matchDatasources": ["github-releases"],
-      "matchPackagePatterns": ["kubelet"],
-      "allowedVersions": "<1.32"
     }
   ]
 }
