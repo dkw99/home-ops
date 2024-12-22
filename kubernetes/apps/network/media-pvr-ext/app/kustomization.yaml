@@ -6,7 +6,6 @@ resources:
   - ./service.yaml
   - ./bazarr/ingress.yaml
   - ./heimdall/ingress.yaml
-  - ./jellyseer/ingress.yaml
   - ./openspeedtest/ingress.yaml
   - ./prowlarr/ingress.yaml
   - ./qbit/ingress.yaml
