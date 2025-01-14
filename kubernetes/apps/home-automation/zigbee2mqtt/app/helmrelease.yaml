@@ -89,14 +89,14 @@ spec:
               limits:
                 memory: 512Mi
 
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 568
-    #     runAsGroup: 568
-    #     fsGroup: 568
-    #     fsGroupChangePolicy: OnRootMismatch
-    #     seccompProfile: { type: RuntimeDefault }
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: zigbee2mqtt
@@ -117,6 +117,6 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: zigbee2mqtt-config
+        existingClaim: zigbee2mqtt-config-v1
         globalMounts:
           - path: /config
