@@ -74,7 +74,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_MQTT_INCLUDE_DEVICE_INFORMATION: true
               ZIGBEE2MQTT_CONFIG_MQTT_KEEPALIVE: 60
               ZIGBEE2MQTT_CONFIG_MQTT_REJECT_UNAUTHORIZED: true
-              ZIGBEE2MQTT_CONFIG_MQTT_SERVER: "mqtt://mqtt.home-automation.svc.cluster.local:1883"
+              ZIGBEE2MQTT_CONFIG_MQTT_SERVER: "mqtt://mosquitto.home-automation.svc.cluster.local:1883"
               ZIGBEE2MQTT_CONFIG_MQTT_VERSION: 5
               ZIGBEE2MQTT_CONFIG_MQTT_USER:
                 valueFrom:
@@ -143,6 +143,7 @@ spec:
       app:
         className: internal
         annotations:
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
           nginx.ingress.kubernetes.io/rewrite-target: /$1
         hosts:
           - host: zigbee2mqtt.${SECRET_DOMAIN}
