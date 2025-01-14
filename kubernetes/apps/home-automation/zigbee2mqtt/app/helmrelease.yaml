@@ -120,27 +120,27 @@ spec:
                   - ALL
                 add:
                   - NET_BIND_SERVICE
-          code-server:
-            image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.96.2@sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
-            args:
-              - --auth
-              - none
-              - --disable-telemetry
-              - --disable-update-check
-              - --user-data-dir
-              - /data/.code-server
-              - --extensions-dir
-              - /data/.code-server
-              - --port
-              - "12321"
-              - /data
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 512Mi
+          # code-server:
+          #   image:
+          #     repository: ghcr.io/coder/code-server
+          #     tag: 4.96.2@sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
+          #   args:
+          #     - --auth
+          #     - none
+          #     - --disable-telemetry
+          #     - --disable-update-check
+          #     - --user-data-dir
+          #     - /data/.code-server
+          #     - --extensions-dir
+          #     - /data/.code-server
+          #     - --port
+          #     - "12321"
+          #     - /data
+          #   resources:
+          #     requests:
+          #       cpu: 10m
+          #     limits:
+          #       memory: 512Mi
     
     service:
       app:
@@ -151,8 +151,8 @@ spec:
             port: 8080
           metrics:
             port: 9000
-          code-server:
-            port: 12321
+          # code-server:
+          #   port: 12321
 
     ingress:
       app:
@@ -166,10 +166,10 @@ spec:
                 service:
                   identifier: app
                   port: http
-              - path: /code/(.*)
-                service:
-                  identifier: app
-                  port: code-server
+              # - path: /code/(.*)
+              #   service:
+              #     identifier: app
+              #     port: code-server
     persistence:
       data:
         existingClaim: zigbee2mqtt-data
@@ -177,5 +177,5 @@ spec:
           zigbee2mqtt:
             app:
               - path: /data
-            code-server:
-              - path: /data
+            # code-server:
+            #   - path: /data
