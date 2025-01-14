@@ -104,9 +104,9 @@ spec:
                     key: mqtt_password
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
               startup:
                 enabled: false
                 spec:
