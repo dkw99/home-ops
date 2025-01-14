@@ -73,7 +73,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_DEVICE_OPTIONS_RETAIN: "true"
               ZIGBEE2MQTT_CONFIG_EXPERIMENTAL_NEW_API: "true"
               ZIGBEE2MQTT_CONFIG_FRONTEND: false
-              ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: &port 8080
+              ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: 8080
               ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.${SECRET_DOMAIN}
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
               ZIGBEE2MQTT_CONFIG_ADVANCED_HOMEASSISTANT_DISCOVERY_TOPIC: homeassistant
@@ -145,14 +145,20 @@ spec:
         controller: zigbee2mqtt
         ports:
           http:
-            port: *port
+            primary: true
+            port: 8080
+          metrics:
+            port: 9000
+          code-server:
+            port: 12321
+
     ingress:
       app:
         className: internal-nginx
         annotations:
           nginx.ingress.kubernetes.io/rewrite-target: /$1
         hosts:
-          - host: zigbee2mqtt.bjw-s.dev
+          - host: zigbee.${SECRET_DOMAIN}
             paths:
               - path: /(.*)
                 service:
