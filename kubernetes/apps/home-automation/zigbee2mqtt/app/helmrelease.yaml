@@ -158,6 +158,7 @@ spec:
       app:
         className: internal
         annotations:
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
           nginx.ingress.kubernetes.io/rewrite-target: /$1
         hosts:
           - host: zigbee.${SECRET_DOMAIN}
