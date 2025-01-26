@@ -108,7 +108,7 @@ spec:
             add_header X-Frame-Options "SAMEORIGIN";
             add_header X-XSS-Protection "1; mode=block";
         hosts:
-          - host: auth.${SECRET_DOMAIN}
+          - host: auth1.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
