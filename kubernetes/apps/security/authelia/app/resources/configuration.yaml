@@ -93,7 +93,7 @@ identity_providers:
     clients:
       - client_name: Grafana
         client_id: grafana
-        client_secret: "$${GRAFANA_OAUTH_CLIENT_SECRET}"
+        client_secret: '{{ secret "/config/secrets/GRAFANA_OAUTH_CLIENT_SECRET" }}'
         public: false
         authorization_policy: two_factor
         scopes: ["openid", "profile", "groups", "email"]
