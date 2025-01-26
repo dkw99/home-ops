@@ -86,8 +86,8 @@ access_control:
 identity_providers:
   oidc:
     jwks:
-      # prettier-ignore
-      - key: {{ secret "/config/oidc-jwks-key.pem" | mindent 10 "|" | msquote }}
+      - key: |
+          {{ secret "/config/secrets/OIDC_JWKS_KEY" | mindent 10 "|" | msquote }}
     cors:
       endpoints: ["authorization", "token", "revocation", "introspection"]
     clients:
