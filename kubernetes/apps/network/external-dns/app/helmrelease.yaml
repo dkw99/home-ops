@@ -37,11 +37,12 @@ spec:
             name: *secret
             key: api-token
     policy: sync
+    domainFilters: ["${SECRET_DOMAIN}"]
     extraArgs:
-      - --ingress-class=external
       - --cloudflare-proxied
+      - --events
       - --ignore-ingress-tls-spec
-    domainFilters: ["${SECRET_DOMAIN}"]   
+      - --ingress-class=external
     serviceMonitor:
       enabled: true
     resources:
