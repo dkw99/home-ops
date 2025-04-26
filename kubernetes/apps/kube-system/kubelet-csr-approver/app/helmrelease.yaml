@@ -20,6 +20,7 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
+  replicas: 1
   valuesFrom:
     - kind: ConfigMap
       name: kubelet-csr-approver-helm-values
