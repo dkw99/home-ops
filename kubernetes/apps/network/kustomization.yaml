@@ -6,8 +6,8 @@ resources:
   - ./cloudflared/ks.yaml
   - ./echo-server/ks.yaml
   - ./external-dns/ks.yaml
-  - ./external-dns-internal/ks.yaml
+  # - ./external-dns-internal/ks.yaml
   - ./ingress-nginx/ks.yaml
-  # - ./k8s-gateway/ks.yaml
+  - ./k8s-gateway/ks.yaml
   - ./media-pvr-ext/ks.yaml
   - ./nas/ks.yaml
