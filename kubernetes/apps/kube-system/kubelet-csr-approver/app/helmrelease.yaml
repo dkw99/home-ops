@@ -29,4 +29,4 @@ spec:
       enable: true
       serviceMonitor:
         enabled: true
-  replicas: 1
+    replicas: 1
