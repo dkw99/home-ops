@@ -52,6 +52,6 @@
     {
       "matchUpdateTypes": ["digest"],
       "addLabels": ["dependency/digest"]
-    },
+    }
   ]
 }
