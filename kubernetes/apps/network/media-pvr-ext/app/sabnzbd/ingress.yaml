@@ -4,7 +4,6 @@ kind: Ingress
 metadata:
   name: sabnzbd
   annotations:
-    external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: internal
@@ -16,6 +15,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: media-pvr-sabnzbd
+                name: media-pvr-ext
                 port:
                   number: 8100

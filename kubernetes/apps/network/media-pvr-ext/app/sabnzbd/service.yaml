@@ -5,4 +5,4 @@ metadata:
   name: media-pvr-sabnzbd
 spec:
   type: ExternalName
-  externalName: media-pvr.home.lan
+  externalName: media-pvr.wisesalmon.net
