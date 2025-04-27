@@ -16,6 +16,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: media-pvr-ext
+                name: media-pvr-sabnzbd
                 port:
                   number: 8100
