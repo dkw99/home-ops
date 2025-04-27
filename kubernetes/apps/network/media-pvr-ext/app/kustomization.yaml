@@ -14,4 +14,4 @@ resources:
   - ./readarr/ingress.yaml
   - ./sonarr/ingress.yaml
   - ./sabnzbd/ingress.yaml
-  - /sabnzbd/service.yaml
+  - ./sabnzbd/service.yaml
