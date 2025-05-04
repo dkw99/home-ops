@@ -70,7 +70,7 @@ spec:
         ssl-protocols: TLSv1.3 TLSv1.2
         use-forwarded-headers: "true"
       metrics:
-        enabled: false
+        enabled: true
         serviceMonitor:
           enabled: true
           namespaceSelector:

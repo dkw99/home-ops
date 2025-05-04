@@ -21,7 +21,7 @@ spec:
     cleanupOnFail: true
     remediation:
       strategy: rollback
-      retries: 3
+      retries: 2
   values:
     fullnameOverride: nginx-internal
     controller:
