@@ -1,7 +1,10 @@
 ---
 autoDirectNodeRoutes: true
 bpf:
-  masquerade: false # Required for Talos `.machine.features.hostDNS.forwardKubeDNSToHost`
+  # masquerade: false # Required for Talos `.machine.features.hostDNS.forwardKubeDNSToHost`
+  masquerade: true
+  # see https://github.com/siderolabs/talos/issues/10002
+  hostLegacyRouting: true
 cgroup:
   automount:
     enabled: false
