@@ -113,3 +113,13 @@ tasks:
         sh: test -d {{.BOOTSTRAP_DIR}}
       - msg: Missing Renovate config file
         sh: test -f {{.ROOT_DIR}}/.github/renovate.json5
+  
+  generate-config:
+    desc: Generate Talos configuration
+    dir: "{{.TALHELPER_DIR}}"
+    cmd: talhelper genconfig
+    preconditions:
+      - test -f {{.TALHELPER_DIR}}/talconfig.yaml
+      - test -f {{.ROOT_DIR}}/.sops.yaml
+      - test -f {{.SOPS_AGE_KEY_FILE}}
+      - which talhelper

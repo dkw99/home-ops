@@ -41,7 +41,10 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.16.254"
-
+      - interface: ens19
+        dhcp: false
+        addresses:
+          - 192.168.10.100/24
 # Global patches
 patches:
   - "@./patches/global/machine-features.yaml"
