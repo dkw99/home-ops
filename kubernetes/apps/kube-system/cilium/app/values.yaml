@@ -1,7 +1,7 @@
 ---
 autoDirectNodeRoutes: true
 bpf:
-  masquerade: true
+  masquerade: false
   # see https://github.com/siderolabs/talos/issues/10002
   hostLegacyRouting: true
 bgpControlPlane:
