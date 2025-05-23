@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -10,14 +11,20 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/kube-system/cilium/app
-  prune: false # never should be deleted
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+  prune: false
   wait: true
   interval: 30m
+  retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      # GATUS_SUBDOMAIN: hubble
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -31,10 +38,11 @@ spec:
   dependsOn:
     - name: cilium
   path: ./kubernetes/apps/kube-system/cilium/config
-  prune: false # never should be deleted
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+  prune: false
   wait: false
   interval: 30m
+  retryInterval: 1m
   timeout: 5m

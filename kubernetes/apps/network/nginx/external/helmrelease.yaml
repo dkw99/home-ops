@@ -31,7 +31,7 @@ spec:
         enableHttp: false
         annotations:
           external-dns.alpha.kubernetes.io/hostname: &hostname "external.${SECRET_DOMAIN}"
-          lbipam.cilium.io/ips: "${NGINX_EXT_LB_IP}"
+          lbipam.cilium.io/ips: "${INGRESS_NGINX_EXTERNAL_IP}"
       ingressClassResource:
         name: external
         default: false
