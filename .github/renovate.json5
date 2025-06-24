@@ -1,39 +1,57 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "docker:enableMajor",
-    ":disableRateLimiting",
-    ":dependencyDashboard",
-    ":semanticCommits",
-    ":enablePreCommit",
-    ":automergeDigest",
-    ":automergeBranch",
-    ":skipStatusChecks",
-    ":timezone(Europe/Paris)",
-    "github>dkw99/home-ops//.github/renovate/allowedVersions.json5",
-    "github>dkw99/home-ops//.github/renovate/autoMerge.json5",
-    "github>dkw99/home-ops//.github/renovate/commitMessage.json5",
-    "github>dkw99/home-ops//.github/renovate/customManagers.json5",
-    "github>dkw99/home-ops//.github/renovate/grafanaDashboards.json5",
-    "github>dkw99/home-ops//.github/renovate/groups.json5",
-    "github>dkw99/home-ops//.github/renovate/labels.json5",
-    "github>dkw99/home-ops//.github/renovate/packageRules.json5",
-    "github>dkw99/home-ops//.github/renovate/semanticCommits.json5"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    'docker:enableMajor',
+    ':disableRateLimiting',
+    ':dependencyDashboard',
+    ':semanticCommits',
+    ':enablePreCommit',
+    ':automergeDigest',
+    ':automergeBranch',
+    ':skipStatusChecks',
+    ':timezone(Europe/Paris)',
+    'github>dkw99/home-ops//.github/renovate/allowedVersions.json5',
+    'github>dkw99/home-ops//.github/renovate/autoMerge.json5',
+    'github>dkw99/home-ops//.github/renovate/commitMessage.json5',
+    'github>dkw99/home-ops//.github/renovate/customManagers.json5',
+    'github>dkw99/home-ops//.github/renovate/grafanaDashboards.json5',
+    'github>dkw99/home-ops//.github/renovate/groups.json5',
+    'github>dkw99/home-ops//.github/renovate/labels.json5',
+    'github>dkw99/home-ops//.github/renovate/packageRules.json5',
+    'github>dkw99/home-ops//.github/renovate/semanticCommits.json5',
   ],
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
-  "ignorePaths": ["**/*.sops.*", "**/resources/**"],
-  "flux": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
-    "ignorePaths": ["(^|/)kubernetes/flux/flux-system"]
+  dependencyDashboardTitle: 'Renovate Dashboard 🤖',
+  suppressNotifications: [
+    'prEditedNotification',
+    'prIgnoreNotification',
+  ],
+  ignorePaths: [
+    '**/*.sops.*',
+    '**/resources/**',
+  ],
+  flux: {
+    managerFilePatterns: [
+      '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+    ],
+    ignorePaths: [
+      '(^|/)kubernetes/flux/flux-system',
+    ],
   },
-  "helm-values": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
-    "ignorePaths": ["(^|/)kubernetes/flux/flux-system"]
+  'helm-values': {
+    managerFilePatterns: [
+      '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+    ],
+    ignorePaths: [
+      '(^|/)kubernetes/flux/flux-system',
+    ],
   },
-  "kubernetes": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
-    "ignorePaths": ["(^|/)kubernetes/flux/flux-system"]
-  }
+  kubernetes: {
+    managerFilePatterns: [
+      '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+    ],
+    ignorePaths: [
+      '(^|/)kubernetes/flux/flux-system',
+    ],
+  },
 }
