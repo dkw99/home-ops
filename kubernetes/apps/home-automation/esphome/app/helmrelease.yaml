@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/esphome
-              tag: 2025.6.1@sha256:4aec6da38bc4fbd59d3d54649272e267e197f6f0d8dd4a0d258b4c63f8866b86
+              tag: 2025.6.3@sha256:842143ce1ddb85d2e78823885e37a4033da1c2926759d26e923e848fda856ec2
             probes:
               liveness:
                 enabled: false
