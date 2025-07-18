@@ -205,12 +205,12 @@ spec:
           gnetId: 1860
           revision: 41
           datasource: Prometheus
-        # smart:
-        #   # renovate: depName="Dashboard for smartctl_exporter"
-        #   gnetId: 20204
-        #   revision: 1
-        #   datasource:
-        #     - { name: DS_PROMETHEUS, value: Prometheus }
+        smart:
+          # renovate: depName="Dashboard for smartctl_exporter"
+          gnetId: 20204
+          revision: 1
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         # unpackerr:
         #   # renovate: depName="Unpackerr"
         #   gnetId: 18817
