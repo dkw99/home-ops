@@ -20,11 +20,10 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  # dependsOn:
-  #   - name: authelia
-  #     namespace: security
+  dependsOn:
+    - name: authelia
+      namespace: security
   values:
     extraInitContainers:
       - name: 01-init-db
@@ -375,7 +374,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: external
-      hosts: ["grafana.${SECRET_DOMAIN}"]
+      hosts: ["grafana.${DOMAIN}"]
     persistence:
       enabled: false
     testFramework:
