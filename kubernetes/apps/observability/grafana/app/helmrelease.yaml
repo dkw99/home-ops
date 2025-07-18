@@ -374,7 +374,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: external
-      hosts: ["grafana.${DOMAIN}"]
+      hosts: ["grafana.${SECRET_DOMAIN}"]
     persistence:
       enabled: false
     testFramework:
