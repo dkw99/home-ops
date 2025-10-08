@@ -3,19 +3,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app system-upgrade-controller
-  namespace: flux-system
+  name: system-upgrade-controller
 spec:
-  targetNamespace: system-upgrade
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/app
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
+    namespace: flux-system
   dependsOn:
     - name: node-feature-discovery-rules
+      namespace: kube-system
   prune: true
   wait: true
   interval: 30m
@@ -26,29 +23,18 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app system-upgrade-controller-plans
-  namespace: flux-system
+  name: system-upgrade-controller-plans
 spec:
-  targetNamespace: system-upgrade
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/plans
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
+    namespace: flux-system
   dependsOn:
     - name: system-upgrade-controller
+      namespace: system-upgrade
   prune: true
   wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  postBuild:
-    substitute:
-      # NOTE: needs to follow schematic id from kubernetes/bootstrap/talos
-      TALOS_SCHEMATIC_ID: f811aedbb70fa55f249d081910eced5196719bccf3cdf833260600c242e811ef
-      # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-      TALOS_VERSION: v1.11.2
-      # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-      KUBERNETES_VERSION: v1.34.1
