@@ -45,14 +45,14 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/name: authelia
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-            envFrom: &envFrom
-              - secretRef:
-                  name: authelia
+        # initContainers:
+        #   init-db:
+        #     image:
+        #       repository: ghcr.io/onedr0p/postgres-init
+        #       tag: 16
+        #     envFrom: &envFrom
+        #       - secretRef:
+        #           name: authelia
         containers:
           app:
             image:
@@ -66,7 +66,9 @@ spec:
               AUTHELIA_THEME: dark
               X_AUTHELIA_CONFIG: /config/configuration.yaml
               X_AUTHELIA_CONFIG_FILTERS: template
-            envFrom: *envFrom
+            envFrom: 
+              - secretRef:
+                  name: authelia
             probes:
               liveness: &probes
                 enabled: true

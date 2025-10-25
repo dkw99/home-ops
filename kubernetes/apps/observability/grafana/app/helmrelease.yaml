@@ -370,7 +370,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: external
+      ingressClassName: internal
       hosts: ["grafana.${SECRET_DOMAIN}"]
     persistence:
       enabled: false
