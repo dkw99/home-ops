@@ -19,6 +19,7 @@ data:
   K8S_GATEWAY_IP: 10.44.0.3
   POSTGRES_IP: 10.44.0.17
   MQTT_IP: 10.44.0.16
+  HASS_IP: 10.44.0.18
   LOCAL_DOMAIN: home.lan
   VOLSYNC_RESTIC_REPOSITORY: s3:http://minio.home.lan:9000/volsync
   # K8S_GW_LB_IP: "192.168.16.253"
