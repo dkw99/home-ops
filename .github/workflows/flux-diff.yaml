@@ -57,12 +57,18 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - if: ${{ steps.diff.outputs.diff != '' }}
+        name: Prepare diff comment
+        run: |
+          {
+            echo '```diff'
+            cat diff.patch
+            echo '```'
+          } > diff-comment.md
+
+      - if: ${{ steps.diff.outputs.diff != '' }}
         name: Add comment
         uses: mshick/add-pr-comment@v2
         with:
           message-id: "${{ github.event.pull_request.number }}/${{ matrix.paths }}/${{ matrix.resources }}"
           message-failure: Diff was not successful
-          message: |
-            ```diff
-            ${{ steps.diff.outputs.diff }}
-            ```
+          message-path: diff-comment.md
