@@ -51,12 +51,14 @@ jobs:
       - name: Generate Diff
         id: diff
         run: |
-          cat diff.patch
-          echo "diff<<EOF" >> $GITHUB_OUTPUT
-          cat diff.patch >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -s diff.patch ]; then
+            echo "has_diff=true" >> $GITHUB_OUTPUT
+            cat diff.patch
+          else
+            echo "has_diff=false" >> $GITHUB_OUTPUT
+          fi
 
-      - if: ${{ steps.diff.outputs.diff != '' }}
+      - if: ${{ steps.diff.outputs.has_diff == 'true' }}
         name: Prepare diff comment
         run: |
           {
@@ -65,7 +67,7 @@ jobs:
             echo '```'
           } > diff-comment.md
 
-      - if: ${{ steps.diff.outputs.diff != '' }}
+      - if: ${{ steps.diff.outputs.has_diff == 'true' }}
         name: Add comment
         uses: mshick/add-pr-comment@v2
         with:
