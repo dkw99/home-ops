@@ -25,6 +25,7 @@ repos:
     rev: v25.9.2
     hooks:
       - id: ansible-lint
+        language_version: python3.12
         files: ^ansible/
         always_run: false
         entry: bash -c "cd ansible/ && exec ansible-lint --force-color"
