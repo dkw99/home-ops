@@ -79,7 +79,17 @@ jobs:
           path: default
           persist-credentials: false
 
+      - name: Check Default Branch Flux Path
+        id: default-flux-path
+        run: |
+          if [[ -d /github/workspace/default/kubernetes/flux/cluster ]]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run flux-local diff
+        if: ${{ steps.default-flux-path.outputs.exists == 'true' }}
         uses: docker://ghcr.io/allenporter/flux-local:v8.2.0
         with:
           args: >-
@@ -95,6 +105,7 @@ jobs:
 
       - name: Generate Diff
         id: diff
+        if: ${{ steps.default-flux-path.outputs.exists == 'true' }}
         run: |
           cat diff.patch;
           {
