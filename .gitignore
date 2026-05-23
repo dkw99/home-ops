@@ -26,3 +26,6 @@ wiki
 # Bootstrap
 /config.yaml
 .temp
+cloudflare-tunnel.json
+cluster.toml
+github-push-token.txt
