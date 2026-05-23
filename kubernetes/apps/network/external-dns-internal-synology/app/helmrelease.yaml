@@ -27,7 +27,7 @@ spec:
     sources: ["crd", "ingress"]
     policy: sync
     txtOwnerId: k8s
-    txtPrefix: external-dns-
+    txtPrefix: external-dns-syn-
     domainFilters: ["${SECRET_DOMAIN}"]
     provider:
       name: rfc2136
