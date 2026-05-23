@@ -27,7 +27,7 @@ spec:
     provider:
       name: rfc2136
     extraArgs:
-      - --rfc2136-host=${ROUTER_IP}
+      - --rfc2136-host=192.168.16.1
       - --rfc2136-port=53530
       - --rfc2136-zone=${SECRET_DOMAIN}
       - --rfc2136-tsig-secret=${ROUTER_RNDC_KEY}
