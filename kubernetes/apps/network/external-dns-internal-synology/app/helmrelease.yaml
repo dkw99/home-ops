@@ -19,7 +19,7 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    sources: ["crd", "ingress"]
+    sources: ["gateway-httproute"]
     policy: sync
     txtOwnerId: k8s
     txtPrefix: external-dns-syn-
@@ -27,16 +27,14 @@ spec:
     provider:
       name: rfc2136
     extraArgs:
-      - --rfc2136-host=${SYNOLOGY_IP}
+      - --rfc2136-host=192.168.16.30
       - --rfc2136-port=53
       - --rfc2136-zone=${SECRET_DOMAIN}
       - --rfc2136-tsig-secret=${SYNOLOGY_RNDC_KEY}
       - --rfc2136-tsig-secret-alg=hmac-sha512
       - --rfc2136-tsig-keyname=rndc-key-synology
       - --rfc2136-tsig-axfr
-      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
-      - --crd-source-kind=DNSEndpoint
-      - --ignore-ingress-tls-spec
+      - --gateway-name=envoy-internal
     triggerLoopOnEvent: true
     serviceMonitor:
       enabled: true
