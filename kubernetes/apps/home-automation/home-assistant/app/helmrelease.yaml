@@ -92,7 +92,7 @@ spec:
         rules:
           - backendRefs:
               - name: home-assistant
-                port: http
+                port: 8123
     persistence:
       config:
         existingClaim: home-assistant-config

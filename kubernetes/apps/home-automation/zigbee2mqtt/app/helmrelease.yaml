@@ -152,10 +152,10 @@ spec:
                     replacePrefixMatch: /
             backendRefs:
               - name: zigbee2mqtt
-                port: code-server
+                port: 12321
           - backendRefs:
               - name: zigbee2mqtt
-                port: http
+                port: 8080
 
     persistence:
       data:

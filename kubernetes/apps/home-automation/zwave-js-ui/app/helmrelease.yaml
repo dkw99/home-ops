@@ -89,7 +89,7 @@ spec:
         rules:
           - backendRefs:
               - name: zwave
-                port: http
+                port: 80
     persistence:
       config:
         existingClaim: zwave-js-ui-config

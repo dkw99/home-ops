@@ -95,10 +95,10 @@ spec:
                     replacePrefixMatch: /
             backendRefs:
               - name: esphome
-                port: code-server
+                port: 12321
           - backendRefs:
               - name: esphome
-                port: http
+                port: 6052
 
     persistence:
       config:
