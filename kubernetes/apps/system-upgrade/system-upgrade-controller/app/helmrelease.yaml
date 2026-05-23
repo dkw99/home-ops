@@ -17,12 +17,11 @@ spec:
     remediation:
       retries: 3
   values:
-    defaultPodOptions:
-      automountServiceAccountToken: true
     controllers:
       system-upgrade-controller:
         strategy: RollingUpdate
         pod:
+          automountServiceAccountToken: true
           securityContext:
             runAsNonRoot: true
             runAsUser: 65534
