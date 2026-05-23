@@ -29,3 +29,6 @@ spec:
       VOLSYNC_ACCESSMODES: ReadWriteMany
       VOLSYNC_STORAGECLASS: openebs-hostpath
       VOLSYNC_SNAPSHOTCLASS: openebs-hostpath
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets

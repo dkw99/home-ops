@@ -22,8 +22,11 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  # postBuild:
-  #   substitute:
-  #     APP: *app
-  #     GATUS_SUBDOMAIN: zwave
-  #     VOLSYNC_CAPACITY: 1Gi
+  postBuild:
+    substitute:
+      APP: *app
+    #     GATUS_SUBDOMAIN: zwave
+    #     VOLSYNC_CAPACITY: 1Gi
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets

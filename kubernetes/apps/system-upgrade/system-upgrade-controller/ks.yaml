@@ -6,6 +6,7 @@ metadata:
   name: system-upgrade-controller
   namespace: system-upgrade
 spec:
+  targetNamespace: system-upgrade
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/app
   sourceRef:
     kind: GitRepository
@@ -27,6 +28,7 @@ metadata:
   name: system-upgrade-controller-plans
   namespace: system-upgrade
 spec:
+  targetNamespace: system-upgrade
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/plans
   sourceRef:
     kind: GitRepository

@@ -26,3 +26,6 @@ spec:
       # VOLSYNC_ACCESSMODES: ReadWriteMany
       # VOLSYNC_STORAGECLASS: ceph-filesystem
       # VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
