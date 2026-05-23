@@ -28,8 +28,3 @@ releases:
     namespace: network
     inherit:
       - template: default
-
-  - name: kube-prometheus-stack
-    namespace: observability
-    inherit:
-      - template: default

@@ -21,8 +21,7 @@ spec:
         - notification-controller
       sync:
         kind: GitRepository
-        url: "ssh://git@github.com/dkw99/home-ops.git"
-        pullSecret: github-deploy-key
+        url: "https://github.com/dkw99/home-ops.git"
         ref: "refs/heads/main"
         path: kubernetes/flux/cluster
       commonMetadata:
