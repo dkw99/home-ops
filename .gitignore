@@ -47,7 +47,7 @@ github-push-token.txt
 
 # Misc.
 .claude/
-/archive/**
-/template/**
+/archive/
+/template/
 .DS_Store
 Thumbs.db
