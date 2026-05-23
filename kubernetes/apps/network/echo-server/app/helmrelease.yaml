@@ -82,5 +82,5 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: app
+                  name: echo-server
                   port: http

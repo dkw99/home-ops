@@ -151,10 +151,10 @@ spec:
                     type: ReplacePrefixMatch
                     replacePrefixMatch: /
             backendRefs:
-              - identifier: app
+              - name: zigbee2mqtt
                 port: code-server
           - backendRefs:
-              - identifier: app
+              - name: zigbee2mqtt
                 port: http
 
     persistence:

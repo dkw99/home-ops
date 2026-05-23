@@ -108,7 +108,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: app
+                  name: authelia
                   port: http
     serviceMonitor:
       app:

@@ -94,10 +94,10 @@ spec:
                     type: ReplacePrefixMatch
                     replacePrefixMatch: /
             backendRefs:
-              - identifier: app
+              - name: esphome
                 port: code-server
           - backendRefs:
-              - identifier: app
+              - name: esphome
                 port: http
 
     persistence:
