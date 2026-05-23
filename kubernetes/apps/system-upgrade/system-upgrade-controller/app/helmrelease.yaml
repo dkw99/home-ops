@@ -46,11 +46,12 @@ spec:
               capabilities: { drop: ["ALL"] }
     rawResources:
       talosServiceAccount:
-        apiVersion: talos.dev/v1alpha1
-        kind: ServiceAccount
-        spec:
+        manifest:
+          apiVersion: talos.dev/v1alpha1
+          kind: ServiceAccount
           spec:
-            roles: ["os:admin"]
+            spec:
+              roles: ["os:admin"]
     rbac:
       bindings:
         system-upgrade-controller:

@@ -74,7 +74,7 @@ spec:
         rules:
           - backendRefs:
               - name: home-assistant-code
-                port: http
+                port: 80
     persistence:
       config:
         existingClaim: home-assistant-config
