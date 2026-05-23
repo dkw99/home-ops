@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: external
   rules:
-    - host: jellyseer.${SECRET_DOMAIN}
+    - host: team-seer.${SECRET_DOMAIN}
       http:
         paths:
           - path: /

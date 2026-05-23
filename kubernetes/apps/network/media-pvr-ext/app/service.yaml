@@ -5,4 +5,4 @@ metadata:
   name: media-pvr-ext
 spec:
   type: ExternalName
-  externalName: media-pvr.home.lan
+  externalName: nas.home.lan
