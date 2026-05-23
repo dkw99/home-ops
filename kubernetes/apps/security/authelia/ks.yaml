@@ -13,7 +13,7 @@ spec:
   path: ./kubernetes/apps/security/authelia/app
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
   dependsOn:
     - name: cloudnative-pg-cluster
     - name: redis

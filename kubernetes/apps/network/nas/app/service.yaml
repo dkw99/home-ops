@@ -6,3 +6,8 @@ metadata:
 spec:
   type: ExternalName
   externalName: nas.home.lan
+  ports:
+    - name: https
+      port: 5001
+      targetPort: 5001
+      appProtocol: https

@@ -6,3 +6,34 @@ metadata:
 spec:
   type: ExternalName
   externalName: nas.home.lan
+  ports:
+    - name: heimdall
+      port: 80
+      targetPort: 80
+    - name: openspeedtest
+      port: 3000
+      targetPort: 3000
+    - name: jellyseer
+      port: 5055
+      targetPort: 5055
+    - name: bazarr
+      port: 6767
+      targetPort: 6767
+    - name: radarr
+      port: 7878
+      targetPort: 7878
+    - name: sabnzbd
+      port: 8100
+      targetPort: 8100
+    - name: qbittorrent
+      port: 8200
+      targetPort: 8200
+    - name: readarr
+      port: 8787
+      targetPort: 8787
+    - name: sonarr
+      port: 8989
+      targetPort: 8989
+    - name: prowlarr
+      port: 9696
+      targetPort: 9696

@@ -1,11 +1,13 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: "Labeler"
 
 on:
   workflow_dispatch:
   pull_request_target:
-    branches: ["main"]
+    branches:
+      - "main"
+
+permissions: {}
 
 jobs:
   labeler:
@@ -14,6 +16,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+      issues: write
     steps:
       - name: Labeler
         uses: actions/labeler@f27b608878404679385c85cfa523b85ccb86e213 # v6.1.0
