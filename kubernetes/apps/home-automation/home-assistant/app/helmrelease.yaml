@@ -52,28 +52,28 @@ spec:
                 cpu: 10m
               limits:
                 memory: 1Gi
-        initContainers:
-          install-hacs:
-            image:
-              repository: alpine
-              tag: 3.22.1
-            command:
-              - /bin/sh
-              - -c
-              - |
-                set -eu
+        # initContainers:
+        #   install-hacs:
+        #     image:
+        #       repository: alpine
+        #       tag: 3.22.1
+        #     command:
+        #       - /bin/sh
+        #       - -c
+        #       - |
+        #         set -eu
 
-                if [ -f /config/custom_components/hacs/manifest.json ]; then
-                  echo "HACS is already installed"
-                  exit 0
-                fi
+        #         if [ -f /config/custom_components/hacs/manifest.json ]; then
+        #           echo "HACS is already installed"
+        #           exit 0
+        #         fi
 
-                mkdir -p /config/custom_components
-                wget -q -O /tmp/hacs.zip https://github.com/hacs/integration/releases/latest/download/hacs.zip
-                rm -rf /config/custom_components/hacs
-                mkdir -p /config/custom_components/hacs
-                unzip -q /tmp/hacs.zip -d /config/custom_components/hacs
-                rm -f /tmp/hacs.zip
+        #         mkdir -p /config/custom_components
+        #         wget -q -O /tmp/hacs.zip https://github.com/hacs/integration/releases/latest/download/hacs.zip
+        #         rm -rf /config/custom_components/hacs
+        #         mkdir -p /config/custom_components/hacs
+        #         unzip -q /tmp/hacs.zip -d /config/custom_components/hacs
+        #         rm -f /tmp/hacs.zip
         #   init-db:
         #     image:
         #       repository: ghcr.io/home-operations/postgres-init
