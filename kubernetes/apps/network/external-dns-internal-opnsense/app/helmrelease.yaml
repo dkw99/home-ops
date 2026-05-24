@@ -4,12 +4,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: external-dns-internal
+  name: external-dns-internal-opnsense
 spec:
   interval: 30m
   chartRef:
     kind: OCIRepository
-    name: external-dns-internal
+    name: external-dns-internal-opnsense
   install:
     remediation:
       retries: 3
