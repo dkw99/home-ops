@@ -38,8 +38,6 @@ spec:
               tag: 2026.5.4@sha256:42d1bc5e99ed0ae8f49b72b8994e25e1a6b0f1467ba26c1b959f54ca42541ffd
             env:
               TZ: Australia/Sydney
-              HASS_HTTP_TRUSTED_PROXY_1: 192.168.16.0/24
-              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
             envFrom: &envFrom
               - secretRef:
                   name: home-assistant-secret
@@ -93,9 +91,35 @@ spec:
           - backendRefs:
               - name: home-assistant
                 port: 8123
+    configMaps:
+      config:
+        data:
+          configuration.yaml: |-
+            default_config:
+
+            frontend:
+              themes: !include_dir_merge_named themes
+
+            http:
+              use_x_forwarded_for: true
+              trusted_proxies:
+                - 10.42.0.0/16
+                - 10.44.0.0/16
+                - 192.168.16.0/24
+
+            automation: !include automations.yaml
+            script: !include scripts.yaml
+            scene: !include scenes.yaml
     persistence:
       config:
         existingClaim: home-assistant-config
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /config/configuration.yaml
+            subPath: configuration.yaml
+            readOnly: true
       logs:
         type: emptyDir
         globalMounts:
