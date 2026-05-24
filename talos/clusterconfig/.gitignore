@@ -1,2 +1,2 @@
-kubernetes-k8s-node-0.yaml
+*.yaml
 talosconfig

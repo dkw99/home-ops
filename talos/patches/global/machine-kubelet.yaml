@@ -1,7 +1,30 @@
 machine:
+  features:
+    rbac: true
+    apidCheckExtKeyUsage: true
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+        - os:admin
+      allowedKubernetesNamespaces:
+        - system-upgrade
+    hostDNS:
+      enabled: true
+      forwardKubeDNSToHost: true
+      resolveMemberNames: true
   kubelet:
+    extraArgs:
+      rotate-server-certificates: "true"
     extraConfig:
       serializeImagePulls: false
+    extraMounts:
+      - destination: /var/openebs/local
+        type: bind
+        source: /var/openebs/local
+        options:
+          - bind
+          - rshared
+          - rw
     nodeIP:
       validSubnets:
         - 192.168.16.0/24

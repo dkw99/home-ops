@@ -1,5 +1,5 @@
 ---
-clusterName: kubernetes
+clusterName: main
 
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
@@ -51,4 +51,3 @@ patches:
 controlPlane:
   patches:
     - "@./patches/controller/cluster.yaml"
-
