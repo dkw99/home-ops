@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+    meta.helm.sh/release-name: external-dns-internal-opnsense
+    meta.helm.sh/release-namespace: network
+  creationTimestamp: "2026-05-24T07:12:17Z"
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: external-dns-internal-opnsense
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: external-dns
+    app.kubernetes.io/version: 0.19.0
+    helm.sh/chart: external-dns-1.19.0
+    helm.toolkit.fluxcd.io/name: external-dns-internal-opnsense
+    helm.toolkit.fluxcd.io/namespace: network
+  name: external-dns-internal-opnsense
+  namespace: network
+  resourceVersion: "333637945"
+  uid: 07fae27d-ff73-44b0-81a1-407b31caad05
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: external-dns-internal-opnsense
+      app.kubernetes.io/name: external-dns
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: external-dns-internal-opnsense
+        app.kubernetes.io/name: external-dns
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - args:
+        - --log-level=info
+        - --log-format=text
+        - --interval=1m
+        - --events
+        - --source=gateway-httproute
+        - --policy=sync
+        - --registry=txt
+        - --txt-owner-id=k8s
+        - --txt-prefix=external-dns-
+        - --domain-filter=wisesalmon.net
+        - --provider=rfc2136
+        - --rfc2136-host=192.168.16.1
+        - --rfc2136-port=53530
+        - --rfc2136-zone=wisesalmon.net
+        - --rfc2136-tsig-secret=St17ZF+e3mAl86ovVGCr2orOuKq68aoq9LzRLlScfYbUufiaP/RW6KoX3ZiCoXHGC6XhAYrKwJepaKDQ2gICqQ==
+        - --rfc2136-tsig-secret-alg=hmac-sha512
+        - --rfc2136-tsig-keyname=rndc-key
+        - --rfc2136-tsig-axfr
+        - --gateway-name=envoy-internal
+        image: registry.k8s.io/external-dns/external-dns:v0.19.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 2
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: external-dns
+        ports:
+        - containerPort: 7979
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 6
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 50m
+            memory: 50Mi
+          requests:
+            cpu: 25m
+            memory: 50Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsGroup: 65532
+          runAsNonRoot: true
+          runAsUser: 65532
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 65534
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccount: external-dns-internal-opnsense
+      serviceAccountName: external-dns-internal-opnsense
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2026-05-24T07:20:39Z"
+    lastUpdateTime: "2026-05-24T07:20:39Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2026-05-24T07:12:17Z"
+    lastUpdateTime: "2026-05-24T07:20:39Z"
+    message: ReplicaSet "external-dns-internal-opnsense-7c9dcd7d9b" has successfully
+      progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
