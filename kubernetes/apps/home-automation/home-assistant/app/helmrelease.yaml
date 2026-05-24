@@ -60,7 +60,7 @@ spec:
             command:
               - sh
               - -c
-              - find /config -xdev -exec chown 1026:100 {} +
+              - find /config -xdev \( -path /config/backups -o -path /config/logs -o -path /config/tts \) -prune -o -exec chown 1026:100 {} +
             securityContext:
               runAsNonRoot: false
               runAsUser: 0
