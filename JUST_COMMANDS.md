@@ -10,24 +10,29 @@ Commands marked **disruptive** may restart or temporarily break cluster services
 
 Commands marked **destructive** can wipe node state or reset the cluster and should not be run against healthy production nodes unless that is the explicit goal.
 
-List available commands:
+## List Commands
+
+List available top-level command groups:
 
 ```bash
 just -l
-just talos -l
-just kube -l
-just bootstrap -l
 ```
 
-## Talos
-
-Generate Talos config from `talos/talconfig.yaml`, `talos/talenv.yaml`, `talos/talsecret.sops.yaml`, and `talos/patches/`:
+List commands in a module:
 
 ```bash
-just talos generate-config
+just talos
+just kube
+just bootstrap
 ```
 
-## Kubernetes
+If you are already inside a module directory, such as `talos/`, run:
+
+```bash
+just -l
+```
+
+## Sync GitOps Changes
 
 Force Flux to pull changes from Git:
 
@@ -35,23 +40,34 @@ Force Flux to pull changes from Git:
 just kube reconcile
 ```
 
-## Bootstrap
+## Check Kubernetes State
 
-Bootstrap applications into a Talos cluster:
+Check Kubernetes nodes:
 
 ```bash
-just bootstrap apps
+kubectl get nodes -o wide
 ```
 
-This is for initial app bring-up. Do not use it for normal day-to-day reconciliation.
+Check pods across namespaces:
 
-## Direct Useful Commands
+```bash
+kubectl get pods -A
+```
+
+Check Flux Kustomizations and HelmReleases:
+
+```bash
+kubectl get kustomizations,helmreleases -A
+```
+
+## Check Talos Node State
+
+Use these commands when you need to inspect the running Talos node without changing it.
 
 Check Talos node health:
 
 ```bash
-talosctl --talosconfig /home/dkwise/home-lab/repos/dkw99/home-ops/talos/clusterconfig/talosconfig \
-  --endpoints 192.168.16.100 \
+talosctl --endpoints 192.168.16.100 \
   --nodes 192.168.16.100 \
   health
 ```
@@ -59,19 +75,87 @@ talosctl --talosconfig /home/dkwise/home-lab/repos/dkw99/home-ops/talos/clusterc
 Check node network links:
 
 ```bash
-talosctl --talosconfig /home/dkwise/home-lab/repos/dkw99/home-ops/talos/clusterconfig/talosconfig \
-  --endpoints 192.168.16.100 \
+talosctl --endpoints 192.168.16.100 \
   --nodes 192.168.16.100 \
   get links
 ```
 
-Check Kubernetes nodes:
+Check node addresses:
 
 ```bash
-kubectl --kubeconfig /home/dkwise/home-lab/repos/dkw99/home-ops/kubeconfig get nodes -o wide
+talosctl --endpoints 192.168.16.100 \
+  --nodes 192.168.16.100 \
+  get addresses
 ```
 
-## Infrequent And Disruptive Commands
+## Generate Talos Config
+
+Use this after editing files under `talos/`, such as `talconfig.yaml`, `talenv.yaml`, or patch files. This only regenerates local `talos/clusterconfig/` files; it does not apply changes to the node.
+
+Generate Talos config from `talos/talconfig.yaml`, `talos/talenv.yaml`, `talos/talsecret.sops.yaml`, and `talos/patches/`:
+
+```bash
+just talos generate-config
+```
+
+Equivalent from inside `talos/`:
+
+```bash
+just generate-config
+```
+
+## Change Talos Node Config
+
+Use this workflow when changing node configuration, such as network interfaces, kubelet settings, files, sysctls, time settings, or Talos/Kubernetes versions.
+
+1. Edit source files under `talos/`, usually `talos/talconfig.yaml` or files under `talos/patches/`.
+
+2. Regenerate the rendered machine config:
+
+```bash
+just talos generate-config
+```
+
+3. Review what changed:
+
+```bash
+git diff -- talos/talconfig.yaml talos/patches talos/clusterconfig
+```
+
+4. Apply the generated config with the least disruptive mode that fits the change:
+
+```bash
+just talos apply-node 192.168.16.100 no-reboot
+```
+
+Use `no-reboot` for changes Talos can apply live. If Talos says the change requires a reboot, use `staged` to queue it for the next reboot:
+
+```bash
+just talos apply-node 192.168.16.100 staged
+```
+
+Use `reboot` only when you deliberately want Talos to apply the config and reboot immediately:
+
+```bash
+just talos apply-node 192.168.16.100 reboot
+```
+
+5. Verify the node after apply or reboot:
+
+```bash
+talosctl --endpoints 192.168.16.100 \
+  --nodes 192.168.16.100 \
+  health
+
+kubectl get nodes -o wide
+kubectl get pods -A
+```
+
+On this single-node cluster, `staged`, `reboot`, upgrades, and manual reboot can take Kubernetes and workloads offline until the node returns.
+
+## Apply Or Restart Talos
+
+Use these commands only when you need the running Talos node to consume generated config, upgrade software, or reboot. On this single-node cluster, these actions can interrupt Kubernetes and workloads.
 
 Apply Talos config to a node:
 
@@ -110,15 +194,22 @@ just talos upgrade-node 192.168.16.100
 Reboot the Talos node:
 
 ```bash
-talosctl --talosconfig /home/dkwise/home-lab/repos/dkw99/home-ops/talos/clusterconfig/talosconfig \
-  --endpoints 192.168.16.100 \
+talosctl --endpoints 192.168.16.100 \
   --nodes 192.168.16.100 \
   reboot
 ```
 
 **Disruptive:** this reboots the only control-plane/worker node, so Kubernetes and workloads will go offline until it returns.
 
-## Destructive Commands
+## Build Or Destroy Cluster
+
+Bootstrap applications into a Talos cluster:
+
+```bash
+just bootstrap apps
+```
+
+Use this during initial cluster bring-up after Talos and Kubernetes are ready. Do not use it for normal day-to-day reconciliation.
 
 Bootstrap a new Talos cluster:
 

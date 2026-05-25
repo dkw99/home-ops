@@ -38,6 +38,14 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.16.254"
+      - deviceSelector:
+          hardwareAddr: "bc:24:11:21:8e:22"
+        dhcp: false
+        mtu: 1500
+      - deviceSelector:
+          hardwareAddr: "bc:24:11:6e:ec:60"
+        dhcp: false
+        mtu: 1500
 
 # Global patches
 patches:

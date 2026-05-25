@@ -4,7 +4,7 @@ set script-interpreter := ['bash', '-euo', 'pipefail']
 
 [private]
 default:
-    just talos -l
+    just -l
 
 [doc('Apply Talos config to a node')]
 [group('talos')]

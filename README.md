@@ -55,8 +55,8 @@ List available commands:
 
 ```bash
 just -l
-just talos -l
-just kube -l
+just talos
+just kube
 ```
 
 Reconcile Flux with the latest pushed Git state:
@@ -68,14 +68,13 @@ just kube reconcile
 Check Kubernetes nodes:
 
 ```bash
-kubectl --kubeconfig /home/dkwise/home-lab/repos/dkw99/home-ops/kubeconfig get nodes -o wide
+kubectl get nodes -o wide
 ```
 
 Check Talos health:
 
 ```bash
-talosctl --talosconfig /home/dkwise/home-lab/repos/dkw99/home-ops/talos/clusterconfig/talosconfig \
-  --endpoints 192.168.16.100 \
+talosctl --endpoints 192.168.16.100 \
   --nodes 192.168.16.100 \
   health
 ```
