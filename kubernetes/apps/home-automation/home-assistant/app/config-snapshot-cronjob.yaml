@@ -1,0 +1,92 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: home-assistant-config-snapshot
+  namespace: home-automation
+spec:
+  schedule: "15 2 * * *"
+  timeZone: Australia/Sydney
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1026
+            runAsGroup: 100
+            fsGroup: 100
+            fsGroupChangePolicy: OnRootMismatch
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: snapshot
+              image: alpine:3.22.1
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -ceu
+                - |
+                  stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+                  dest="/backup/config-snapshots"
+                  work="/tmp/home-assistant-config-snapshot-${stamp}"
+
+                  mkdir -p "${dest}" "${work}/config/.storage"
+
+                  copy_file() {
+                    src="$1"
+                    rel="${src#/config/}"
+                    if [ -f "${src}" ]; then
+                      mkdir -p "${work}/config/$(dirname "${rel}")"
+                      cp -a "${src}" "${work}/config/${rel}"
+                    fi
+                  }
+
+                  copy_dir() {
+                    src="$1"
+                    rel="${src#/config/}"
+                    if [ -d "${src}" ]; then
+                      mkdir -p "${work}/config/${rel}"
+                      cp -a "${src}/." "${work}/config/${rel}/"
+                    fi
+                  }
+
+                  copy_file /config/configuration.yaml
+                  copy_file /config/automations.yaml
+                  copy_file /config/scripts.yaml
+                  copy_file /config/scenes.yaml
+                  copy_dir /config/packages
+
+                  for src in /config/.storage/lovelace*; do
+                    case "${src}" in
+                      *bak*) continue ;;
+                    esac
+                    copy_file "${src}"
+                  done
+                  copy_file /config/.storage/input_boolean
+                  copy_file /config/.storage/input_datetime
+                  copy_file /config/.storage/input_select
+
+                  find "${work}" -type f \( -name '*.bak' -o -name '*.bak-*' -o -name '*~' \) -delete
+
+                  tar -C "${work}" -czf "${dest}/home-assistant-config-dashboard-${stamp}.tar.gz" config
+                  find "${dest}" -type f -name 'home-assistant-config-dashboard-*.tar.gz' -mtime +30 -delete
+              volumeMounts:
+                - name: config
+                  mountPath: /config
+                  readOnly: true
+                - name: backups
+                  mountPath: /backup
+          volumes:
+            - name: config
+              persistentVolumeClaim:
+                claimName: home-assistant-config
+            - name: backups
+              nfs:
+                server: 192.168.16.30
+                path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
