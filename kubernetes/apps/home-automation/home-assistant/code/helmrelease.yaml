@@ -79,5 +79,9 @@ spec:
     persistence:
       config:
         existingClaim: home-assistant-config
+      vscode:
+        type: emptyDir
+        globalMounts:
+          - path: /config/.vscode
       esphome:
         existingClaim: esphome-config

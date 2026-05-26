@@ -140,4 +140,6 @@ spec:
         server: 192.168.16.30
         path: /volume1/k3sCluster/Apps/External/Backups/home_assistant
         globalMounts:
-          - path: /config/backups
+          # Keep external backups outside /config so config backups do not
+          # recursively include previous backup archives.
+          - path: /backup
