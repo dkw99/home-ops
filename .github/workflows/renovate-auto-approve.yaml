@@ -3,6 +3,11 @@ name: "Renovate Auto Approve"
 
 on:
   workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull request number to auto-approve"
+        required: true
+        type: string
   pull_request_target:
     branches:
       - "main"
@@ -29,9 +34,22 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           script: |
-            const pr = context.payload.pull_request;
+            const prNumber = context.eventName === "workflow_dispatch"
+              ? Number(core.getInput("pr_number"))
+              : context.payload.pull_request?.number;
             const allowedPrefix = "kubernetes/apps/home-automation/";
             const allowedSuffix = "/app/";
+
+            if (!prNumber || Number.isNaN(prNumber)) {
+              core.setFailed("A valid pull request number is required.");
+              return;
+            }
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
 
             if (pr.draft) {
               core.info("Skipping draft PR.");
@@ -55,7 +73,7 @@ jobs:
             const files = await github.paginate(github.rest.pulls.listFiles, {
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: pr.number,
+              pull_number: prNumber,
               per_page: 100,
             });
 
@@ -76,7 +94,7 @@ jobs:
             const reviews = await github.rest.pulls.listReviews({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: pr.number,
+              pull_number: prNumber,
             });
 
             const alreadyApproved = reviews.data.some(
@@ -91,7 +109,7 @@ jobs:
             await github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: pr.number,
+              pull_number: prNumber,
               event: "APPROVE",
               body: "Auto-approved for home-automation app updates.",
             });
