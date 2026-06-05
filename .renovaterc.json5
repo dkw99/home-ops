@@ -50,6 +50,13 @@
       ignoreTests: true,
     },
     {
+      description: "Auto-merge Renovate Digest Updates",
+      matchUpdateTypes: ["digest"],
+      automerge: true,
+      automergeType: "branch",
+      ignoreTests: true,
+    },
+    {
       description: "Auto-merge Home Automation Apps",
       matchFileNames: ["kubernetes/apps/home-automation/**/app/**"],
       matchUpdateTypes: ["minor", "patch", "digest"],
