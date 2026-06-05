@@ -4,8 +4,7 @@ kind: Service
 metadata:
   name: media-pvr-ext
 spec:
-  type: ExternalName
-  externalName: nas.home.lan
+  type: ClusterIP
   ports:
     - name: heimdall
       port: 80

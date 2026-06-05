@@ -4,6 +4,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./service.yaml
+  - ./endpoints.yaml
   - ./bazarr/ingress.yaml
   - ./heimdall/ingress.yaml
   - ./jellyseer/ingress.yaml
