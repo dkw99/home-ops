@@ -1,0 +1,96 @@
+---
+name: "Renovate Auto Approve"
+
+on:
+  pull_request_target:
+    branches:
+      - "main"
+    paths:
+      - "kubernetes/apps/home-automation/**/app/**"
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions: {}
+
+jobs:
+  approve:
+    name: Auto Approve Renovate PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Approve Renovate PRs for home-automation apps
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          script: |
+            const pr = context.payload.pull_request;
+            const allowedPrefix = "kubernetes/apps/home-automation/";
+            const allowedSuffix = "/app/";
+
+            if (pr.draft) {
+              core.info("Skipping draft PR.");
+              return;
+            }
+
+            if (pr.user?.login !== "renovate[bot]") {
+              core.info(`Skipping non-Renovate PR from ${pr.user?.login}.`);
+              return;
+            }
+
+            const allowedTypes = new Set(["type/minor", "type/patch", "type/digest"]);
+            const labels = new Set((pr.labels || []).map((label) => label.name));
+            const hasAllowedType = [...allowedTypes].some((label) => labels.has(label));
+
+            if (!hasAllowedType) {
+              core.info("Skipping PR without an allowed update-type label.");
+              return;
+            }
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+
+            if (files.length === 0) {
+              core.info("Skipping PR with no files.");
+              return;
+            }
+
+            const disallowed = files
+              .map((file) => file.filename)
+              .filter((filename) => !filename.startsWith(allowedPrefix) || !filename.includes(allowedSuffix));
+
+            if (disallowed.length > 0) {
+              core.info(`Skipping PR with out-of-scope files: ${disallowed.join(", ")}`);
+              return;
+            }
+
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+            });
+
+            const alreadyApproved = reviews.data.some(
+              (review) => review.user?.login === "github-actions[bot]" && review.state === "APPROVED",
+            );
+
+            if (alreadyApproved) {
+              core.info("PR is already approved by this workflow.");
+              return;
+            }
+
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              event: "APPROVE",
+              body: "Auto-approved for home-automation app updates.",
+            });
