@@ -12,7 +12,7 @@ machine:
     - 192.168.16.254
     - k8s-apiserver
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.33.3
+    image: ghcr.io/siderolabs/kubelet:v1.36.1
     extraArgs:
       rotate-server-certificates: "true"
     extraMounts:
