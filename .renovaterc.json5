@@ -18,6 +18,12 @@
       minimumGroupSize: 2,
     },
     {
+      description: "Ignore Talos factory installer images",
+      matchDatasources: ["docker"],
+      matchPackageNames: ["/^factory\\.talos\\.dev\\/installer\\//"],
+      enabled: false,
+    },
+    {
       description: "Auto-merge Mise Tools",
       matchManagers: ["mise"],
       automerge: true,
