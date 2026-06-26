@@ -18,6 +18,10 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    global:
+      createDefaultServiceAccount: false
+    defaultPodOptions:
+      automountServiceAccountToken: true
     controllers:
       glauth:
         annotations:
@@ -79,6 +83,7 @@ spec:
     serviceMonitor:
       app:
         serviceName: glauth
+        jobLabel: glauth
         endpoints:
           - port: http
             scheme: http

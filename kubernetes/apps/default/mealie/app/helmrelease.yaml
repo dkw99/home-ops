@@ -19,6 +19,10 @@ spec:
       strategy: rollback
       retries: 2
   values:
+    global:
+      createDefaultServiceAccount: false
+    defaultPodOptions:
+      automountServiceAccountToken: true
     controllers:
       mealie:
         replicas: 1
@@ -67,7 +71,7 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: mealie
+              - identifier: app
                 port: http
     persistence:
       config:
