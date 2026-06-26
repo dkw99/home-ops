@@ -16,6 +16,8 @@ spec:
     remediation:
       retries: 3
   values:
+    global:
+      createDefaultServiceAccount: false
     controllers:
       echo-server:
         strategy: RollingUpdate
@@ -52,6 +54,7 @@ spec:
               limits:
                 memory: 64Mi
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534

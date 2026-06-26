@@ -27,6 +27,10 @@ spec:
   #  - name: volsync
   #    namespace: storage
   values:
+    global:
+      createDefaultServiceAccount: false
+    defaultPodOptions:
+      automountServiceAccountToken: true
     controllers:
       zwave:
         annotations:

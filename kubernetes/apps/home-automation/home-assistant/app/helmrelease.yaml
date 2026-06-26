@@ -26,7 +26,8 @@ spec:
   #   - name: volsync
   #     namespace: storage
   values:
-
+    global:
+      createDefaultServiceAccount: false
     controllers:
       home-assistant:
         annotations:
@@ -90,6 +91,7 @@ spec:
         #       - secretRef:
         #           name: home-assistant-secret
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 1026

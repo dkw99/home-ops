@@ -21,6 +21,10 @@ spec:
     - name: glauth
       namespace: security
   values:
+    global:
+      createDefaultServiceAccount: false
+    defaultPodOptions:
+      automountServiceAccountToken: true
     controllers:
       authelia:
         replicas: 1

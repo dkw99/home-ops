@@ -13,6 +13,8 @@ spec:
   #   - name: localpv-provisioner
   #     namespace: openebs-system
   values:
+    global:
+      createDefaultServiceAccount: false
     controllers:
       mosquitto:
         annotations:
@@ -52,6 +54,7 @@ spec:
               limits:
                 memory: 10M
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
