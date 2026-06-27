@@ -112,8 +112,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: authelia
-                  port: http
+                  port: *port
     serviceMonitor:
       app:
         serviceName: authelia

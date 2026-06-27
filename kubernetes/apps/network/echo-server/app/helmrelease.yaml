@@ -85,5 +85,4 @@ spec:
             paths:
               - path: /
                 service:
-                  name: echo-server
-                  port: http
+                  port: *port
