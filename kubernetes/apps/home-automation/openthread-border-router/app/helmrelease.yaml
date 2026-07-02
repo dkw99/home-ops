@@ -1,0 +1,83 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openthread-border-router
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: openthread-border-router
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    global:
+      createDefaultServiceAccount: false
+    controllers:
+      openthread-border-router:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: kube-system/lan@lan0
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          app:
+            image:
+              repository: openthread/border-router
+              tag: latest@sha256:611b28c77cdff41279cbb5b29d0a41fcdc5a1ecb402a2b19bde1b8f5f7c6c912
+            env:
+              OT_INFRA_IF: lan0
+              OT_LOG_LEVEL: "5"
+              OT_RCP_DEVICE: "spinel+hdlc+uart://192.168.16.20:7638?uart-baudrate=460800"
+              OT_THREAD_IF: wpan0
+              TZ: Australia/Sydney
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities:
+                drop:
+                  - ALL
+                add:
+                  - NET_ADMIN
+                  - NET_RAW
+            resources:
+              requests:
+                cpu: 50m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+
+    defaultPodOptions:
+      automountServiceAccountToken: true
+      securityContext:
+        seccompProfile: { type: RuntimeDefault }
+
+    service:
+      app:
+        controller: openthread-border-router
+        ports:
+          http:
+            port: 80
+          rest:
+            port: 8081
+
+    persistence:
+      data:
+        existingClaim: openthread-border-router-data
+        globalMounts:
+          - path: /data
+      tun:
+        type: hostPath
+        hostPath: /dev/net/tun
+        globalMounts:
+          - path: /dev/net/tun
