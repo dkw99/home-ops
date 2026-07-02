@@ -36,21 +36,18 @@ spec:
               repository: bnutzer/otbr-tcp
               tag: latest@sha256:03c11c9d1e9625c7eb6f9b4900b89db3f67f97d99211b621caab38e77c737b34
             env:
+              OTBR_BACKBONE_IF: lan0
               OT_LOG_LEVEL: "5"
+              OTBR_RCP_ADDITIONAL_ARGS: ""
               OTBR_THREAD_IF: wpan0
               OTBR_WEB_ENABLE: "1"
               RCP_HOST: 192.168.16.20
               RCP_PORT: "7638"
               TZ: Australia/Sydney
             securityContext:
-              allowPrivilegeEscalation: false
+              privileged: true
+              allowPrivilegeEscalation: true
               readOnlyRootFilesystem: false
-              capabilities:
-                drop:
-                  - ALL
-                add:
-                  - NET_ADMIN
-                  - NET_RAW
             resources:
               requests:
                 cpu: 50m
@@ -76,7 +73,7 @@ spec:
       data:
         existingClaim: openthread-border-router-data
         globalMounts:
-          - path: /data
+          - path: /var/lib/thread
       tun:
         type: hostPath
         hostPath: /dev/net/tun
