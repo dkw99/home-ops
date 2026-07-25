@@ -28,7 +28,7 @@ lefthook = "2.1.10"
 sd = "1.1.0"               # required:template
 sops = "3.13.3"
 talhelper = "3.1.15"
-talosctl = "1.13.6"
+talosctl = "1.13.7"
 yq = "4.53.3"
 zizmor = "1.27.0"
 
