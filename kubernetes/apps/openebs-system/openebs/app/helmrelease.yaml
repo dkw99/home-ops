@@ -17,6 +17,11 @@ spec:
     remediation:
       retries: 3
   values:
+    # Hostpath-only deployment: the 4.4 chart enables this logging stack by default.
+    loki:
+      enabled: false
+    alloy:
+      enabled: false
     engines:
       local:
         lvm:
