@@ -2,6 +2,20 @@
 
 This directory contains the cluster workloads that expose services and publish DNS records for internal and external access.
 
+## NAS Flux Source
+
+The NAS Flux Kustomization runs in `network`, as set by this directory's
+`kustomization.yaml`. Its `sourceRef.namespace` must explicitly be `flux-system`
+to use the GitRepository `flux-system/flux-system`. Without it, Flux searches
+in `network` and fails with `GitRepository "flux-system" not found`.
+
+The source reference was corrected in Git and patched live on 2026-10-11;
+live reconciliation succeeded and created the NAS Service and HTTPRoute.
+Commit and push the manifest correction so future reconciliations retain it.
+After deployment, confirm
+`kubectl -n network get kustomization nas` reports Ready and that the NAS Service
+and HTTPRoute exist. Use the explicit kubeconfig path shown below.
+
 ## External DNS Layout
 
 The cluster runs two internal `external-dns` instances:
