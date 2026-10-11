@@ -36,7 +36,8 @@ spec:
               BASE_URL: https://mealie.${SECRET_DOMAIN}
               ALLOW_SIGNUP: false
               API_DOCS: false
-              SMTP_HOST: ${ROUTER_IP}
+              # No SMTP relay configured; preserve the existing live setting.
+              SMTP_HOST: null
               SMTP_PORT: 25
               SMTP_AUTH_STRATEGY: NONE
               SMTP_FROM_EMAIL: mealie@${SECRET_DOMAIN}
