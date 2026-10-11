@@ -7,6 +7,7 @@ on:
       - "main"
     paths:
       - "kubernetes/apps/home-automation/**/app/**"
+      - "kubernetes/apps/home-automation/home-assistant/code/helmrelease.yaml"
     types:
       - opened
       - synchronize
@@ -31,6 +32,7 @@ jobs:
             const pr = context.payload.pull_request;
             const allowedPrefix = "kubernetes/apps/home-automation/";
             const allowedSuffix = "/app/";
+            const codeServerFile = "kubernetes/apps/home-automation/home-assistant/code/helmrelease.yaml";
 
             if (pr.draft) {
               core.info("Skipping draft PR.");
@@ -65,7 +67,8 @@ jobs:
 
             const disallowed = files
               .map((file) => file.filename)
-              .filter((filename) => !filename.startsWith(allowedPrefix) || !filename.includes(allowedSuffix));
+              .filter((filename) => filename !== codeServerFile &&
+                (!filename.startsWith(allowedPrefix) || !filename.includes(allowedSuffix)));
 
             if (disallowed.length > 0) {
               core.info(`Skipping PR with out-of-scope files: ${disallowed.join(", ")}`);
