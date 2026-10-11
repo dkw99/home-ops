@@ -4,6 +4,9 @@ kind: CronJob
 metadata:
   name: home-assistant-config-snapshot
   namespace: home-automation
+  annotations:
+    # Preserve shell variables in the embedded script during Flux post-build.
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   schedule: "15 2 * * *"
   timeZone: Australia/Sydney
