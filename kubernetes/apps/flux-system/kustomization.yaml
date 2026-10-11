@@ -8,6 +8,5 @@ components:
 
 resources:
   - ./namespace.yaml
-  - ./prometheus-community.yaml
   - ./flux-instance/ks.yaml
   - ./flux-operator/ks.yaml
