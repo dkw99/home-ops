@@ -38,6 +38,9 @@ spec:
                   stamp="$(date -u +%Y%m%dT%H%M%SZ)"
                   dest="/backup/config-snapshots"
                   work="/tmp/home-assistant-config-snapshot-${stamp}"
+                  archive="${dest}/home-assistant-config-dashboard-${stamp}.tar.gz"
+                  partial="${archive}.partial"
+                  trap 'rm -f "${partial}"; rm -rf "${work}"' EXIT
 
                   mkdir -p "${dest}" "${work}/config/.storage"
 
@@ -77,7 +80,9 @@ spec:
 
                   find "${work}" -type f \( -name '*.bak' -o -name '*.bak-*' -o -name '*~' \) -delete
 
-                  tar -C "${work}" -czf "${dest}/home-assistant-config-dashboard-${stamp}.tar.gz" config
+                  tar -C "${work}" -czf "${partial}" config
+                  tar -tzf "${partial}" >/dev/null
+                  mv "${partial}" "${archive}"
                   find "${dest}" -type f -name 'home-assistant-config-dashboard-*.tar.gz' -mtime +30 -delete
               volumeMounts:
                 - name: config
