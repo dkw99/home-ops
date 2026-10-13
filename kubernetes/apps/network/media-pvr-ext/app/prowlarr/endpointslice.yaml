@@ -1,0 +1,18 @@
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: prowlarr
+  labels:
+    kubernetes.io/service-name: prowlarr
+    endpointslice.kubernetes.io/managed-by: home-ops
+addressType: IPv4
+ports:
+  - name: http
+    port: 9696
+    protocol: TCP
+endpoints:
+  - addresses:
+      - 192.168.2.30
+    conditions:
+      ready: true

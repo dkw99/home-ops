@@ -11,5 +11,5 @@ spec:
       sectionName: https
   rules:
     - backendRefs:
-        - name: media-pvr-ext
+        - name: bazarr
           port: 6767

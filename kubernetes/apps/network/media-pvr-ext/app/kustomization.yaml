@@ -3,17 +3,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./service.yaml
-  - ./endpoints.yaml
-  - ./bazarr/ingress.yaml
-  - ./heimdall/ingress.yaml
-  - ./jellyseer/ingress.yaml
+  - ./bazarr
+  - ./heimdall
+  - ./jellyseer
   - ./maintainerr
-  - ./openspeedtest/ingress.yaml
-  - ./prowlarr/ingress.yaml
-  - ./qbit/ingress.yaml
-  - ./radarr/ingress.yaml
-  - ./readarr/ingress.yaml
-  - ./sonarr/ingress.yaml
-  - ./sabnzbd/ingress.yaml
-  # - ./sabnzbd/service.yaml
+  - ./openspeedtest
+  - ./prowlarr
+  - ./qbit
+  - ./radarr
+  - ./readarr
+  - ./sonarr
+  - ./sabnzbd

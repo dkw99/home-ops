@@ -1,0 +1,3 @@
+interface:
+  display_name: "Home Ops NAS HTTPS Route"
+  short_description: "Publish NAS application HTTPS routes through GitOps"
