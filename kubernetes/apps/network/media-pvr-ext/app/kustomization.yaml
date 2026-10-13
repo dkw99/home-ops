@@ -8,6 +8,7 @@ resources:
   - ./bazarr/ingress.yaml
   - ./heimdall/ingress.yaml
   - ./jellyseer/ingress.yaml
+  - ./maintainerr
   - ./openspeedtest/ingress.yaml
   - ./prowlarr/ingress.yaml
   - ./qbit/ingress.yaml
