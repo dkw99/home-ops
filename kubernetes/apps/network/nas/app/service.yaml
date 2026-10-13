@@ -4,10 +4,10 @@ kind: Service
 metadata:
   name: nas
 spec:
-  type: ExternalName
-  externalName: nas.home.lan
+  type: ClusterIP
   ports:
     - name: https
       port: 5001
       targetPort: 5001
+      protocol: TCP
       appProtocol: https
