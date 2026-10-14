@@ -22,4 +22,3 @@ resources:
   - ./nas/ks.yaml
   - ./openspeedtest/ks.yaml
   - ./readarr/ks.yaml
-  - ./step-ca/ks.yaml
