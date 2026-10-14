@@ -7,6 +7,7 @@ resources:
   - ./cleanuparr
   - ./gatus
   - ./heimdall
+  - ./homepage
   - ./jellyseer
   - ./maintainerr
   - ./openspeedtest
