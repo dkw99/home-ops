@@ -2,6 +2,13 @@
 
 This directory contains the cluster workloads that expose services and publish DNS records for internal and external access.
 
+## NAS application routing
+
+See [Envoy external connections](envoy-external-connections.md) for the traffic
+path, project folder convention, endpoint inventory, addition workflow, and safe
+Flux ownership migrations. NAS app routes are grouped by their Compose project;
+only media-stack services belong under `media-stack/`.
+
 ## NAS Flux Source
 
 The NAS Flux Kustomization runs in `network`, as set by this directory's

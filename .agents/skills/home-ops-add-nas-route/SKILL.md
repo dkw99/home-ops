@@ -37,7 +37,7 @@ Inspect only the selected container's running state, network mode and published 
 
 Read these repository examples and their Kustomize/Flux parents before choosing the smallest compatible change:
 
-- [Maintainerr's per-app layout](../../../kubernetes/apps/network/media-pvr-ext/app/maintainerr/kustomization.yaml): its sibling `ingress.yaml`, `service.yaml`, and `endpointslice.yaml` are the template for new NAS application routes. Read the [parent resource includes](../../../kubernetes/apps/network/media-pvr-ext/app/kustomization.yaml) and [Flux Kustomization](../../../kubernetes/apps/network/media-pvr-ext/ks.yaml). The application routes use this per-app layout; preserve unrelated app backends when adding a route.
+- [Maintainerr's per-app layout](../../../kubernetes/apps/network/media-stack/app/maintainerr/kustomization.yaml): its sibling `ingress.yaml`, `service.yaml`, and `endpointslice.yaml` are the template for new NAS application routes. Read the [parent resource includes](../../../kubernetes/apps/network/media-stack/app/kustomization.yaml) and [Flux Kustomization](../../../kubernetes/apps/network/media-stack/ks.yaml). The application routes use this per-app layout; preserve unrelated app backends when adding a route.
 - [NAS management route](../../../kubernetes/apps/network/nas/app/ingress.yaml) and its `service.yaml` for the existing HTTPS-backend case.
 - [Gateway listeners and TLS](../../../kubernetes/apps/network/envoy-gateway/app/envoy.yaml).
 - [Network DNS conventions](../../../kubernetes/apps/network/README.md) and the external-dns HelmRelease files it identifies.
@@ -49,14 +49,14 @@ External-dns manages gateway HTTPRoute DNS. The internal gateway advertises `int
 
 ## Prepare and validate repository changes
 
-New NAS application routes use a dedicated Service and EndpointSlice per app, following Maintainerr. Place these four files under `kubernetes/apps/network/media-pvr-ext/app/<app>/`:
+New NAS application routes use a dedicated Service and EndpointSlice per app, following Maintainerr. Determine the running container's Compose project from its `com.docker.compose.project` label. Match the owner folder to that project: media-stack services belong in `kubernetes/apps/network/media-stack/app/<app>/`; standalone projects such as Homepage belong in `kubernetes/apps/network/<project>/app/`. See [Envoy external connections](../../../kubernetes/apps/network/envoy-external-connections.md). Place these four files in the selected app directory:
 
 - `ingress.yaml`: a `gateway.networking.k8s.io/v1` HTTPRoute named `<app>`, with the selected hostname, established internal HTTPS parent, and `backendRefs` pointing to Service `<app>` at the verified published host port.
 - `service.yaml`: a selectorless ClusterIP Service named `<app>`, with a named `http` TCP port. Follow Maintainerr by using the verified published host port for both `port` and `targetPort`.
 - `endpointslice.yaml`: a `discovery.k8s.io/v1` EndpointSlice named `<app>`, with `kubernetes.io/service-name: <app>` and `endpointslice.kubernetes.io/managed-by: home-ops` labels, `addressType: IPv4`, the verified NAS IP, endpoint `conditions.ready: true`, and a matching named `http` TCP port at the published host port.
 - `kustomization.yaml`: include `./ingress.yaml`, `./service.yaml`, and `./endpointslice.yaml`.
 
-Include `./<app>` in `kubernetes/apps/network/media-pvr-ext/app/kustomization.yaml`. Use the existing `media-pvr-ext/ks.yaml` Flux include and namespace/substitution configuration; a new app does not need a separate Flux Kustomization. Reuse an existing correctly mapped per-app backend when present. Do not add new app ports to the shared `media-pvr-ext` Service or legacy `endpoints.yaml`, or migrate existing shared routes as part of an addition. The `nas` ExternalName/HTTPS management route is a reference for that special case, not the template for NAS application routes.
+For a media-stack service, include `./<app>` in `kubernetes/apps/network/media-stack/app/kustomization.yaml` and reuse its Flux owner. For a separate Compose project, reuse or create `kubernetes/apps/network/<project>/ks.yaml`, with matching name/path, explicit `sourceRef.namespace: flux-system`, and the established network namespace/substitution settings; include it in `network/kustomization.yaml`. Do not group unrelated projects under media-stack. Reuse an existing correctly mapped per-app backend when present. Keep each application backend dedicated; do not combine unrelated app ports in a shared Service. The `nas` HTTPS management route is a reference for that special case, not the template for NAS HTTP application routes.
 
 Inspect existing repository and live entries first. Matching resources require no duplicate commit. Conflicting hostnames, backend mappings, listener policies or DNS ownership require resolution before publishing; preserve unrelated resources. Keep the separate Synology `home.lan`/other-zone endpoint unchanged. This skill does not need `synology-app-manage` to create a reverse proxy rule: Kubernetes reaches the verified NAS published port directly.
 
