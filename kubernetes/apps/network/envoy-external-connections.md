@@ -150,3 +150,26 @@ external-dns reconciles from the preserved routes.
 References: [Flux pruning and deletion policy](https://fluxcd.io/flux/components/kustomize/kustomizations/#deletion-policy),
 [Envoy Gateway HTTP routing](https://gateway.envoyproxy.io/docs/tasks/traffic/http-routing/),
 [Kubernetes services without selectors](https://kubernetes.io/docs/concepts/services-networking/service/#services-without-selectors).
+
+## Verified migration result — 2026-10-14
+
+Preparatory commits `70b7eebd` and `bef42a8b` established and verified the old
+owner's preservation policy. Migration commit `c1995d28` was pushed to `main`.
+All six new Flux owners became Ready at that revision and the old
+`media-pvr-ext` owner was removed. Inventories contain 30 resources for
+`media-stack` and three each for Homepage, Heimdall, Gatus, OpenSpeedTest, and
+Readarr. All 45 resources retained their original UIDs and route/backend
+settings. All 15 routes reported Accepted and ResolvedRefs at their current
+generations. Kustomize builds, skill reference validation, and all 69
+Flux-local v8.4.0 tests passed.
+
+Homepage and Gatus returned HTTPS 200. Representative Homepage, Gatus, and
+Sonarr records resolved through `internal.wisesalmon.net` to `10.44.0.2` in
+both DNS views. Several full-page probes timed out intermittently; Bazarr and
+Prowlarr passed repeat checks, and Sonarr's `/ping` passed through both the
+gateway and direct NAS listener. These probes do not prove application login
+or all page behavior. Existing failures remain: Heimdall returned 500;
+OpenSpeedTest and Readarr returned 503; `team-seer.wisesalmon.net` did not
+resolve. Those failures were also present before the migration and were not
+changed by moving ownership. Detailed before/after evidence is in the private
+snapshot directory above.
