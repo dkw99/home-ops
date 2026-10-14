@@ -1,0 +1,16 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: step-ca
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: step-ca
+  validation:
+    hostname: step-ca.${SECRET_DOMAIN}
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: step-ca-root
