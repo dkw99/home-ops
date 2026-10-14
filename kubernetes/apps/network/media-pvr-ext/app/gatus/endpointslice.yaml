@@ -1,0 +1,18 @@
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: gatus
+  labels:
+    kubernetes.io/service-name: gatus
+    endpointslice.kubernetes.io/managed-by: home-ops
+addressType: IPv4
+ports:
+  - name: http
+    port: 8085
+    protocol: TCP
+endpoints:
+  - addresses:
+      - 192.168.2.30
+    conditions:
+      ready: true

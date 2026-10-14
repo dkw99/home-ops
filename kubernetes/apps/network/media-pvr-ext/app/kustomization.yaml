@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./bazarr
   - ./cleanuparr
+  - ./gatus
   - ./heimdall
   - ./jellyseer
   - ./maintainerr
