@@ -55,3 +55,12 @@ spec:
       target:
         group: kustomize.toolkit.fluxcd.io
         kind: Kustomization
+    - # Preserve external backends while replacing their Flux owner.
+      patch: |-
+        - op: replace
+          path: /spec/deletionPolicy
+          value: Orphan
+      target:
+        group: kustomize.toolkit.fluxcd.io
+        kind: Kustomization
+        name: media-pvr-ext
