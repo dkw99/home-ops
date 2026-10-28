@@ -50,9 +50,9 @@ spec:
             resources:
               requests:
                 cpu: 5m
-                memory: 10M
+                memory: 32Mi
               limits:
-                memory: 10M
+                memory: 128Mi
     defaultPodOptions:
       automountServiceAccountToken: true
       securityContext:
