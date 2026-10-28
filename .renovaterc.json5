@@ -68,8 +68,8 @@
       ignoreTests: true,
     },
     {
-      description: "Auto-merge Renovate Patch Updates",
-      matchUpdateTypes: ["patch"],
+      description: "Auto-merge Renovate Minor and Patch Updates",
+      matchUpdateTypes: ["minor", "patch"],
       automerge: true,
       automergeType: "branch",
       ignoreTests: true,
