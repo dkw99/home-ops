@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Kubernetes health report using Codex CLI
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/dkwise/home-lab/repos/dkw99/home-ops
+ExecStart=/bin/bash /home/dkwise/home-lab/repos/dkw99/home-ops/operations/kubernetes-health/run.sh
+TimeoutStartSec=25min
+UMask=0077
+

@@ -1,0 +1,10 @@
+[Unit]
+Description=Kubernetes health check at 8 am Sydney time
+
+[Timer]
+OnCalendar=*-*-* 08:00:00 Australia/Sydney
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
