@@ -2,6 +2,12 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+configMapGenerator:
+  - name: zigbee2mqtt-health
+    files:
+      - adapter-health.cjs
+generatorOptions:
+  disableNameSuffixHash: true
 resources:
   - ./secret.sops.yaml
   - ./claim.yaml
