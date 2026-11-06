@@ -23,6 +23,9 @@ restarts with Kubernetes backoff; there is no hourly restart cap.
 
 The ConfigMap is mounted as one read-only file inside `external_extensions`;
 other extensions remain on the PVC. Reloader watches the ConfigMap for changes.
+An init container sets ownership of the extension directory to UID/GID 2000 so
+Zigbee2MQTT can create its module symlink and temporary import files. It changes
+only that directory's ownership, without recursively modifying device data.
 External JavaScript must remain enabled for the extension to load. Revalidate
 the extension's event API when upgrading Zigbee2MQTT.
 

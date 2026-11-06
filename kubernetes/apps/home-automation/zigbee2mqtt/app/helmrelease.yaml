@@ -26,6 +26,24 @@ spec:
             fsGroup: 2000
             fsGroupChangePolicy: OnRootMismatch
 
+        initContainers:
+          health-directory:
+            image:
+              repository: ghcr.io/koenkk/zigbee2mqtt
+              tag: 2.14.2
+            command:
+              - sh
+              - -ec
+              - mkdir -p /data/external_extensions && chown 2000:2000 /data/external_extensions
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop: [ALL]
+                add: [CHOWN]
+
         containers:
           app:
             image:
@@ -209,6 +227,8 @@ spec:
         existingClaim: zigbee2mqtt-data
         advancedMounts:
           zigbee2mqtt:
+            health-directory:
+              - path: /data
             app:
               - path: /data
             code-server:
