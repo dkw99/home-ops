@@ -29,7 +29,7 @@ spec:
               type: RuntimeDefault
           containers:
             - name: snapshot
-              image: alpine:3.24.3
+              image: alpine:3.24.4
               imagePullPolicy: IfNotPresent
               command:
                 - /bin/sh
