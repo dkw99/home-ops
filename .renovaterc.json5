@@ -1,24 +1,15 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  // Pin each nested preset: the 2.2.0 bundle references removed paths on main.
+  // v11 consolidates general rules in default.json; app presets remain opt-in.
+  // Pin every reference so no preset floats on the upstream default branch.
   extends: [
-    "github>home-operations/renovate-presets//config/baseConfig.json5#11.0.0",
-    "github>home-operations/renovate-presets//config/dependencyDashboard.json5#11.0.0",
-    "github>home-operations/renovate-presets//config/managerFilePatterns.json5#11.0.0",
-    "github>home-operations/renovate-presets//config/registryAliases.json5#11.0.0",
-    "github>home-operations/renovate-presets//managers/annotated.json5#11.0.0",
-    "github>home-operations/renovate-presets//managers/cnpg.json5#11.0.0",
-    "github>home-operations/renovate-presets//managers/grafanaDashboards.json5#11.0.0",
-    "github>home-operations/renovate-presets//managers/oci.json5#11.0.0",
-    "github>home-operations/renovate-presets//managers/talosFactory.json5#11.0.0",
-    "github>home-operations/renovate-presets//overrides/changelogs.json5#11.0.0",
-    "github>home-operations/renovate-presets//overrides/helmfile.json5#11.0.0",
-    "github>home-operations/renovate-presets//overrides/mise.json5#11.0.0",
-    "github>home-operations/renovate-presets//overrides/renovateOperator.json5#11.0.0",
-    "github>home-operations/renovate-presets//policies/semanticCommits.json5#11.0.0",
-    "github>home-operations/renovate-presets//versioning/llamacpp.json5#11.0.0",
-    "github>home-operations/renovate-presets//versioning/phanpy.json5#11.0.0",
-    "github>home-operations/renovate-presets//versioning/searxng.json5#11.0.0",
+    "github>home-operations/renovate-presets#11.0.0",
+    "github>home-operations/renovate-presets//apps/cnpg.json5#11.0.0",
+    "github>home-operations/renovate-presets//apps/grafanaDashboards.json5#11.0.0",
+    "github>home-operations/renovate-presets//apps/talosFactory.json5#11.0.0",
+    "github>home-operations/renovate-presets//apps/llamacpp.json5#11.0.0",
+    "github>home-operations/renovate-presets//apps/phanpy.json5#11.0.0",
+    "github>home-operations/renovate-presets//apps/searxng.json5#11.0.0",
   ],
   schedule: ["every weekend"],
   lockFileMaintenance: {
@@ -129,6 +120,15 @@
     {
       matchDatasources: ["github-releases"],
       addLabels: ["renovate/github-release"],
+    },
+    // Keep this last: local auto-merge rules above also match 0.x minors.
+    {
+      description: "Require manual review for potentially breaking 0.x minor updates",
+      matchUpdateTypes: ["minor"],
+      matchCurrentVersion: "/^v?0\\./",
+      automerge: false,
+      ignoreTests: false,
+      addLabels: ["type/major"],
     },
   ],
 }

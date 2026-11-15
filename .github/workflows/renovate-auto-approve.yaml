@@ -48,8 +48,9 @@ jobs:
             const labels = new Set((pr.labels || []).map((label) => label.name));
             const hasAllowedType = [...allowedTypes].some((label) => labels.has(label));
 
-            if (!hasAllowedType) {
-              core.info("Skipping PR without an allowed update-type label.");
+            // 0.x minor updates retain type/minor but are also marked type/major.
+            if (labels.has("type/major") || !hasAllowedType) {
+              core.info("Skipping a breaking update or PR without an allowed update-type label.");
               return;
             }
 
