@@ -29,7 +29,7 @@ sd = "1.1.0"               # required:template
 sops = "3.13.3"
 talhelper = "3.1.17"
 talosctl = "1.14.6"
-yq = "4.54.2"
+yq = "4.54.3"
 zizmor = "1.32.0"
 
 [hooks]
