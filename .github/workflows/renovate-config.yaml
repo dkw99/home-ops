@@ -1,0 +1,70 @@
+---
+name: Renovate Config
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .renovaterc.json5
+      - .github/workflows/renovate-config.yaml
+      - .github/workflows/renovate-auto-approve.yaml
+  push:
+    branches:
+      - main
+    paths:
+      - .renovaterc.json5
+      - .github/workflows/renovate-config.yaml
+      - .github/workflows/renovate-auto-approve.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate Renovate Config
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Match the Renovate version that generated this dependency update.
+      - name: Validate repository configuration
+        env:
+          RENOVATE_TOKEN: ${{ github.token }}
+        run: |
+          docker run --rm \
+            --entrypoint renovate-config-validator \
+            --volume "$PWD:/workspace:ro" \
+            --workdir /workspace \
+            --env RENOVATE_TOKEN \
+            ghcr.io/renovatebot/renovate:44.220.0 \
+            --strict --no-global .renovaterc.json5
+
+      - name: Resolve presets and extract dependencies without writing updates
+        env:
+          RENOVATE_TOKEN: ${{ github.token }}
+          LOG_LEVEL: debug
+        run: |
+          docker run --rm \
+            --entrypoint renovate \
+            --volume "$PWD:/workspace:ro" \
+            --workdir /workspace \
+            --env RENOVATE_TOKEN \
+            --env LOG_LEVEL \
+            --env GIT_CONFIG_COUNT=1 \
+            --env GIT_CONFIG_KEY_0=safe.directory \
+            --env GIT_CONFIG_VALUE_0=/workspace \
+            ghcr.io/renovatebot/renovate:44.220.0 \
+            --platform=local \
+            --dry-run=extract \
+            --onboarding=false \
+            --require-config=required \
+            --exit-code-for-errors=true
