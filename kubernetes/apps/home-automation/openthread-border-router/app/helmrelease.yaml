@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: bnutzer/otbr-tcp
-              tag: latest@sha256:98bef4fccf8ad7f2a72b61110bd80f96b4e9802913fa56be920c83728b9482db
+              tag: latest@sha256:f7255123c4ff9b83cd63314cc7f963fb84e197611954b77bccf3bf3eb600a13d
             env:
               OTBR_BACKBONE_IF: lan0
               OT_LOG_LEVEL: "5"
